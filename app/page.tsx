@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 import { useState } from "react";
 import { Dialog, DialogPanel } from "@headlessui/react";
@@ -20,30 +21,32 @@ import {
   CalendarDaysIcon,
   UserGroupIcon,
 } from "@heroicons/react/24/outline";
+import { Header } from "Sulaiman/Components/Header";
+import { Footer } from "Sulaiman/Components/Footer";
 
 const features = [
   {
-    name: "Integrated Brand Design.",
+    name: "My Undivided Attention.",
     description:
-      "Create visuals that complement your overall brand identity and messaging.",
+      " I will never go 'RADIO SILENCE' on you. I will try to answer any questions you might have at any given time, even after the project has completed.",
     icon: CheckCircleIcon,
   },
   {
-    name: "Latest Trends and Technology.",
+    name: "Low Client Capacity.",
     description:
-      "Follow the latest trends in the marketing world and stay up-to-date with the latest technology.",
+      "I service a total of 5 'big' clients each month. This gives me the time to really concentrate on each project that I work on and provide the best service possible to my clients.",
     icon: CheckCircleIcon,
   },
   {
-    name: "Project Management.",
+    name: "Complete Project Documentation.",
     description:
-      "Stay informed about your project and make sure it's on track and on budget.",
+      "Every important detail of each project will documented and updated as and when necessary, so that you have complete knowledge of what we are trying to achieve.",
     icon: CheckCircleIcon,
   },
   {
     name: "Clear Communication.",
     description:
-      "24/7 open communication channels for any issues and problems that you might face.",
+      "Trust, Respect and Understanding. Those 3 principles will always be at the core of everything that I do and I hope to receive that same treatment in return.",
     icon: CheckCircleIcon,
   },
 ];
@@ -52,7 +55,7 @@ const navigation = [
   { name: "Creative Design", href: "#" },
   { name: "Video/Motion", href: "#" },
   { name: "Website Development", href: "#" },
-  { name: "Portfolio", href: "#" },
+  { name: "Blog", href: "#" },
 ];
 
 const stats = [
@@ -61,26 +64,14 @@ const stats = [
   { id: 3, name: "Years of experience", value: "7" },
 ];
 
-const links = [
-  { name: "Open roles", href: "#" },
-  { name: "Internship program", href: "#" },
-  { name: "Our values", href: "#" },
-  { name: "Meet our leadership", href: "#" },
-];
-const stats2 = [
-  { name: "Offices worldwide", value: "12" },
-  { name: "Full-time colleagues", value: "300+" },
-  { name: "Hours per week", value: "40" },
-  { name: "Paid time off", value: "Unlimited" },
-];
-
 export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
     <main>
       <div className="flex justify-center items-center bg-white min-h-screen">
-        <header className="absolute inset-x-0 top-0 z-50">
+        <Header />
+        {/* <header className="absolute inset-x-0 top-0 z-50">
           <nav
             className="flex items-center justify-between p-6 lg:px-8"
             aria-label="Global"
@@ -173,7 +164,7 @@ export default function Home() {
               </div>
             </DialogPanel>
           </Dialog>
-        </header>
+        </header> */}
 
         <div className="relative isolate px-6 pt-14 lg:px-8">
           <div
@@ -238,7 +229,8 @@ export default function Home() {
         </div>
       </div>
 
-      {/* STATS MENU */}
+      {/* FEATURE MENU */}
+
       <div className="overflow-hidden bg-white py-24 sm:py-32">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
@@ -251,7 +243,9 @@ export default function Home() {
                   Everything you need in a trusted freelancer
                 </p>
                 <p className="mt-6 text-lg leading-8 text-gray-600">
-                  The things to expect when working with SLM Creatives.
+                  Hiring a digital marketing freelancer like me gives a few
+                  advantages to your usual freelancer. Here are a few things you
+                  can expect when starting a project with me.
                 </p>
                 <dl className="mt-10 max-w-xl space-y-8 text-base leading-7 text-gray-600 lg:max-w-none">
                   {features.map((feature) => (
@@ -270,9 +264,9 @@ export default function Home() {
               </div>
             </div>
             <img
-              src="/content_1.png"
+              src="/features.jpg"
               alt="Product screenshot"
-              className="intems-center z-10 w-[48rem] max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-[57rem] md:-ml-4 lg:-ml-0"
+              className="intems-center z-10 h-[40rem] max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-[57rem] md:-ml-4 lg:-ml-0"
               width={2432}
               height={1442}
             />
@@ -336,7 +330,7 @@ export default function Home() {
         <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-16">
           <div className="mx-auto pb-8 max-w-lg text-center">
             <h2 className="text-base font-semibold leading-7 text-emerald-600">
-              Offered Services
+              My Services
             </h2>
             <h2 className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
               Kickstart your marketing
@@ -349,17 +343,19 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="mt-8 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-8 grid grid-cols-1 gap-8 gap-y-12 md:grid-cols-2 lg:grid-cols-3">
+            <h2 className="grid-col-span-3 grid px-2 text-center text-xl font-semibold leading-7 col-span-3 -mb-6">
+              Digital Marketing Solutions
+            </h2>
             <a
-              className="block rounded-xl border border-gray-200 p-8 shadow-xl transition hover:border-emerald-500/10 hover:shadow-emerald-500/10"
-              href="#"
+              className="block rounded-xl border border-gray-200 p-8 shadow-xl transition transition-all transition-duration-300 hover:border-emerald-500/10 hover:shadow-emerald-500/10 hover:bg-emerald-50"
+              href="/content"
             >
               <CalendarDaysIcon className="size-10 text-emerald-600" />
 
               <h2 className="mt-4 text-l font-semibold text-gray-900">
-                Social Media Marketing
+                Content Marketing
               </h2>
-
               <p className="mt-1 text-sm text-gray-900">
                 Stategise your social content to attract the right attention to
                 your brand and build <em>long-term relationship </em> with your
@@ -368,7 +364,7 @@ export default function Home() {
             </a>
 
             <a
-              className="block rounded-xl bg-emerald-50 border border-gray-200 p-8 shadow-xl transition hover:border-emerald-500/10 hover:shadow-emerald-500/10"
+              className="block rounded-xl  border border-gray-200 p-8 shadow-xl transition hover:border-emerald-500/10 hover:shadow-emerald-500/10 hover:bg-emerald-50"
               href="#"
             >
               <CurrencyDollarIcon className="size-10 text-emerald-600" />
@@ -384,7 +380,7 @@ export default function Home() {
             </a>
 
             <a
-              className="block rounded-xl border border-gray-200 p-8 shadow-xl transition hover:border-emerald-500/10 hover:shadow-emerald-500/10"
+              className="block rounded-xl border border-gray-200 p-8 shadow-xl transition hover:border-emerald-500/10 hover:shadow-emerald-500/10 hover:bg-emerald-50"
               href="#"
             >
               <MagnifyingGlassCircleIcon className="size-10 text-emerald-600" />
@@ -399,8 +395,12 @@ export default function Home() {
               </p>
             </a>
 
+            <h2 className="grid-col-span-3 grid px-2 text-center text-xl font-semibold leading-7 col-span-3 -mb-6">
+              Content Generation Solutions
+            </h2>
+
             <a
-              className="block rounded-xl bg-emerald-50 border border-gray-200 p-8 shadow-xl transition hover:border-emerald-500/10 hover:shadow-emerald-500/10"
+              className="block rounded-xl hover:bg-emerald-50 border border-gray-200 p-8 shadow-xl transition hover:border-emerald-500/10 hover:shadow-emerald-500/10"
               href="#"
             >
               <SwatchIcon className="size-10 text-emerald-600" />
@@ -416,7 +416,7 @@ export default function Home() {
             </a>
 
             <a
-              className="block rounded-xl border border-gray-200 p-8 shadow-xl transition hover:border-emerald-500/10 hover:shadow-emerald-500/10"
+              className="block rounded-xl hover:bg-emerald-50 border border-gray-200 p-8 shadow-xl transition hover:border-emerald-500/10 hover:shadow-emerald-500/10"
               href="#"
             >
               <PlayCircleIcon className="size-10 text-emerald-600" />
@@ -432,7 +432,7 @@ export default function Home() {
             </a>
 
             <a
-              className="block rounded-xl bg-emerald-50 border border-gray-200 p-8 shadow-xl transition hover:border-emerald-500/10 hover:shadow-emerald-500/10"
+              className="block rounded-xl hover:bg-emerald-50 border border-gray-200 p-8 shadow-xl transition hover:border-emerald-500/10 hover:shadow-emerald-500/10 "
               href="#"
             >
               <UserGroupIcon className="size-10 text-emerald-600" />
@@ -576,7 +576,7 @@ export default function Home() {
 
       {/* FOOTER */}
 
-      <footer className="bg-white">
+      {/*  <footer className="bg-white">
         <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
           <div className="flex justify-center text-teal-600">
             <Image
@@ -771,7 +771,9 @@ export default function Home() {
             </li>
           </ul>
         </div>
-      </footer>
+      </footer> */}
+
+      <Footer />
     </main>
   );
 }
