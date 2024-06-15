@@ -24,7 +24,7 @@ export default function Content() {
           <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
             <div className="text-center text-balance">
               <h1 className="py-8 -my-8 text-4xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-emerald-600 to-violet-500 sm:text-6xl">
-                Social Media Content Marketing
+                Search Marketing Website Development
               </h1>
               <p className="mt-6 text-lg leading-8 text-gray-600">
                 Building digital brands for businesses with impactful creatives

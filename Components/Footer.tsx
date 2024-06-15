@@ -29,7 +29,7 @@ export function Footer() {
               href="#"
             >
               {" "}
-              About{" "}
+              Creative Design{" "}
             </a>
           </li>
 
@@ -39,7 +39,7 @@ export function Footer() {
               href="#"
             >
               {" "}
-              Careers{" "}
+              Video/Motion{" "}
             </a>
           </li>
 
@@ -49,27 +49,7 @@ export function Footer() {
               href="#"
             >
               {" "}
-              History{" "}
-            </a>
-          </li>
-
-          <li>
-            <a
-              className="text-gray-700 transition hover:text-gray-700/75"
-              href="#"
-            >
-              {" "}
-              Services{" "}
-            </a>
-          </li>
-
-          <li>
-            <a
-              className="text-gray-700 transition hover:text-gray-700/75"
-              href="#"
-            >
-              {" "}
-              Projects{" "}
+              Website Dev{" "}
             </a>
           </li>
 

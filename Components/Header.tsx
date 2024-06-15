@@ -4,18 +4,13 @@ import Image from "next/image";
 import React from "react";
 import { useState } from "react";
 import { Dialog, DialogPanel } from "@headlessui/react";
-import {
-  Bars3Icon,
-  Bars4Icon,
-  XMarkIcon,
-  CheckCircleIcon,
-} from "@heroicons/react/24/outline";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
 const navigation = [
-  { name: "Creative Design", href: "/content" },
-  { name: "Video/Motion", href: "#" },
-  { name: "Website Development", href: "#" },
-  { name: "Blog", href: "#" },
+  { name: "Content Marketing", href: "/content" },
+  { name: "Paid Ads Marketing", href: "/paid" },
+  { name: "Website Development", href: "/website" },
+  { name: "Blog", href: "/blog" },
 ];
 
 export function Header() {
@@ -28,7 +23,7 @@ export function Header() {
           aria-label="Global"
         >
           <div className="flex lg:flex-1">
-            <a href="#" className="-m-1.5 p-1.5">
+            <a href="/" className="-m-1.5 p-1.5">
               <span className="sr-only">SLM Creatives</span>
               <Image
                 width={100}
