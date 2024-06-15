@@ -3,6 +3,7 @@
 import Image from "next/image";
 import React from "react";
 import { useState } from "react";
+import "./globals.css";
 import { Dialog, DialogPanel } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
@@ -60,6 +61,7 @@ export function Header() {
           </a>
         </div>
       </nav>
+
       <Dialog
         className="lg:hidden"
         open={mobileMenuOpen}

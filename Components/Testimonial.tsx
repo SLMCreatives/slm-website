@@ -1,6 +1,7 @@
 import React from "react";
 import "keen-slider/keen-slider.min.css";
 import KeenSlider from "keen-slider";
+import "./globals.css";
 
 const keenSlider = new KeenSlider(
   "#keen-slider",
