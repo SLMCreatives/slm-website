@@ -1,13 +1,13 @@
 import React from "react";
 import Image from "next/image";
-import { Header } from "Sulaiman/Components/Header";
-import { Footer } from "Sulaiman/Components/Footer";
+import { Header } from "Sulaiman/components/header";
+import { Footer } from "Sulaiman/components/footer";
 
 export default function Content() {
   return (
     <main>
+      <Header />
       <div className="flex justify-center items-center bg-white min-h-screen">
-        <Header />
         <div className="relative isolate px-6 pt-14 lg:px-8">
           <div
             className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"

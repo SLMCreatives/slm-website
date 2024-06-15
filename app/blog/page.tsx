@@ -1,13 +1,13 @@
 import React from "react";
 import Image from "next/image";
-import { Header } from "Sulaiman/Components/Header";
-import { Footer } from "Sulaiman/Components/Footer";
+import { Header } from "Sulaiman/components/header";
+import { Footer } from "Sulaiman/components/footer";
 
 export default function Blog() {
   return (
     <main>
+      <Header />
       <div className="flex justify-center -mt-10 items-center bg-white min-h-screen">
-        <Header />
         <div className="flex justify-center items-center bg-white min-h-screen">
           <div className="relative isolate px-6 pt-14 lg:px-8">
             <div
