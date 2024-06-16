@@ -3,7 +3,7 @@
 import React from "react";
 import "/app/blog/(Post)/archive.css";
 
-export default function Card(props) {
+export default function Card(props: any) {
   return (
     <div className="card">
       <section className="column-left">
