@@ -33,7 +33,7 @@ async function prevSlide() {
   keenSlider.prev();
 }
 
-export function Testimonial() {
+const Testimonial = () => {
   return (
     <section className="bg-gray-50">
       <div className="mx-auto max-w-[1340px] px-4 py-12 sm:px-6 lg:me-0 lg:py-16 lg:pe-0 lg:ps-8 xl:py-24">
@@ -364,4 +364,6 @@ export function Testimonial() {
       </div>
     </section>
   );
-}
+};
+
+export default Testimonial;

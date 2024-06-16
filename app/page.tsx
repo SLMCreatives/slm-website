@@ -15,9 +15,9 @@ import {
   CalendarDaysIcon,
   UserGroupIcon,
 } from "@heroicons/react/24/outline";
-import { Header } from "Sulaiman/Components/Header";
-import { Footer } from "Sulaiman/Components/Footer";
-import { Testimonial } from "Sulaiman/Components/Testimonial";
+import Header from "Sulaiman/app/Components/Header";
+import Footer from "Sulaiman/app/Components/Footer";
+import Testimonial from "Sulaiman/app/Components/Testimonial";
 
 const features = [
   {

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import "/app/globals.css";
 
-export function Footer() {
+const Footer = () => {
   return (
     <footer className="bg-white">
       <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
@@ -180,4 +180,6 @@ export function Footer() {
       </div>
     </footer>
   );
-}
+};
+
+export default Footer;
