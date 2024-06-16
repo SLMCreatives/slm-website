@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
-import { Header } from "Sulaiman/app/Components/Header";
-import { Footer } from "Sulaiman/app/Components/Footer";
+import Header from "Sulaiman/app/Components/Header";
+import Footer from "Sulaiman/app/Components/Footer";
 
 export default function Blog() {
   return (
