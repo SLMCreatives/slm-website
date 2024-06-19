@@ -6,7 +6,7 @@ import emailjs from "@emailjs/browser";
 
 const MarketingForm = () => {
   const [allchecked, setAllChecked] = React.useState([]);
-  function handleChange(e) {
+  function handleChange(e: any) {
     if (e.target.checked) {
       setAllChecked([...allchecked, e.target.value]);
     } else {
@@ -22,7 +22,7 @@ const MarketingForm = () => {
   const goalRef = useRef<HTMLInputElement>();
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
     const serviceId = "service_fqriky5";
     const templateId = "template_tthfbab";
