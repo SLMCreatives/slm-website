@@ -4,15 +4,21 @@ import React, { useState } from "react";
 import { useRef, useEffect } from "react";
 import emailjs from "@emailjs/browser";
 
+const Services = [
+  { type: "Content Marketing" },
+  { type: "Paid Ads Marketing" },
+  { type: "Website Development" },
+  { type: "Lead Generation" },
+];
+
 const MarketingForm = () => {
-  const [allchecked, setAllChecked] = React.useState([]);
-  function handleChange(e: any) {
-    if (e.target.checked) {
-      setAllChecked([...allchecked, e.target.value]);
-    } else {
-      setAllChecked(allchecked.filter((item) => item !== e.target.value));
-    }
-  }
+  const [options, setOptions] = useState("");
+  const handleChange = (e: {
+    target: { value: React.SetStateAction<string> };
+  }) => {
+    setOptions(e.target.value);
+    console.log(e.target.value);
+  };
 
   useEffect(() => emailjs.init("9c0ucshiw0AIsRd15"), []);
   const nameRef = useRef<HTMLInputElement>();
@@ -22,7 +28,7 @@ const MarketingForm = () => {
   const goalRef = useRef<HTMLInputElement>();
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
     const serviceId = "service_fqriky5";
     const templateId = "template_tthfbab";
@@ -51,7 +57,6 @@ const MarketingForm = () => {
   return (
     <div className="flex w-[100%] h-[100%]">
       <fieldset className="flex flex-wrap gap-3">
-        <legend className="sr-only">Color</legend>
         <h1 className="my-2 font-semibold">Your Name</h1>
         <input
           type="text"
@@ -72,73 +77,30 @@ const MarketingForm = () => {
           ref={emailRef}
           onChange={(e) => console.log(e.target.value)}
         ></input>
+        <legend className="sr-only">Form</legend>
         <h1 className="my-2 font-semibold ">
           What type of marketing solution are you looking for?
         </h1>
-        <div>
-          <label
-            htmlFor="Content"
-            className="flex cursor-pointer items-center justify-center rounded-md border border-gray-100 bg-white px-3 py-2 text-gray-900 hover:border-gray-200 has-[:checked]:border-emerald-500 has-[:checked]:bg-emerald-500 has-[:checked]:text-white"
-          >
-            <input
-              type="checkbox"
-              name="MarketingOptions"
-              value="Content"
-              id="Content"
-              className="sr-only"
-              onChange={handleChange}
-            />
-            <p className="text-sm font-medium">Content Marketing</p>
-          </label>
+        <div className="grid grid-cols-2 gap-4">
+          {Services.map((item) => (
+            <label
+              htmlFor={item.type}
+              className="flex cursor-pointer rounded-md border border-gray-100 bg-white px-3 py-4 text-gray-900 hover:border-gray-200 has-[:checked]:border-emerald-500 has-[:checked]:bg-emerald-500 has-[:checked]:text-white"
+            >
+              <input
+                type="radio"
+                name="MarketingOptions"
+                value={item.type}
+                id={item.type}
+                className="sr-only"
+                ref={optionsRef}
+                onChange={handleChange}
+              />
+              <p className="text-sm font-medium">{item.type}</p>
+            </label>
+          ))}
         </div>
-        <div>
-          <label
-            htmlFor="Paid"
-            className="flex cursor-pointer items-center justify-center rounded-md border border-gray-100 bg-white px-3 py-2 text-gray-900 hover:border-gray-200 has-[:checked]:border-emerald-500 has-[:checked]:bg-emerald-500 has-[:checked]:text-white"
-          >
-            <input
-              type="checkbox"
-              name="MarketingOptions"
-              value="Paid"
-              id="Paid"
-              className="sr-only"
-              onChange={handleChange}
-            />
-            <p className="text-sm font-medium">Paid Marketing</p>
-          </label>
-        </div>
-        <div>
-          <label
-            htmlFor="Website"
-            className="flex cursor-pointer items-center justify-center rounded-md border border-gray-100 bg-white px-3 py-2 text-gray-900 hover:border-gray-200 has-[:checked]:border-emerald-500 has-[:checked]:bg-emerald-500 has-[:checked]:text-white"
-          >
-            <input
-              type="checkbox"
-              name="MarketingOptions"
-              value="Website"
-              id="Website"
-              className="sr-only"
-              onChange={handleChange}
-            />
-            <p className="text-sm font-medium">Website Development</p>
-          </label>
-        </div>
-        <div>
-          <label
-            htmlFor="LeadGeneration"
-            className="flex cursor-pointer items-center justify-center rounded-md border border-gray-100 bg-white px-3 py-2 text-gray-900 hover:border-gray-200 has-[:checked]:border-emerald-500 has-[:checked]:bg-emerald-500 has-[:checked]:text-white"
-          >
-            <input
-              type="checkbox"
-              name="MarketingOptions"
-              value="LeadGeneration"
-              id="LeadGeneration"
-              className="sr-only"
-              onChange={handleChange}
-            />
-            <p className="text-sm font-medium">Lead Generation</p>
-          </label>
-        </div>
+
         <div>
           <h1 className="my-2 font-semibold">
             What is the most important goal you wish to achieve?
