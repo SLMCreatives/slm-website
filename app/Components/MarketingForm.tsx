@@ -46,6 +46,11 @@ const MarketingForm = () => {
       console.log(error);
     } finally {
       setLoading(false);
+      nameRef.current!.value = "";
+      emailRef.current!.value = "";
+      optionsRef.current!.value = "";
+      goalRef.current!.value = "";
+      dateRef.current!.value = "";
     }
   };
 
