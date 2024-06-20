@@ -28,9 +28,9 @@ export default function Form() {
           </div>
         </div>
       </div>
-      <div className="flex justify-center items-center bg-white">
+      <div className="flex justify-center items-center bg-white lg:-mt-20">
         <div
-          className="relative isolate h-min-[30rem] w-[30rem] lg:px-8 border border-gray-300 p-4 my-4 justify-center items-center"
+          className="relative h-min-[30rem] w-[30rem] lg:w-[70rem]  justify-center items-center"
           id="form-container"
         >
           <MarketingForm />
