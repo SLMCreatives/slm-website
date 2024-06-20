@@ -1,18 +1,18 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { createRef, useState } from "react";
 import { useRef, useEffect } from "react";
 import emailjs from "@emailjs/browser";
 import "/app/globals.css";
 
 const Services = [
-  { type: "Social Media Marketing" },
-  { type: "Paid Ads Marketing" },
+  { type: "Social Media" },
+  { type: "Paid Ads" },
   { type: "Website Design" },
   { type: "Graphic Design" },
   { type: "Video Editing" },
   { type: "Blog Writing" },
-  { type: "Others" },
+  { type: "Other" },
 ];
 
 const RequiredTag = () => {
@@ -23,11 +23,27 @@ const RequiredTag = () => {
 
 const MarketingForm = () => {
   const [options, setOptions] = useState("");
+  const othcontRef = useRef<HTMLLabelElement>(null);
   const handleChange = (e: {
     target: { value: React.SetStateAction<string> };
   }) => {
-    setOptions(e.target.value);
-    console.log(e.target.value);
+    if (e.target.value === "Other") {
+      showOther();
+      console.log(otherRef.current?.value);
+    } else {
+      closeOther();
+      setOptions(e.target.value);
+      console.log(e.target.value);
+    }
+  };
+
+  const showOther = () => {
+    othcontRef.current?.classList.remove("hidden");
+    console.log("changed");
+  };
+
+  const closeOther = () => {
+    othcontRef.current?.classList.add("hidden");
   };
 
   useEffect(() => emailjs.init("9c0ucshiw0AIsRd15"), []);
@@ -40,6 +56,8 @@ const MarketingForm = () => {
   const contactRef = useRef<HTMLSelectElement>(null);
   const phoneRef = useRef<HTMLInputElement>(null);
   const budgetRef = useRef<HTMLInputElement>(null);
+  const otherRef = useRef<HTMLInputElement>(null);
+
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: { preventDefault: () => void }) => {
@@ -181,7 +199,7 @@ const MarketingForm = () => {
           {Services.map((item) => (
             <label
               htmlFor={item.type}
-              className="block w-full p-4 rounded-md  bg-gray-200 shadow-sm  text-sm hover:border-gray-200 has-[:checked]:border-emerald-500 has-[:checked]:bg-emerald-500 has-[:checked]:text-white cursor-pointer text-black/50"
+              className="block w-full p-4 rounded-md  bg-gray-200 shadow-sm  text-sm hover:border-gray-200 has-[:checked]:border-emerald-500 has-[:checked]:bg-emerald-500 has-[:checked]:text-white cursor-pointer text-black/50 last:col-span-2"
             >
               <input
                 type="radio"
@@ -198,6 +216,21 @@ const MarketingForm = () => {
             </label>
           ))}
         </div>
+        <label
+          htmlFor="Other"
+          ref={othcontRef}
+          className="hidden w-full p-2 rounded-md  bg-gray-200 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 text-sm transition duration-500 ease-in-out"
+        >
+          <input
+            type="text"
+            name="MarketingOptions"
+            id="Other"
+            ref={otherRef}
+            placeholder="Please specify"
+            className="w-full p-2 h-min-[10rem] rounded-md  bg-gray-200 border-none text-sm font-semibold"
+            onChange={(e) => console.log(e.target.value)}
+          />
+        </label>
         <h1 className="mt-2 font-semibold">
           What is the most important goal you wish to achieve?
         </h1>
@@ -246,11 +279,9 @@ const MarketingForm = () => {
             ref={contactRef}
             onChange={(e) => console.log(e.target.value)}
           >
-            <option value="Email">Email</option>
+            <option value="Chat"> WhatsApp </option>
             <option value="Phone">Phone</option>
-            <option value="Chat" defaultChecked>
-              WhatsApp / Chat
-            </option>
+            <option value="Email">Email</option>
           </select>
         </label>
         <h1 className="mt-2 font-semibold">
@@ -258,7 +289,7 @@ const MarketingForm = () => {
         </h1>
         <label
           htmlFor="Budget"
-          className="block w-full p-2 rounded-md  bg-gray-200 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 text-sm"
+          className="block w-full p-2 rounded-md  bg-gray-200 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 ] text-sm"
         >
           <input
             type="range"
@@ -273,12 +304,12 @@ const MarketingForm = () => {
             className="w-full p-2 h-min-[10rem] rounded-md  bg-gray-200 border-none text-sm font-semibold"
             onChange={(e) => console.log(e.target.value)}
           />
-          <div className="flex justify-between text-sm">
-            <span className="ml-2">RM100</span>
-            <span className="ml-2">RM250</span>
-            <span className="ml-2">RM500</span>
-            <span className="ml-2">RM750</span>
-            <span className="ml-2">RM1000+</span>
+          <div className="flex justify-between text-xs">
+            <span className="ml-2">RM 100</span>
+            <span className="ml-2">RM 500</span>
+            <span className="ml-2">RM 1,000</span>
+            <span className="ml-2">RM 2,500</span>
+            <span className="ml-2">RM 5,000+</span>
           </div>
         </label>
 

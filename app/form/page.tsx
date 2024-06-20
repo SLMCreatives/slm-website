@@ -15,7 +15,7 @@ export default function Form() {
 
       <div className="flex justify-center items-center bg-white">
         <div className="relative isolate px-6 pt-14 lg:px-8">
-          <div className="mx-auto max-w-2xl py-32 sm:py-32 lg:py-56">
+          <div className="mx-auto max-w-2xl py-12 sm:py-32 lg:py-56">
             <div className="text-center">
               <h1 className="py-8 -my-8 text-4xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-emerald-600 to-violet-500 sm:text-6xl">
                 Let's get started
