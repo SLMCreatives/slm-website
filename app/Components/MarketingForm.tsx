@@ -36,8 +36,8 @@ const MarketingForm = () => {
   const dateRef = useRef<HTMLInputElement>(null);
   const optionsRef = useRef<HTMLInputElement>(null);
   const goalRef = useRef<HTMLInputElement>(null);
-  const messageRef = useRef<HTMLInputElement>(null);
-  const contactRef = useRef<HTMLInputElement>(null);
+  const messageRef = useRef<HTMLTextAreaElement>(null);
+  const contactRef = useRef<HTMLSelectElement>(null);
   const phoneRef = useRef<HTMLInputElement>(null);
   const budgetRef = useRef<HTMLInputElement>(null);
   const [loading, setLoading] = useState(false);
