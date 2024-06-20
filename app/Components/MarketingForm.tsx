@@ -21,11 +21,11 @@ const MarketingForm = () => {
   };
 
   useEffect(() => emailjs.init("9c0ucshiw0AIsRd15"), []);
-  const nameRef = useRef<HTMLInputElement>();
-  const emailRef = useRef<HTMLInputElement>();
-  const dateRef = useRef<HTMLInputElement>();
-  const optionsRef = useRef<HTMLInputElement>();
-  const goalRef = useRef<HTMLInputElement>();
+  const nameRef = useRef<HTMLInputElement>(null);
+  const emailRef = useRef<HTMLInputElement>(null);
+  const dateRef = useRef<HTMLInputElement>(null);
+  const optionsRef = useRef<HTMLInputElement>(null);
+  const goalRef = useRef<HTMLInputElement>(null);
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: { preventDefault: () => void }) => {
@@ -35,22 +35,17 @@ const MarketingForm = () => {
     try {
       setLoading(true);
       await emailjs.send(serviceId, templateId, {
-        name: nameRef.current.value,
-        recipient: emailRef.current.value,
-        options: optionsRef.current.value,
-        goal: goalRef.current.value,
-        date: dateRef.current.value,
+        name: nameRef.current?.value,
+        recipient: emailRef.current?.value,
+        options: optionsRef.current?.value,
+        goal: goalRef.current?.value,
+        date: dateRef.current?.value,
       });
       alert("email successfully sent check inbox");
     } catch (error) {
       console.log(error);
     } finally {
       setLoading(false);
-      nameRef.current.value = "";
-      emailRef.current.value = "";
-      optionsRef.current.value = "";
-      goalRef.current.value = "";
-      dateRef.current.value = "";
     }
   };
 
@@ -58,6 +53,7 @@ const MarketingForm = () => {
     <div className="flex w-[100%] h-[100%]">
       <fieldset className="flex flex-wrap gap-3">
         <h1 className="my-2 font-semibold">Your Name</h1>
+
         <input
           type="text"
           name="name"
