@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { useRef, useEffect } from "react";
 import emailjs from "@emailjs/browser";
+import "/app/globals.css";
 
 const Services = [
   { type: "Content Marketing" },
