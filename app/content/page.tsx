@@ -12,27 +12,27 @@ import MasonryImageList from "Sulaiman/app/content/components/imageList";
 
 const features = [
   {
-    name: "Push to deploy",
+    name: "Value Focused",
     description:
-      "Morbi viverra dui mi arcu sed. Tellus semper adipiscing suspendisse semper morbi. Odio urna massa nunc massa.",
+      "Post content that targets the rights type of audience, attack their pain points and brings valuable content.",
     icon: CloudArrowUpIcon,
   },
   {
-    name: "SSL certificates",
+    name: "Corporate Voice",
     description:
-      "Sit quis amet rutrum tellus ullamcorper ultricies libero dolor eget. Sem sodales gravida quam turpis enim lacus amet.",
+      "Professional copy that speaks in a consistent corporate voice.",
     icon: LockClosedIcon,
   },
   {
-    name: "Simple queues",
+    name: "On-Brand Creatives",
     description:
-      "Quisque est vel vulputate cursus. Risus proin diam nunc commodo. Lobortis auctor congue commodo diam neque.",
+      "Visuals that suit your corporate brand that is consistent with the rest of your brand.",
     icon: ArrowPathIcon,
   },
   {
-    name: "Advanced security",
+    name: "Consistent Posting",
     description:
-      "Arcu egestas dolor vel iaculis in ipsum mauris. Tincidunt mattis aliquet hac quis. Id hac maecenas ac donec pharetra eget.",
+      "Never miss an important date, a new launch or a major announcement with scheduled posting.",
     icon: FingerPrintIcon,
   },
 ];
@@ -58,23 +58,31 @@ export default function Content() {
           </div>
           <div className="mx-auto max-w-2xl py-32 sm:py-32 lg:py-56">
             <div className="text-center text-balance">
+              <div className="hidden sm:mb-8 sm:flex sm:justify-center">
+                <div className="relative px-7 rounded-full py-1 text-sm leading-6 bg-white text-gray-600 ring-1 ring-gray-900/10 hover:ring-emerald-400">
+                  Learn about the next wave of digital marketing.{" "}
+                  <a href="#" className="font-semibold text-emerald-600">
+                    <span className="absolute inset-0" aria-hidden="true" />
+                    Read more <span aria-hidden="true">&rarr;</span>
+                  </a>
+                </div>
+              </div>
               <h1 className="py-8 -my-8 text-4xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-emerald-600 to-violet-500 sm:text-6xl">
-                Social Media Content Marketing
+                Social Media Marketing for Businesses
               </h1>
               <p className="mt-6 text-lg leading-8 text-gray-600">
-                Building digital brands for businesses with impactful creatives
-                and interactive digital experiences that drives growth and
-                conversion.
+                Build your social media platform with a clear marketing strategy
+                that attracts the right target audience for your business.
               </p>
               <div className="mt-10 flex items-center justify-center gap-x-6">
                 <a
-                  href="#"
+                  href="/form"
                   className="rounded-md bg-emerald-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-emerald-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600"
                 >
-                  Get started
+                  Get FREE Quotation
                 </a>
                 <a
-                  href="#"
+                  href="/blog"
                   className="text-sm font-semibold leading-6 text-gray-900"
                 >
                   Learn more <span aria-hidden="true">→</span>
@@ -82,14 +90,11 @@ export default function Content() {
               </div>
             </div>
           </div>
+
           <div className="mx-20 flex justify-center">
             <MasonryImageList />
-            {/*         <img
-              src="/features.jpg"
-              alt="Product screenshot"
-              className="intems-center z-10 h-[40rem] max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-[57rem] md:-ml-4 lg:-ml-0"
-            /> */}
           </div>
+
           <div
             className="relative inset-x-0 top-[calc(100%-13rem)] -z-10  transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
             aria-hidden="true"
@@ -109,15 +114,14 @@ export default function Content() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-2xl lg:text-center">
             <h2 className="text-base font-semibold leading-7 text-emerald-600">
-              Deploy faster
+              SOCIAL MEDIA
             </h2>
             <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-              Everything you need to deploy your app
+              Finding the best social media strategy for your business
             </p>
             <p className="mt-6 text-lg leading-8 text-gray-600">
-              Quis tellus eget adipiscing convallis sit sit eget aliquet quis.
-              Suspendisse eget egestas a elementum pulvinar et feugiat blandit
-              at. In mi viverra elit nunc.
+              We will help you find the right social media strategy for your
+              business.
             </p>
           </div>
           <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-4xl">
@@ -142,6 +146,95 @@ export default function Content() {
           </div>
         </div>
       </div>
+
+      <section className="relative min-h-screen flex flex-col justify-center bg-slate-50 overflow-hidden">
+        <div className="w-full max-w-6xl mx-auto px-4 md:px-6 py-24">
+          <div className="flex flex-col justify-center divide-y divide-slate-200 [&>*]:py-16">
+            <div className="w-full max-w-3xl mx-auto">
+              <h2 className="text-base font-semibold leading-7 text-emerald-600">
+                ONBOARDING PROCESS
+              </h2>
+              <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+                This is how I begin to manage your social media platforms.
+              </p>
+              <div className="my-6">
+                <div className="relative pl-8 sm:pl-32 py-6 group">
+                  <div className="font-medium text-emerald-500 mb-1 sm:mb-0">
+                    Discovery Meeting
+                  </div>
+                  <div className="flex flex-col sm:flex-row items-start mb-1 group-last:before:hidden before:absolute before:left-2 sm:before:left-0 before:h-full before:px-px before:bg-slate-300 sm:before:ml-[6.5rem] before:self-start before:-translate-x-1/2 before:translate-y-3 after:absolute after:left-2 sm:after:left-0 after:w-2 after:h-2 after:bg-emerald-600 after:border-4 after:box-content after:border-slate-50 after:rounded-full sm:after:ml-[6.5rem] after:-translate-x-1/2 after:translate-y-1.5">
+                    <time className="sm:absolute left-0 translate-y-0.5 inline-flex items-center justify-center text-xs font-semibold uppercase w-20 h-6 mb-3 sm:mb-0 text-emerald-600 bg-emerald-100 rounded-full">
+                      Day 1
+                    </time>
+                    <div className="text-xl font-bold text-slate-900">
+                      Get to know your business and brand identity
+                    </div>
+                  </div>
+                  <div className="text-slate-500">
+                    Sit down with me in a virtual meeting to get to know each
+                    other, discuss the scope of work and goals.
+                  </div>
+                </div>
+
+                <div className="relative pl-8 sm:pl-32 py-6 group">
+                  <div className="font-medium text-emerald-500 mb-1 sm:mb-0">
+                    Project Documentation
+                  </div>
+                  <div className="flex flex-col sm:flex-row items-start mb-1 group-last:before:hidden before:absolute before:left-2 sm:before:left-0 before:h-full before:px-px before:bg-slate-300 sm:before:ml-[6.5rem] before:self-start before:-translate-x-1/2 before:translate-y-3 after:absolute after:left-2 sm:after:left-0 after:w-2 after:h-2 after:bg-emerald-600 after:border-4 after:box-content after:border-slate-50 after:rounded-full sm:after:ml-[6.5rem] after:-translate-x-1/2 after:translate-y-1.5">
+                    <time className="sm:absolute left-0 translate-y-0.5 inline-flex items-center justify-center text-xs font-semibold uppercase w-20 h-6 mb-3 sm:mb-0 text-emerald-600 bg-emerald-100 rounded-full">
+                      Day 3
+                    </time>
+                    <div className="text-xl font-bold text-slate-900">
+                      Contract Agreement
+                    </div>
+                  </div>
+                  <div className="text-slate-500">
+                    Finalization of the contract details, project agreements,
+                    scope of work and agreed payment amount.
+                  </div>
+                </div>
+
+                <div className="relative pl-8 sm:pl-32 py-6 group">
+                  <div className="font-medium text-emerald-500 mb-1 sm:mb-0">
+                    Invoice and Payment
+                  </div>
+                  <div className="flex flex-col sm:flex-row items-start mb-1 group-last:before:hidden before:absolute before:left-2 sm:before:left-0 before:h-full before:px-px before:bg-slate-300 sm:before:ml-[6.5rem] before:self-start before:-translate-x-1/2 before:translate-y-3 after:absolute after:left-2 sm:after:left-0 after:w-2 after:h-2 after:bg-emerald-600 after:border-4 after:box-content after:border-slate-50 after:rounded-full sm:after:ml-[6.5rem] after:-translate-x-1/2 after:translate-y-1.5">
+                    <time className="sm:absolute left-0 translate-y-0.5 inline-flex items-center justify-center text-xs font-semibold uppercase w-20 h-6 mb-3 sm:mb-0 text-emerald-600 bg-emerald-100 rounded-full">
+                      Day 7
+                    </time>
+                    <div className="text-xl font-bold text-slate-900">
+                      Issue Invoice and Payment Terms
+                    </div>
+                  </div>
+                  <div className="text-slate-500">
+                    Project will be initiated after the first payment is made.
+                  </div>
+                </div>
+
+                <div className="relative pl-8 sm:pl-32 py-6 group">
+                  <div className="font-medium text-emerald-500 mb-1 sm:mb-0">
+                    Project Initiation
+                  </div>
+                  <div className="flex flex-col sm:flex-row items-start mb-1 group-last:before:hidden before:absolute before:left-2 sm:before:left-0 before:h-full before:px-px before:bg-slate-300 sm:before:ml-[6.5rem] before:self-start before:-translate-x-1/2 before:translate-y-3 after:absolute after:left-2 sm:after:left-0 after:w-2 after:h-2 after:bg-emerald-600 after:border-4 after:box-content after:border-slate-50 after:rounded-full sm:after:ml-[6.5rem] after:-translate-x-1/2 after:translate-y-1.5">
+                    <time className="sm:absolute left-0 translate-y-0.5 inline-flex items-center justify-center text-xs font-semibold uppercase w-20 h-6 mb-3 sm:mb-0 text-emerald-600 bg-emerald-100 rounded-full">
+                      Week 2
+                    </time>
+                    <div className="text-xl font-bold text-slate-900">
+                      Work Begins
+                    </div>
+                  </div>
+                  <div className="text-slate-500">
+                    I will begin work on crafting your social media strategy,
+                    start designing your posts and schedule them on your
+                    platofrms.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <Footer />
     </main>
   );

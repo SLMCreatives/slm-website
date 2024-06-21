@@ -102,7 +102,7 @@ const MarketingForm = () => {
         className="flex flex-col gap-6 p-10 lg:w-2/3 border border-gray-300 rounded-lg bg-white shadow-md"
         title="Enquiry Form"
       >
-        <h1 className="my-2 text-2xl font-semibold">Enquiry Form</h1>
+        <h1 className="my-2 text-4xl font-black">Enquiry Form</h1>
         <p className="-my-2 mb-2 text-balance text-sm">
           Fill up the details below to get a free quote that will solve your
           marketing problem. Expect a call or messsage on WhatsApp if I need

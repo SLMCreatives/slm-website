@@ -8,12 +8,8 @@ import FStepOne from "Sulaiman/app/Components/FormField";
 import FStepTwo from "Sulaiman/app/Components/FStepTwo";
 import { Field, Button } from "@headlessui/react";
 import MarketingForm from "../Components/MarketingForm";
-import {
-  Dialog,
-  DialogPanel,
-  DialogTitle,
-  Description,
-} from "@headlessui/react";
+import { Dialog, DialogPanel } from "@headlessui/react";
+import { XMarkIcon } from "@heroicons/react/24/outline";
 
 export default function Form() {
   const [formOpen, setFormOpen] = useState(false);
@@ -64,10 +60,15 @@ export default function Form() {
         className="relative z-50"
       >
         <div className="fixed inset-0 flex w-screen h-screen items-center justify-center">
-          <DialogPanel className=" m-0 w-full h-full overflow-scroll border-none bg-emerald-100">
+          <DialogPanel className=" m-0 w-full h-full overflow-scroll border-none bg-black/40">
             <MarketingForm />
-            <div className="fixed top-[2rem] right-[2rem]">
-              <button onClick={() => setFormOpen(false)}>Close</button>
+            <div className="absolute top-[4rem] right-[6rem] lg:right-[23rem] ">
+              <button
+                onClick={() => setFormOpen(false)}
+                className="bg-gray-300 hover:bg-emerald-500 justify-center items-center text-white font-bold p-2 text-sm rounded-full mt-5"
+              >
+                <XMarkIcon className="h-6 w-6" aria-hidden="true" />
+              </button>
             </div>
           </DialogPanel>
         </div>
