@@ -5,12 +5,12 @@ import ImageListItem from "@mui/material/ImageListItem";
 
 const MasonryImageList = () => {
   return (
-    <Box sx={{ width: 1000, height: 450 }}>
+    <Box>
       <ImageList
         variant="masonry"
-        cols={3}
+        cols={9}
         gap={10}
-        className="justify-center items-center"
+        className="justify-center items-center overflow-scroll-y"
       >
         {itemData.map((item) => (
           <ImageListItem key={item.img}>
