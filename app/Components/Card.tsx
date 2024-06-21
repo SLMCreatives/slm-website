@@ -1,7 +1,7 @@
 //Cards.js
 
 import React from "react";
-import "/app/blog/(Post)/archive.css";
+import "/app/portfolio/(Post)/archive.css";
 
 export default function Card(props: any) {
   return (
