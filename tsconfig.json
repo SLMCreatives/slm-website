@@ -27,7 +27,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "app/Components/Card.tss",
-    "app/blog/(Post)/posts.tsx"
+    "app/portfolio/(Post)/posts.tsx"
   ],
   "exclude": ["node_modules"]
 }
