@@ -7,7 +7,7 @@ const MasonryImageList = () => {
   return (
     <Box sx={{ width: 1000, height: 450 }}>
       <ImageList
-        variant="masonary"
+        variant="masonry"
         cols={3}
         gap={10}
         className="justify-center items-center"
