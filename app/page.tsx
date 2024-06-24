@@ -8,12 +8,12 @@ import { CheckCircleIcon } from "@heroicons/react/24/outline";
 import {
   PlayCircleIcon,
   CurrencyDollarIcon,
-  HomeIcon,
-  DocumentDuplicateIcon,
   MagnifyingGlassCircleIcon,
+  ArrowRightCircleIcon,
   SwatchIcon,
   CalendarDaysIcon,
   UserGroupIcon,
+  BellAlertIcon,
 } from "@heroicons/react/24/outline";
 import Header from "Sulaiman/app/Components/Header";
 import Footer from "Sulaiman/app/Components/Footer";
@@ -21,28 +21,25 @@ import Testimonial from "Sulaiman/app/Components/Testimonial";
 
 const features = [
   {
-    name: "My Undivided Attention.",
+    name: "I am waiting to begin marketing because my product is not ready yet.",
     description:
-      " I will never go 'RADIO SILENCE' on you. I will try to answer any questions you might have at any given time, even after the project has completed.",
-    icon: CheckCircleIcon,
+      "The best time to start your marketing campaign in yesterday. In other words, the best marketing strategy starts even before your have your product ready. You need time for word to spread before people start considering buying from you.",
+    icon: BellAlertIcon,
+    id: "1",
   },
   {
-    name: "Low Client Capacity.",
+    name: "All of my marketing material should be sales oriented.",
     description:
-      "I service a total of 5 'big' clients each month. This gives me the time to really concentrate on each project that I work on and provide the best service possible to my clients.",
-    icon: CheckCircleIcon,
+      "In reality, channels that only post sales oriented material seldon perform better compared to channels that post a variety of material. Channels that perform well almost always has a clear marketing strategy behind them.",
+    icon: BellAlertIcon,
+    id: "2",
   },
   {
-    name: "Complete Project Documentation.",
+    name: "My business is doing fine without any marketing.",
     description:
-      "Every important detail of each project will documented and updated as and when necessary, so that you have complete knowledge of what we are trying to achieve.",
-    icon: CheckCircleIcon,
-  },
-  {
-    name: "Clear Communication.",
-    description:
-      "Trust, Respect and Understanding. Those 3 principles will always be at the core of everything that I do and I hope to receive that same treatment in return.",
-    icon: CheckCircleIcon,
+      "Marketing is a part of any business, and digital marketing is proven to be an important aspect of a business long-term survival and success. If you business is doing well without any marketing, then imagine your business with marketing.",
+    icon: BellAlertIcon,
+    id: "3",
   },
 ];
 
@@ -76,11 +73,11 @@ export default function Home() {
                 </a>
               </div>
             </div>
-            <div className="text-center">
-              <h1 className="py-8 -my-8 text-4xl font-extrabold tracking-tight sm:text-6xl bg-clip-text text-transparent bg-gradient-to-r from-emerald-600 to-violet-500 ">
+            <div className="text-center text-balance">
+              <h1 className="py-8 -my-8 text-6xl font-extrabold tracking-tight lg:text-7xl bg-clip-text text-transparent bg-gradient-to-r from-emerald-600 to-violet-500 ">
                 Freelance Creative Digital Marketing
               </h1>
-              <p className="mt-6 text-md leading-8 text-gray-600">
+              <p className="mt-6 text-xl leading-8 text-gray-600">
                 Building digital brands for businesses with impactful creatives
                 and interactive digital experiences that drives growth and
                 conversion.
@@ -116,57 +113,77 @@ export default function Home() {
         </div>
       </div>
       {/* FEATURE MENU */}
-      <div className="overflow-hidden bg-white py-24 sm:py-32">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      <div className="overflow-hidden bg-slate-100 py-24 sm:py-32">
+        <div className="mx-auto max-w-7xl px-12 lg:px-8">
           <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
             <div className="lg:pr-8 lg:pt-4">
               <div className="lg:max-w-lg">
                 <h2 className="text-base font-semibold leading-7 text-emerald-600">
-                  One Stop Marketing Solution
+                  One Stop Marketing Solution Provider
                 </h2>
-                <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-                  Everything you need in a trusted freelancer
+                <p className="mt-2 text-5xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+                  Everything you need to know in one place.
                 </p>
                 <p className="mt-6 text-lg leading-8 text-gray-600">
-                  Hiring a digital marketing freelancer like me gives a few
-                  advantages to your usual freelancer. Here are a few things you
-                  can expect when starting a project with me.
+                  I believe that{" "}
+                  <span className="font-bold">
+                    good, professional and effective
+                  </span>{" "}
+                  digital marketing <em className="font-bold ">is</em> for
+                  everyone. But unfortunately, not everyone knows how to get a
+                  good return on investment from it.
                 </p>
-                <dl className="mt-10 max-w-xl space-y-8 text-base leading-7 text-gray-600 lg:max-w-none">
-                  {features.map((feature) => (
-                    <div key={feature.name} className="relative pl-9">
-                      <dt className="inline font-semibold text-gray-900">
-                        <feature.icon
-                          className="absolute left-1 top-1 h-5 w-5 text-emerald-600"
-                          aria-hidden="true"
-                        />
-                        {feature.name}
-                      </dt>{" "}
-                      <dd className="inline">{feature.description}</dd>
-                    </div>
-                  ))}
-                </dl>
+                <p className="mt-2 text-lg  leading-8 text-gray-600">
+                  Here are some of the <span className="font-bold">myths</span>{" "}
+                  about how digital marketing works in 2024.
+                </p>
+
+                <div className="overflow-scroll xl:overflow-visible lg:overflow-scroll m-2 mt-6 md:max-w-xl scrollbar-hide">
+                  <dl className="grid grid-cols-3 gap-8 mt-4 min-w-[80rem] lg:min-w-none text-lg leading-8 text-gray-600">
+                    {features.map((feature) => (
+                      <div
+                        key={feature.name}
+                        className="relative bg-white rounded-xl p-8 lg:min-w-[380px] text-balance"
+                      >
+                        <dt className="block items-center text-2xl text-emerald-600 font-bold">
+                          <feature.icon
+                            className="block h-12 w-12 mb-6 text-slate-600"
+                            aria-hidden="true"
+                          />{" "}
+                          Myth {feature.id} - {feature.name}
+                        </dt>{" "}
+                        <dd className="mt-4 text-lg leading-8 text-gray-600 ">
+                          {feature.description}
+                        </dd>
+                      </div>
+                    ))}
+                  </dl>
+                </div>
               </div>
             </div>
             <img
               src="/features.jpg"
               alt="Product screenshot"
-              className="intems-center z-10 h-[40rem] max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-[57rem] md:-ml-4 lg:-ml-0"
+              className="intems-center -z-9 h-[40rem] max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-[57rem] md:-ml-4 lg:-ml-0"
               width={2432}
               height={1442}
             />
           </div>
         </div>
       </div>
+
       {/* STATS */}
-      <section className="bg-white">
+      <section className="bg-white py-24 sm:py-32">
         <div className="mx-auto max-w-screen-xl px-4 py-12 sm:px-6 md:py-16 lg:px-8">
           <div className="mx-auto max-w-3xl text-center">
-            <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+            <h2 className="text-base font-semibold leading-7 text-emerald-600">
+              EXPERIENCED & TRUSTWORTHY
+            </h2>
+            <h2 className="mt-2 text-4xl font-bold text-balance tracking-tight text-gray-900 lg:text-6xl">
               Trusted by local and international clients
             </h2>
 
-            <p className="mt-4 text-lg leading-8 text-gray-600">
+            <p className="mt-6 text-xl leading-8 text-gray-600">
               8+ Years of experience in various types of digital marketing
               campaigns in all sizes big and small. I have been involved in...
             </p>
@@ -179,7 +196,7 @@ export default function Home() {
                   Graphic Designs Projects
                 </dt>
 
-                <dd className="text-4xl font-bold text-emerald-500 md:text-5xl">
+                <dd className="text-6xl font-bold text-emerald-500 lg:text-6xl xl:text-7xl">
                   560
                 </dd>
               </div>
@@ -189,7 +206,7 @@ export default function Home() {
                   Video Editing Projects
                 </dt>
 
-                <dd className="text-4xl font-bold text-emerald-500 md:text-5xl">
+                <dd className="text-6xl font-bold text-emerald-500 lg:text-6xl xl:text-7xl">
                   180
                 </dd>
               </div>
@@ -199,7 +216,7 @@ export default function Home() {
                   Websites Projects
                 </dt>
 
-                <dd className="text-4xl font-bold text-emerald-500 md:text-5xl">
+                <dd className="text-6xl font-bold text-emerald-500 lg:text-6xl xl:text-7xl">
                   15
                 </dd>
               </div>
@@ -207,139 +224,77 @@ export default function Home() {
           </div>
         </div>
       </section>
+
       {/* SERVICES */}
-      <section className="bg-white text-black">
-        <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-8">
-          <div className="mx-auto pb-8 max-w-lg text-center">
+      <section className="bg-slate-50 text-black">
+        <div className="mx-auto max-w-screen-xl lg:max-w-screen px-4 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-8">
+          <div className="m-6 pb-8 max-w-lg text-left lg:text-center lg:max-w-none">
             <h2 className="text-base font-semibold leading-7 text-emerald-600">
-              My Services
+              AREA OF FOCUS
             </h2>
-            <h2 className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-              Kickstart your marketing
+            <h2 className="mt-2 text-5xl font-bold text-balance tracking-tight text-gray-900 sm:text-4xl">
+              Kickstart your marketing journey
             </h2>
 
-            <p className="mt-6 text-lg leading-8 text-gray-600">
-              Comprehensive marketing services to help your business grow that
-              are tailored made to suit your exact needs, even if you are
-              starting from zero or to revitalise your business.
+            <p className="mt-6 text-lg text-balance leading-8 text-gray-600">
+              Comprehensive marketing advice that covers all aspects of your
+              digital marketing structure and addresses all types of
+              posibilities and budget requirements.
             </p>
           </div>
 
-          <div className="mt-8 grid grid-cols-1 gap-8 gap-y-12 md:grid-cols-3 lg:grid-cols-3">
-            <h2 className="px-2 text-center text-xl font-semibold leading-7 col-span-1 md:col-span-3 lg:col-span-3 -mb-6 ">
-              Digital Marketing Solutions
-            </h2>
+          <div className="m-6 lg:m-2 grid grid-cols-1 col-width-1 gap-8 gap-y-12 items-center justify-center md:grid-cols-3 lg:grid-cols-3 text-balance ">
             <a
-              className="block rounded-xl border border-gray-200 p-8 shadow-xl transition hover:border-emerald-500/10 hover:shadow-emerald-500/10 hover:bg-emerald-50"
+              className="block bg-white rounded-xl border border-gray-200 p-8 shadow-sm transition-all hover:shadow-lg hover:bg-slate-100 group duration-500 ease-in-out"
               href="/content"
             >
-              <CalendarDaysIcon className="size-10 text-emerald-600" />
-
-              <h2 className="mt-4 text-l font-semibold text-gray-900">
-                Content Marketing
-              </h2>
-              <p className="mt-1 text-sm text-gray-900">
+              <div className="items-center justify-center text-emerald-600">
+                <CalendarDaysIcon className="size-12 text-emerald-600 transition-all duration-500 ease-in-out group-hover:text-slate-900 group-hover:size-14" />
+                <h2 className="mt-4 text-3xl font-semibold transition-all duration-500 ease-in-out group-hover:text-slate-900 group-hover:font-bold">
+                  Social Media
+                </h2>
+              </div>
+              <p className="mt-4 text-lg text-balance text-gray-900 transition-all duration-500 ease-in-out">
                 Stategise your social content to attract the right attention to
                 your brand and build <em>long-term relationship </em> with your
                 audience.
               </p>
             </a>
-
             <a
-              className="block rounded-xl  border border-gray-200 p-8 shadow-xl transition hover:border-emerald-500/10 hover:shadow-emerald-500/10 hover:bg-emerald-50"
-              href="#"
+              className="block bg-white rounded-xl border border-gray-200 p-8 shadow-sm transition-all hover:shadow-lg hover:bg-slate-100 group duration-500 ease-in-out"
+              href="/content"
             >
-              <CurrencyDollarIcon className="size-10 text-emerald-600" />
-
-              <h2 className="mt-4 text-l font-semibold text-gray-900">
-                Paid Ads Marketing
-              </h2>
-
-              <p className="mt-1 text-sm text-gray-900">
-                Generate quality leads and convert them into customers with
-                highly targeted ads for <em>quick short-term</em> success.
+              <div className="items-center justify-center text-emerald-600">
+                <CurrencyDollarIcon className="size-12 text-emerald-600 transition-all duration-500 ease-in-out group-hover:text-slate-900 group-hover:size-14" />
+                <h2 className="mt-4 text-3xl font-semibold transition-all duration-500 ease-in-out group-hover:text-slate-900 group-hover:font-bold">
+                  Lead Generation
+                </h2>
+              </div>
+              <p className="mt-4 text-lg text-balance text-gray-900 transition-all duration-500 ease-in-out">
+                Generate quality leads and convert them into customers with high
+                targeted paid ads for quick short term success.
               </p>
             </a>
-
             <a
-              className="block rounded-xl border border-gray-200 p-8 shadow-xl transition hover:border-emerald-500/10 hover:shadow-emerald-500/10 hover:bg-emerald-50"
-              href="#"
+              className="block bg-white rounded-xl border border-gray-200 p-8 shadow-sm transition-all hover:shadow-lg hover:bg-slate-100 group duration-500 ease-in-out"
+              href="/content"
             >
-              <MagnifyingGlassCircleIcon className="size-10 text-emerald-600" />
-
-              <h2 className="mt-4 text-l font-semibold text-gray-900">
-                Search Marketing
-              </h2>
-
-              <p className="mt-1 text-sm text-gray-900">
-                Build a digital home, a place where your audience can learn more
-                and discover the latest news about your brand.
+              <div className="items-center justify-center text-emerald-600">
+                <MagnifyingGlassCircleIcon className="size-12 text-emerald-600 transition-all duration-500 ease-in-out group-hover:text-slate-900 group-hover:size-14" />
+                <h2 className="mt-4 text-3xl font-semibold transition-all duration-500 ease-in-out group-hover:text-slate-900 group-hover:font-bold">
+                  Website Design
+                </h2>
+              </div>
+              <p className="mt-4 text-lg text-left text-gray-900 transition-all duration-500 ease-in-out">
+                Develop your digital home, a place where your customers can
+                learn more about your brand and discover the latest news and
+                updates.
               </p>
-            </a>
-
-            <h2 className="grid-col-span-3 grid px-2 text-center text-xl font-semibold leading-7 col-span-1 md:col-span-3 lg:col-span-3 -mb-6">
-              Content Generation Solutions
-            </h2>
-
-            <a
-              className="block rounded-xl hover:bg-emerald-50 border border-gray-200 p-8 shadow-xl transition hover:border-emerald-500/10 hover:shadow-emerald-500/10"
-              href="#"
-            >
-              <SwatchIcon className="size-10 text-emerald-600" />
-
-              <h2 className="mt-4 text-l font-semibold text-gray-900">
-                Graphic Design
-              </h2>
-
-              <p className="mt-1 text-sm text-gray-900">
-                Create stunning visuals that make your brand stand out from the
-                crowd and bring your message to life.
-              </p>
-            </a>
-
-            <a
-              className="block rounded-xl hover:bg-emerald-50 border border-gray-200 p-8 shadow-xl transition hover:border-emerald-500/10 hover:shadow-emerald-500/10"
-              href="#"
-            >
-              <PlayCircleIcon className="size-10 text-emerald-600" />
-
-              <h2 className="mt-4 text-l font-semibold text-gray-900">
-                Video/Motion Graphics
-              </h2>
-
-              <p className="mt-1 text-sm text-gray-900">
-                The best way to send a message across multiple platforms with
-                videos having a higher engagement and impact.
-              </p>
-            </a>
-
-            <a
-              className="block rounded-xl hover:bg-emerald-50 border border-gray-200 p-8 shadow-xl transition hover:border-emerald-500/10 hover:shadow-emerald-500/10 "
-              href="#"
-            >
-              <UserGroupIcon className="size-10 text-emerald-600" />
-
-              <h2 className="mt-4 text-l font-semibold text-gray-900">
-                Lead Generation
-              </h2>
-
-              <p className="mt-1 text-sm text-gray-900">
-                Complete package that generate quality leads that converts and a
-                system to manage client data.
-              </p>
-            </a>
-          </div>
-
-          <div className="mt-12 text-center">
-            <a
-              href="#"
-              className="inline-block rounded bg-emerald-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-emerald-700 focus:outline-none focus:ring focus:ring-yellow-400"
-            >
-              Get A Quotation Today
             </a>
           </div>
         </div>
       </section>
+
       {/* CLIENTS */}
       <div className="bg-white py-24 sm:py-32">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">

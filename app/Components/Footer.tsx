@@ -16,7 +16,7 @@ const Footer = () => {
         </div>
 
         <p className="mx-auto mt-6 max-w-md text-center font-bold leading-relaxed text-gray-500">
-          A Creative Digital Marketing Freelancer
+          Creative Digital Marketing Freelancer
         </p>
 
         <p className="mx-auto max-w-md text-center leading-relaxed text-gray-500">
@@ -27,40 +27,30 @@ const Footer = () => {
           <li>
             <a
               className="text-gray-700 transition hover:text-gray-700/75"
-              href="#"
+              href="/content"
             >
               {" "}
-              Creative Design{" "}
+              Social Media{" "}
             </a>
           </li>
 
           <li>
             <a
               className="text-gray-700 transition hover:text-gray-700/75"
-              href="#"
+              href="/paid"
             >
               {" "}
-              Video/Motion{" "}
+              Lead Generation{" "}
             </a>
           </li>
 
           <li>
             <a
               className="text-gray-700 transition hover:text-gray-700/75"
-              href="#"
+              href="/website"
             >
               {" "}
               Website Dev{" "}
-            </a>
-          </li>
-
-          <li>
-            <a
-              className="text-gray-700 transition hover:text-gray-700/75"
-              href="#"
-            >
-              {" "}
-              Blog{" "}
             </a>
           </li>
         </ul>

@@ -1,10 +1,17 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
 import Header from "Sulaiman/app/Components/Header";
 import Footer from "Sulaiman/app/Components/Footer";
-import { ArrowUpRightIcon } from "@heroicons/react/24/outline";
+import {
+  ArrowUpRightIcon,
+  ChatBubbleBottomCenterTextIcon,
+  ChatBubbleOvalLeftIcon,
+} from "@heroicons/react/24/outline";
 import MasonryImageList from "Sulaiman/app/content/components/imageList";
 import Chip from "@mui/material/Chip";
+import Testimonial from "Sulaiman/app/Components/Testimonial";
 
 const features = [
   {
@@ -45,9 +52,40 @@ const features = [
   },
 ];
 
+const faqs = [
+  {
+    question: "What does a social media manager do?",
+    answer:
+      "A social media content manager helps you to strategize your content production and create content that is consistent with your brand identity. They also ensure that your content is produced in a timely manner and that you never miss a festival, event or announcement.",
+  },
+  {
+    question: "What are the benefits of hiring a social media content manager?",
+    answer:
+      "Strategic planning, creative content production, content scheduling, audience engagement, project management, measurement & reporting.",
+  },
+  {
+    question:
+      "Why should I hire a social media content manager if I already have a graphic designer?",
+    answer:
+      "Because most social teams have a high turn-around, and you don't want your social to be left hanging or change strategy everytime you need to hire a new graphic designer. Plus, it's a great way to maintain consistency.",
+  },
+  {
+    question:
+      "Are likes and shares the only way to measure the success of a social media content manager?",
+    answer:
+      "While 'engagement' is a popular measurement, it's not always the best way to measure success. Sometimes, a low engagement channel with high quality content is better that a high engagement channel with low quality content.",
+  },
+  {
+    question:
+      "What do I need to prepare before hiring you as a social media content manager?",
+    answer:
+      "All current marketing and brand materials that you already have, social media accounts and any other relevant documents that would help me get a clear picture of your brand identity and marketing strategy.",
+  },
+];
+
 export default function Content() {
   return (
-    <main>
+    <main className="bg-white px-4">
       <Header />
 
       <div className="flex justify-center items-center bg-white min-h-screen">
@@ -85,9 +123,12 @@ export default function Content() {
               >
                 Get FREE Quotation
               </a>
+
               <a
-                href="/blog"
-                className="text-sm font-semibold leading-6 text-gray-900"
+                href="#elements"
+                rel="noreferrer"
+                className="scroll-behavior-smooth text-sm font-semibold leading-6 text-gray-900"
+                id="scroll"
               >
                 Learn more <span aria-hidden="true">→</span>
               </a>
@@ -99,20 +140,8 @@ export default function Content() {
         <MasonryImageList />
       </div>
 
-      {/*     <div
-        className="relative inset-x-0 top-[calc(100%-13rem)] -z-10  transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
-        aria-hidden="true"
-      >
-        <div
-          className="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-emerald-400 to-teal-800 opacity-20 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]"
-          style={{
-            clipPath:
-              "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)",
-          }}
-        />
-      </div> */}
-
-      <div className="bg-white py-24 sm:py-32">
+      {/* ELEMENTS */}
+      <div className="bg-white py-24 sm:py-32" id="elements">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-2xl lg:text-center">
             <h2 className="text-base font-semibold leading-7 text-emerald-600">
@@ -130,9 +159,9 @@ export default function Content() {
               {features.map((feature) => (
                 <div key={feature.name} className="relative pl-16">
                   <dt className="text-2xl font-semibold leading-7 text-gray-900">
-                    <div className="absolute left-0 top-0 flex h-7 w-7 items-center justify-center rounded-lg bg-emerald-600">
+                    <div className="absolute left-0 top-0 flex h-7 w-7 items-center justify-center rounded-lg bg-emerald-100">
                       <feature.icon
-                        className="h-5 w-5 text-white"
+                        className="h-5 w-5 text-emerald-600"
                         aria-hidden="true"
                       />
                     </div>
@@ -148,7 +177,222 @@ export default function Content() {
         </div>
       </div>
 
-      <section className="relative min-h-screen flex flex-col justify-center bg-slate-50 overflow-hidden">
+      {/* Channels */}
+      {/*
+  Heads up! 👋
+
+  This component comes with some `rtl` classes. Please remove them if they are not needed in your project.
+*/}
+
+      <section className="relative min-h-screen flex flex-col justify-center overflow-hidden">
+        <div className="max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-16">
+          <div className="grid grid-cols-1 gap-y-8 lg:grid-cols-2 lg:items-center lg:gap-x-16">
+            <div className="mx-auto max-w-lg lg:mx-0 text-left">
+              <h2 className="text-3xl font-bold sm:text-4xl">
+                Expand your reach to all social media channels
+              </h2>
+
+              <p className="mt-4 text-gray-600">
+                Not all platforms are made the same way, and the best marketing
+                strategy is one that leverages the best of all platforms in a
+                way that is suitable for your brand.
+              </p>
+
+              {/*  <a
+                href="/form"
+                className="mt-8 inline-block rounded-xl bg-emerald-600 px-12 py-3 text-sm font-medium text-white transition hover-xl:bg-emerald-700 focus:outline-none focus:ring focus:ring-yellow-400"
+              >
+                Discover the best channel for you!
+              </a> */}
+            </div>
+
+            <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
+              <a
+                className="block rounded-xl border border-gray-100 p-4 shadow-sm hover:border-gray-200 hover:ring-1 hover:ring-gray-200 focus:outline-none focus:ring"
+                href="#"
+              >
+                <span className="inline-block rounded-lg bg-gray-50 p-3">
+                  <svg
+                    className="h-6 w-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M12 14l9-5-9-5-9 5 9 5z"></path>
+                    <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"></path>
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"
+                    ></path>
+                  </svg>
+                </span>
+
+                <h2 className="mt-2 font-bold">Accountant</h2>
+
+                <p className="hidden sm:mt-1 sm:block sm:text-sm sm:text-gray-600">
+                  Lorem ipsum dolor sit amet consectetur.
+                </p>
+              </a>
+
+              <a
+                className="block rounded-xl border border-gray-100 p-4 shadow-sm hover:border-gray-200 hover:ring-1 hover:ring-gray-200 focus:outline-none focus:ring"
+                href="#"
+              >
+                <span className="inline-block rounded-lg bg-gray-50 p-3">
+                  <svg
+                    className="h-6 w-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M12 14l9-5-9-5-9 5 9 5z"></path>
+                    <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"></path>
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"
+                    ></path>
+                  </svg>
+                </span>
+
+                <h2 className="mt-2 font-bold">Accountant</h2>
+
+                <p className="hidden sm:mt-1 sm:block sm:text-sm sm:text-gray-600">
+                  Lorem ipsum dolor sit amet consectetur.
+                </p>
+              </a>
+
+              <a
+                className="block rounded-xl border border-gray-100 p-4 shadow-sm hover:border-gray-200 hover:ring-1 hover:ring-gray-200 focus:outline-none focus:ring"
+                href="#"
+              >
+                <span className="inline-block rounded-lg bg-gray-50 p-3">
+                  <svg
+                    className="h-6 w-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M12 14l9-5-9-5-9 5 9 5z"></path>
+                    <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"></path>
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"
+                    ></path>
+                  </svg>
+                </span>
+
+                <h2 className="mt-2 font-bold">Accountant</h2>
+
+                <p className="hidden sm:mt-1 sm:block sm:text-sm sm:text-gray-600">
+                  Lorem ipsum dolor sit amet consectetur.
+                </p>
+              </a>
+
+              <a
+                className="block rounded-xl border border-gray-100 p-4 shadow-sm hover:border-gray-200 hover:ring-1 hover:ring-gray-200 focus:outline-none focus:ring"
+                href="#"
+              >
+                <span className="inline-block rounded-lg bg-gray-50 p-3">
+                  <svg
+                    className="h-6 w-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M12 14l9-5-9-5-9 5 9 5z"></path>
+                    <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"></path>
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"
+                    ></path>
+                  </svg>
+                </span>
+
+                <h2 className="mt-2 font-bold">Accountant</h2>
+
+                <p className="hidden sm:mt-1 sm:block sm:text-sm sm:text-gray-600">
+                  Lorem ipsum dolor sit amet consectetur.
+                </p>
+              </a>
+
+              <a
+                className="block rounded-xl border border-gray-100 p-4 shadow-sm hover:border-gray-200 hover:ring-1 hover:ring-gray-200 focus:outline-none focus:ring"
+                href="#"
+              >
+                <span className="inline-block rounded-lg bg-gray-50 p-3">
+                  <svg
+                    className="h-6 w-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M12 14l9-5-9-5-9 5 9 5z"></path>
+                    <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"></path>
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"
+                    ></path>
+                  </svg>
+                </span>
+
+                <h2 className="mt-2 font-bold">Accountant</h2>
+
+                <p className="hidden sm:mt-1 sm:block sm:text-sm sm:text-gray-600">
+                  Lorem ipsum dolor sit amet consectetur.
+                </p>
+              </a>
+
+              <a
+                className="block rounded-xl border border-gray-100 p-4 shadow-sm hover:border-gray-200 hover:ring-1 hover:ring-gray-200 focus:outline-none focus:ring"
+                href="#"
+              >
+                <span className="inline-block rounded-lg bg-gray-50 p-3">
+                  <svg
+                    className="h-6 w-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M12 14l9-5-9-5-9 5 9 5z"></path>
+                    <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"></path>
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"
+                    ></path>
+                  </svg>
+                </span>
+
+                <h2 className="mt-2 font-bold">Accountant</h2>
+
+                <p className="hidden sm:mt-1 sm:block sm:text-sm sm:text-gray-600">
+                  Lorem ipsum dolor sit amet consectetur.
+                </p>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Initiation */}
+      <section className="relative min-h-screen flex flex-col justify-center overflow-hidden">
         <div className="w-full max-w-6xl mx-auto px-4 md:px-6 py-24">
           <div className="flex flex-col justify-center divide-y divide-slate-200 [&>*]:py-16">
             <div className="w-full max-w-3xl mx-auto">
@@ -165,7 +409,7 @@ export default function Content() {
                   </div>
                   <div className="flex flex-col sm:flex-row items-start mb-1 group-last:before:hidden before:absolute before:left-2 sm:before:left-0 before:h-full before:px-px before:bg-slate-300 sm:before:ml-[6.5rem] before:self-start before:-translate-x-1/2 before:translate-y-3 after:absolute after:left-2 sm:after:left-0 after:w-2 after:h-2 after:bg-emerald-600 after:border-4 after:box-content after:border-slate-50 after:rounded-full sm:after:ml-[6.5rem] after:-translate-x-1/2 after:translate-y-1.5">
                     <time className="sm:absolute left-0 translate-y-0.5 inline-flex items-center justify-center text-xs font-semibold uppercase w-20 h-6 mb-3 sm:mb-0 text-emerald-600 bg-emerald-100 rounded-full">
-                      Day 1
+                      Step 1
                     </time>
                     <div className="text-xl font-bold text-slate-900">
                       Get to know your business and brand identity
@@ -183,7 +427,7 @@ export default function Content() {
                   </div>
                   <div className="flex flex-col sm:flex-row items-start mb-1 group-last:before:hidden before:absolute before:left-2 sm:before:left-0 before:h-full before:px-px before:bg-slate-300 sm:before:ml-[6.5rem] before:self-start before:-translate-x-1/2 before:translate-y-3 after:absolute after:left-2 sm:after:left-0 after:w-2 after:h-2 after:bg-emerald-600 after:border-4 after:box-content after:border-slate-50 after:rounded-full sm:after:ml-[6.5rem] after:-translate-x-1/2 after:translate-y-1.5">
                     <time className="sm:absolute left-0 translate-y-0.5 inline-flex items-center justify-center text-xs font-semibold uppercase w-20 h-6 mb-3 sm:mb-0 text-emerald-600 bg-emerald-100 rounded-full">
-                      Day 2-5
+                      Step 2
                     </time>
                     <div className="text-xl font-bold text-slate-900">
                       Agreement of the scope of work
@@ -201,14 +445,16 @@ export default function Content() {
                   </div>
                   <div className="flex flex-col sm:flex-row items-start mb-1 group-last:before:hidden before:absolute before:left-2 sm:before:left-0 before:h-full before:px-px before:bg-slate-300 sm:before:ml-[6.5rem] before:self-start before:-translate-x-1/2 before:translate-y-3 after:absolute after:left-2 sm:after:left-0 after:w-2 after:h-2 after:bg-emerald-600 after:border-4 after:box-content after:border-slate-50 after:rounded-full sm:after:ml-[6.5rem] after:-translate-x-1/2 after:translate-y-1.5">
                     <time className="sm:absolute left-0 translate-y-0.5 inline-flex items-center justify-center text-xs font-semibold uppercase w-20 h-6 mb-3 sm:mb-0 text-emerald-600 bg-emerald-100 rounded-full">
-                      Day 6-7
+                      Step 3
                     </time>
                     <div className="text-xl font-bold text-slate-900">
-                      Issue invoice and receiving initial payment
+                      Issue invoice and transfer of assets
                     </div>
                   </div>
                   <div className="text-slate-500">
-                    Project will be initiated after the first payment is made.
+                    Once initial payment is receives, you can proceed to
+                    handover your digital assets along with control over your
+                    social media channels.
                   </div>
                 </div>
 
@@ -218,7 +464,7 @@ export default function Content() {
                   </div>
                   <div className="flex flex-col sm:flex-row items-start mb-1 group-last:before:hidden before:absolute before:left-2 sm:before:left-0 before:h-full before:px-px before:bg-slate-300 sm:before:ml-[6.5rem] before:self-start before:-translate-x-1/2 before:translate-y-3 after:absolute after:left-2 sm:after:left-0 after:w-2 after:h-2 after:bg-emerald-600 after:border-4 after:box-content after:border-slate-50 after:rounded-full sm:after:ml-[6.5rem] after:-translate-x-1/2 after:translate-y-1.5">
                     <time className="sm:absolute left-0 translate-y-0.5 inline-flex items-center justify-center text-xs font-semibold uppercase w-20 h-6 mb-3 sm:mb-0 text-emerald-600 bg-emerald-100 rounded-full">
-                      Week 2
+                      Step 4
                     </time>
                     <div className="text-xl font-bold text-slate-900">
                       The start of the project
@@ -227,7 +473,7 @@ export default function Content() {
                   <div className="text-slate-500">
                     I will begin work on crafting your social media strategy,
                     start designing your posts and schedule them on your
-                    platofrms.
+                    platforms.
                   </div>
                 </div>
               </div>
@@ -236,48 +482,51 @@ export default function Content() {
         </div>
       </section>
 
+      <Testimonial />
+
+      {/* PRICING */}
       <div className="max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-16 mx-auto justify-center items-center">
         <div className="mx-auto mb-8 max-w-2xl lg:text-center">
           <h2 className="text-base font-semibold leading-7 text-emerald-600">
             PRICING PLANS
           </h2>
           <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-            Choose the plan that's right for you
+            Compared with the competition
           </p>
         </div>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:items-stretch md:grid-cols-3 md:gap-8">
-          <div className="divide-y divide-gray-200 rounded-2xl border border-gray-200 shadow-sm hover:bg-emerald-50/50 hover:shadow-lg">
+          <div className="divide-y divide-gray-200 rounded-2xl border border-gray-200 shadow-sm bg-white  hover:shadow-lg">
             <div className="p-6 sm:px-8">
               <h2 className="text-lg font-bold text-gray-900">
-                Starter Pack
+                Fresh Gradutate
                 <span className="sr-only">Plan</span>
               </h2>
 
               <p className="mt-2 text-gray-700">
-                Perfect for small scale marketing projects or starting from
-                scratch.
+                Cheaper but low value. Usually priced below
               </p>
 
               <p className="mt-2 sm:mt-4">
-                <strong className="text-3xl font-bold text-gray-900 sm:text-4xl">
-                  {" "}
-                  RM 200{" "}
-                </strong>
-
-                <span className="text-sm font-medium text-gray-700">/week</span>
+                <strong className="text-xl font-semibold text-gray-900 sm:text-4xl">
+                  RM 900
+                </strong>{" "}
+                <span className="text-sm font-medium text-gray-700">
+                  /month
+                </span>
               </p>
 
               <a
-                className="mt-4 block rounded border border-emerald-600 bg-emerald-600 px-12 py-3 text-center text-sm font-medium text-white hover:bg-transparent hover:text-emerald-600 focus:outline-none focus:ring active:text-emerald-500 sm:mt-6"
+                className="mt-4 flex items-center justify-between rounded-xl border border-emerald-600 bg-slate-600 px-4 py-3 text-center text-sm font-medium text-white hover:bg-slate-900  focus:outline-none focus:ring active:text-white sm:mt-6"
                 href="/form"
               >
-                Get Started
+                Convince Me{" "}
+                <ChatBubbleBottomCenterTextIcon className=" ml-4 h-5 w-5" />
               </a>
             </div>
 
-            <div className="p-6 sm:px-8">
-              <p className="text-lg font-medium text-gray-900 sm:text-xl">
-                What's included:
+            <div className="p-6 ml-4 sm:px-8">
+              <p className="text-md font-medium text-gray-900 sm:text-lg">
+                What to expect:
               </p>
 
               <ul className="mt-2 space-y-2 sm:mt-4">
@@ -288,16 +537,16 @@ export default function Content() {
                     viewBox="0 0 24 24"
                     strokeWidth="1.5"
                     stroke="currentColor"
-                    className="size-5 text-emerald-700"
+                    className="size-5 text-red-700"
                   >
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"
-                      d="M4.5 12.75l6 6 9-13.5"
+                      d="M6 18L18 6M6 6l12 12"
                     />
                   </svg>
 
-                  <span className="text-gray-700"> Marketing Strategy </span>
+                  <span className="text-gray-700"> Free Template Designs </span>
                 </li>
 
                 <li className="flex items-center gap-1">
@@ -307,18 +556,17 @@ export default function Content() {
                     viewBox="0 0 24 24"
                     strokeWidth="1.5"
                     stroke="currentColor"
-                    className="size-5 text-emerald-700"
+                    className="size-5 text-red-700"
                   >
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"
-                      d="M4.5 12.75l6 6 9-13.5"
+                      d="M6 18L18 6M6 6l12 12"
                     />
                   </svg>
 
                   <span className="text-gray-700">
-                    {" "}
-                    2 Social Media Posts (weekly){" "}
+                    Generic Marketing Strategy
                   </span>
                 </li>
 
@@ -329,16 +577,16 @@ export default function Content() {
                     viewBox="0 0 24 24"
                     strokeWidth="1.5"
                     stroke="currentColor"
-                    className="size-5 text-emerald-700"
+                    className="size-5 text-red-700"
                   >
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"
-                      d="M4.5 12.75l6 6 9-13.5"
+                      d="M6 18L18 6M6 6l12 12"
                     />
                   </svg>
 
-                  <span className="text-gray-700"> Content Scheduling </span>
+                  <span className="text-gray-700"> Outdated SEO Strategy </span>
                 </li>
 
                 <li className="flex items-center gap-1">
@@ -357,7 +605,7 @@ export default function Content() {
                     />
                   </svg>
 
-                  <span className="text-gray-700"> Project Management </span>
+                  <span className="text-gray-700"> Basic Documentation </span>
                 </li>
 
                 <li className="flex items-center gap-1">
@@ -376,7 +624,7 @@ export default function Content() {
                     />
                   </svg>
 
-                  <span className="text-gray-700"> Audience Engagement </span>
+                  <span className="text-gray-700"> Office Hour Support </span>
                 </li>
 
                 <li className="flex items-center gap-1">
@@ -395,205 +643,52 @@ export default function Content() {
                     />
                   </svg>
 
-                  <span className="text-gray-700"> Reporting </span>
+                  <span className="text-gray-700"> Slow Responce Time </span>
                 </li>
               </ul>
             </div>
           </div>
 
-          <div className="divide-y divide-gray-200 rounded-2xl border border-gray-200 shadow-sm hover:bg-emerald-50/50 hover:shadow-lg">
+          <div className="divide-y divide-gray-200 rounded-2xl border border-gray-200 shadow-sm bg-white hover:bg-emerald-50/50 hover:shadow-lg">
             <div className="p-6 sm:px-8">
               <h2 className="text-lg font-bold text-gray-900">
-                Pro Pack
-                <span className="sr-only">Plan</span>
-              </h2>
-
-              <p className="mt-2 text-gray-700">
-                Perfect from small to medium sized businesses that is looking to
-                grow.
-              </p>
-
-              <p className="mt-2 sm:mt-4">
-                <strong className="text-3xl font-bold text-gray-900 sm:text-4xl">
-                  {" "}
-                  RM 350{" "}
-                </strong>
-
-                <span className="text-sm font-medium text-gray-700">/week</span>
-              </p>
-
-              <a
-                className="mt-4 block rounded border border-emerald-600 bg-emerald-600 px-12 py-3 text-center text-sm font-medium text-white hover:bg-transparent hover:text-emerald-600 focus:outline-none focus:ring active:text-emerald-500 sm:mt-6"
-                href="/form"
-              >
-                Get Started
-              </a>
-            </div>
-
-            <div className="p-6 sm:px-8">
-              <p className="text-lg font-medium text-gray-900 sm:text-xl">
-                What's included:
-              </p>
-
-              <ul className="mt-2 space-y-2 sm:mt-4">
-                <li className="flex items-center gap-1">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth="1.5"
-                    stroke="currentColor"
-                    className="size-5 text-emerald-700"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M4.5 12.75l6 6 9-13.5"
-                    />
-                  </svg>
-
-                  <span className="text-gray-700"> Marketing Strategy </span>
-                </li>
-
-                <li className="flex items-center gap-1">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth="1.5"
-                    stroke="currentColor"
-                    className="size-5 text-emerald-700"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M4.5 12.75l6 6 9-13.5"
-                    />
-                  </svg>
-
-                  <span className="text-gray-700">
-                    {" "}
-                    4 Social Media Posts (weekly){" "}
-                  </span>
-                </li>
-
-                <li className="flex items-center gap-1">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth="1.5"
-                    stroke="currentColor"
-                    className="size-5 text-emerald-700"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M4.5 12.75l6 6 9-13.5"
-                    />
-                  </svg>
-
-                  <span className="text-gray-700"> Content Scheduling </span>
-                </li>
-
-                <li className="flex items-center gap-1">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth="1.5"
-                    stroke="currentColor"
-                    className="size-5 text-emerald-700"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M4.5 12.75l6 6 9-13.5"
-                    />
-                  </svg>
-
-                  <span className="text-gray-700"> Project Management </span>
-                </li>
-
-                <li className="flex items-center gap-1">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth="1.5"
-                    stroke="currentColor"
-                    className="size-5 text-red-700"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M6 18L18 6M6 6l12 12"
-                    />
-                  </svg>
-
-                  <span className="text-gray-700"> Audience Engagement </span>
-                </li>
-
-                <li className="flex items-center gap-1">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth="1.5"
-                    stroke="currentColor"
-                    className="size-5 text-red-700"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M6 18L18 6M6 6l12 12"
-                    />
-                  </svg>
-
-                  <span className="text-gray-700"> Reporting </span>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <div className="divide-y divide-gray-200 rounded-2xl border border-gray-200 shadow-sm bg-emerald-50 hover:bg-emerald-50/50 hover:shadow-lg">
-            <div className="p-6 sm:px-8">
-              <h2 className="text-lg font-bold text-gray-900">
-                Enterprise Pack
+                My Starting Price
                 <span className="sr-only">Plan</span>
                 <Chip
                   label="BEST VALUE"
                   variant="filled"
                   size="small"
-                  className="ml-14 px-2 bg-emerald-200 text-emerald-700 text-xs font-medium"
+                  className="ml-14 p-2 rounded-full  bg-emerald-200 text-emerald-700 text-xs font-medium"
                 />
               </h2>
 
               <p className="mt-2 text-gray-700">
-                Perfect for large organisations that needs to grow an online
-                community{" "}
+                No extra charges, no hidden fees. My pricing starts at
               </p>
 
               <p className="mt-2 sm:mt-4">
                 <strong className="text-3xl font-bold text-gray-900 sm:text-4xl">
                   {" "}
-                  RM 500{" "}
+                  RM 1,500{" "}
                 </strong>
 
-                <span className="text-sm font-medium text-gray-700">/week</span>
+                <span className="text-sm font-medium text-gray-700">
+                  /month
+                </span>
               </p>
 
               <a
-                className="mt-4 block rounded border border-emerald-600 bg-emerald-600 px-12 py-3 text-center text-sm font-medium text-white hover:bg-transparent hover:text-emerald-600 focus:outline-none focus:ring active:text-emerald-500 sm:mt-6"
+                className="mt-4 flex items-between justify-between rounded-xl hover:cursor-pointer border  border-emerald-600 bg-emerald-600 px-4 py-3 text-center text-sm font-medium text-white  hover:font-bold hover:bg-emerald-900 focus:outline-none focus:ring active:text-emerald-500 sm:mt-6 transition-all duration-500"
                 href="/form"
               >
-                Get Started
+                Get Started{" "}
+                <ChatBubbleBottomCenterTextIcon className=" ml-4 h-5 w-5" />
               </a>
             </div>
 
-            <div className="p-6 sm:px-8">
-              <p className="text-lg font-medium text-gray-900 sm:text-xl">
-                What's included:
+            <div className="p-6 ml-4 sm:px-8">
+              <p className="text-lg font-medium text-gray-900 sm:text-lg">
+                What you get:
               </p>
 
               <ul className="mt-2 space-y-2 sm:mt-4">
@@ -615,7 +710,28 @@ export default function Content() {
 
                   <span className="text-gray-700">
                     {" "}
-                    Advance Marketing Strategy{" "}
+                    Custom Creative Designs{" "}
+                  </span>
+                </li>
+
+                <li className="flex items-center gap-1">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth="1.5"
+                    stroke="currentColor"
+                    className="size-5 text-emerald-700"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M4.5 12.75l6 6 9-13.5"
+                    />
+                  </svg>
+
+                  <span className="text-gray-700">
+                    Trending Marketing Strategy
                   </span>
                 </li>
 
@@ -637,7 +753,7 @@ export default function Content() {
 
                   <span className="text-gray-700">
                     {" "}
-                    Daily Social Media Posts
+                    Expert In Field Analysis{" "}
                   </span>
                 </li>
 
@@ -657,7 +773,10 @@ export default function Content() {
                     />
                   </svg>
 
-                  <span className="text-gray-700"> Content Scheduling </span>
+                  <span className="text-gray-700">
+                    {" "}
+                    Complete Project Documentation{" "}
+                  </span>
                 </li>
 
                 <li className="flex items-center gap-1">
@@ -676,7 +795,7 @@ export default function Content() {
                     />
                   </svg>
 
-                  <span className="text-gray-700"> Project Management </span>
+                  <span className="text-gray-700"> 24/7 Support </span>
                 </li>
 
                 <li className="flex items-center gap-1">
@@ -695,7 +814,68 @@ export default function Content() {
                     />
                   </svg>
 
-                  <span className="text-gray-700"> Audience Engagement </span>
+                  <span className="text-gray-700"> Quick Responce Time </span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="divide-y divide-gray-200 rounded-2xl border border-gray-200 shadow-sm bg-white  hover:shadow-lg">
+            <div className="p-6 sm:px-8">
+              <h2 className="text-lg font-bold text-gray-900">
+                Big DM Agency
+                <span className="sr-only">Plan</span>
+              </h2>
+
+              <p className="mt-2 text-gray-700">
+                For large agencies and big projects. Fees and quality vary from
+              </p>
+
+              <p className="mt-2 sm:mt-4">
+                <strong className="text-3xl font-bold text-gray-900 sm:text-4xl">
+                  {" "}
+                  RM 2k-RM 10k{" "}
+                </strong>
+
+                <span className="text-sm font-medium text-gray-700">
+                  /month
+                </span>
+              </p>
+
+              <a
+                className="mt-4 flex items-center justify-between rounded-xl border border-emerald-600 bg-slate-600 px-4 py-3 text-center text-sm font-medium text-white hover:bg-slate-900  focus:outline-none focus:ring active:text-white sm:mt-6"
+                href="/form"
+              >
+                Introduce Me{" "}
+                <ChatBubbleBottomCenterTextIcon className=" ml-4 h-5 w-5" />
+              </a>
+            </div>
+
+            <div className="p-6 ml-4 sm:px-8">
+              <p className="text-md font-medium text-gray-900 sm:text-lg">
+                What to expect:
+              </p>
+
+              <ul className="mt-2 space-y-2 sm:mt-4">
+                <li className="flex items-center gap-1">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth="1.5"
+                    stroke="currentColor"
+                    className="size-5 text-red-700"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  </svg>
+                  <span className="text-gray-700">
+                    {" "}
+                    Complicated Initiaion Process{" "}
+                  </span>
                 </li>
 
                 <li className="flex items-center gap-1">
@@ -705,16 +885,96 @@ export default function Content() {
                     viewBox="0 0 24 24"
                     strokeWidth="1.5"
                     stroke="currentColor"
-                    className="size-5 text-emerald-700"
+                    className="size-5 text-red-700"
                   >
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"
-                      d="M4.5 12.75l6 6 9-13.5"
+                      d="M6 18L18 6M6 6l12 12"
                     />
                   </svg>
 
-                  <span className="text-gray-700"> Monthly Reporting </span>
+                  <span className="text-gray-700">
+                    {" "}
+                    Hidden Charges and Fees
+                  </span>
+                </li>
+
+                <li className="flex items-center gap-1">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth="1.5"
+                    stroke="currentColor"
+                    className="size-5 text-red-700"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  </svg>
+
+                  <span className="text-gray-700"> Long Term Contract </span>
+                </li>
+
+                <li className="flex items-center gap-1">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth="1.5"
+                    stroke="currentColor"
+                    className="size-5 text-red-700"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  </svg>
+                  <span className="text-gray-700">
+                    {" "}
+                    Shared Customer Support{" "}
+                  </span>
+                </li>
+
+                <li className="flex items-center gap-1">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth="1.5"
+                    stroke="currentColor"
+                    className="size-5 text-red-700"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  </svg>
+                  <span className="text-gray-700"> Expensive Solutions </span>
+                </li>
+
+                <li className="flex items-center gap-1">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth="1.5"
+                    stroke="currentColor"
+                    className="size-5 text-red-700"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  </svg>
+
+                  <span className="text-gray-700"> Long Waiting Time </span>
                 </li>
               </ul>
             </div>
@@ -722,6 +982,45 @@ export default function Content() {
         </div>
       </div>
 
+      {/* FAQ */}
+      <section className="relative min-h-screen flex flex-col justify-center bg-white overflow-hidden">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:p-16 justify-center">
+          <div className="space-y-4">
+            <h2 className="text-base font-semibold leading-7 text-emerald-600">
+              FREQUENTLY ASKED QUESTIONS
+            </h2>
+            <p className="my-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+              Make sure you have everything you need to begin our work together.
+            </p>
+            <div className="p-4 bg-white">
+              {faqs.map((faq) => (
+                <details className="group [&_summary::-webkit-details-marker]:hidden">
+                  <summary className="flex cursor-pointer items-center justify-between gap-3 rounded-lg bg-slate-200/50 focus:bg-emerald-100 px-8 py-4 my-4 text-gray-900">
+                    <h2 className="font-semibold">{faq.question}</h2>
+                    <svg
+                      className="size-5 text-emerald-600 shrink-0 transition duration-300 group-open:-rotate-180"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M19 9l-7 7-7-7"
+                      />
+                    </svg>
+                  </summary>
+                  <p className="mt-4 px-8 my-4 leading-relaxed text-gray-700">
+                    {faq.answer}
+                  </p>
+                </details>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
       <Footer />
     </main>
   );
