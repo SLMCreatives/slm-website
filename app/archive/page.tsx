@@ -8,7 +8,7 @@ import Image from "next/image";
 import { client, sanityFetch } from "../sanity/lib/client";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 
-const POSTS_QUERY = `*[_type == "post"]{_id, title, body, slug, date, mainImage, publishedAt}|order(date desc)`;
+const POSTS_QUERY = `*[_type == "post"]{title, body, slug, date, mainImage, publishedAt}|order(date desc)`;
 const urlFor = (source: SanityImageSource) =>
   imageUrlBuilder(client).image(source).auto("format").fit("max").url();
 const dateFormated = (publishedAt: string) => {
@@ -22,7 +22,6 @@ const dateFormated = (publishedAt: string) => {
 
 export default async function IndexPage() {
   const posts = await sanityFetch<SanityDocument[]>({ query: POSTS_QUERY });
-  const postSlug = posts?.map((post) => post.slug.current);
   return (
     <main>
       <Header />
@@ -76,7 +75,7 @@ export default async function IndexPage() {
             <li className="bg-white p-8 rounded-lg" key={post._id}>
               <Link
                 className="hover:underline "
-                href={`/archive/posts/${postSlug}`}
+                href={`/archive/posts/${post?.slug.current}`}
               >
                 <Image
                   className="w-full h-40 mb-4 object-cover rounded-lg"

@@ -39,16 +39,7 @@ export default async function PostPage({
     query: POST_QUERY,
     params,
   });
-  const {
-    title,
-    publishedAt,
-    body,
-    author,
-    categories,
-    category,
-    slug,
-    mainImage,
-  } = post;
+  const { title, publishedAt, body, author, categories, mainImage } = post;
   const eventImageUrl = mainImage
     ? urlFor(mainImage)?.width(550).height(310).url()
     : null;
