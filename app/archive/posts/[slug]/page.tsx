@@ -89,14 +89,7 @@ export default async function PostPage({
                   </p>{" "}
                   |
                   <p className="text-sm font-semibold leading-6 text-gray-900">
-                    {categories?.map((category: any) => (
-                      <Link
-                        key={category._id}
-                        href={`/archive/category/${category.slug.current}`}
-                      >
-                        {category.title}
-                      </Link>
-                    ))}
+                    {categories[0]?.title}
                   </p>
                   |
                   <p className="text-sm font-semibold leading-6 text-gray-900">
@@ -116,8 +109,11 @@ export default async function PostPage({
                     />
                   </div>
                   <div className="bg-slate-50 rounded-xl py-8 px-12 lg:col-span-2 lg:mt-8 text-wrap leading-8 text-left">
+                    <h2 className="text-3xl font-bold tracking-tight text-gray-900 sticky top-10">
+                      {title}
+                    </h2>
                     {body && body.length > 0 && (
-                      <div className="prose max-w-none text-lg">
+                      <div className="prose max-w-none text-lg mt-4">
                         <PortableText value={body} />
                       </div>
                     )}

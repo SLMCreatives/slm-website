@@ -75,7 +75,7 @@ export default async function IndexPage() {
             <li className="bg-white p-8 rounded-lg" key={post._id}>
               <Link
                 className="hover:underline "
-                href={`/archive/posts/${post.slug.current}`}
+                href={`/archive/posts/${post.slug}`}
               >
                 <Image
                   className="w-full h-40 mb-4 object-cover rounded-lg"
