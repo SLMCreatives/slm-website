@@ -39,8 +39,16 @@ export default async function PostPage({
     query: POST_QUERY,
     params,
   });
-  const { title, publishedAt, body, author, categories, slug, mainImage } =
-    post;
+  const {
+    title,
+    publishedAt,
+    body,
+    author,
+    categories,
+    category,
+    slug,
+    mainImage,
+  } = post;
   const eventImageUrl = mainImage
     ? urlFor(mainImage)?.width(550).height(310).url()
     : null;
@@ -81,7 +89,14 @@ export default async function PostPage({
                   </p>{" "}
                   |
                   <p className="text-sm font-semibold leading-6 text-gray-900">
-                    {categories?.map((category) => category.title).join(", ")}
+                    {categories?.map((category: any) => (
+                      <Link
+                        key={category._id}
+                        href={`/archive/category/${category.slug.current}`}
+                      >
+                        {category.title}
+                      </Link>
+                    ))}
                   </p>
                   |
                   <p className="text-sm font-semibold leading-6 text-gray-900">
