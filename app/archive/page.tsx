@@ -72,9 +72,12 @@ export default async function IndexPage() {
       <div className="flex flex-col gap-12 px-4 lg:px-32 py-8 bg-gray-100 justify-center items-center">
         <ul className="grid grid-cols-1 gap-12 lg:grid-cols-2">
           {posts.map((post) => (
-            <li className="bg-white p-8 rounded-lg" key={post._id}>
+            <li
+              className="bg-white hover:bg-slate-50 hover:shadow-lg p-8 rounded-lg"
+              key={post._id}
+            >
               <Link
-                className="hover:underline "
+                className="text-emerald-600 visited:text-emerald-600 "
                 href={`/archive/posts/${post?.slug.current}`}
               >
                 <Image
