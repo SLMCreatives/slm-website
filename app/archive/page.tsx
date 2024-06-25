@@ -22,6 +22,7 @@ const dateFormated = (publishedAt: string) => {
 
 export default async function IndexPage() {
   const posts = await sanityFetch<SanityDocument[]>({ query: POSTS_QUERY });
+  const postSlug = posts?.map((post) => post.slug.current);
   return (
     <main>
       <Header />
@@ -75,7 +76,7 @@ export default async function IndexPage() {
             <li className="bg-white p-8 rounded-lg" key={post._id}>
               <Link
                 className="hover:underline "
-                href={`/archive/posts/${post.slug}`}
+                href={`/archive/posts/${postSlug}`}
               >
                 <Image
                   className="w-full h-40 mb-4 object-cover rounded-lg"
