@@ -11,7 +11,7 @@ const navigation = [
   { name: "Social Media", href: "/content" },
   { name: "Paid Ads", href: "/paid" },
   { name: "Website Development", href: "/website" },
-  { name: "Portfolio", href: "/portfolio" },
+  { name: "Blog", href: "/archive" },
 ];
 
 const Header = () => {
