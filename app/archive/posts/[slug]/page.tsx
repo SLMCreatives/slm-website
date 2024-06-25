@@ -68,7 +68,7 @@ export default async function PostPage({
           </div>
           <div className="mx-auto max-w-full py-32 sm:py-48 lg:py-56">
             {post ? (
-              <div className="text-center text-balance">
+              <div className="text-center text-balance visited:text-slate-900">
                 <a href="/archive"> Back to blog</a>
 
                 <h1 className="py-8 -my-2 text-4xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-emerald-600 to-violet-500 sm:text-6xl">
