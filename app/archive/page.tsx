@@ -26,7 +26,7 @@ export default async function IndexPage() {
     <main>
       <Header />
 
-      <div className="flex justify-center items-center bg-white min-h-screen">
+      <div className="flex justify-center items-center bg-white min-h-screen-1/2">
         <div className="relative isolate px-6 pt-14 lg:px-8">
           <div
             className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
@@ -69,11 +69,11 @@ export default async function IndexPage() {
           </div>
         </div>
       </div>
-      <div className="flex flex-col gap-12 px-4 lg:px-32 py-8 bg-gray-100 justify-center items-center">
-        <ul className="grid grid-cols-1 gap-12 lg:grid-cols-2">
+      <div className="flex flex-col gap-12 px-4 lg:px-32 py-8 bg-white justify-center items-center">
+        <ul className="grid grid-cols-1 gap-12 lg:grid-cols-3">
           {posts.map((post) => (
             <li
-              className="bg-white hover:bg-slate-50 hover:shadow-lg p-8 rounded-lg"
+              className="bg-slate-100 shadow-sm hover:bg-slate-50 hover:shadow-lg p-8 rounded-lg"
               key={post._id}
             >
               <Link
@@ -81,17 +81,18 @@ export default async function IndexPage() {
                 href={`/archive/posts/${post?.slug.current}`}
               >
                 <Image
-                  className="w-full h-40 mb-4 object-cover rounded-lg"
+                  className="w-full h-60 w-full mr-6 mb-4 object-cover rounded-lg"
                   src={urlFor(post.mainImage)}
                   alt={post.title}
                   width={500}
                   height={500}
                 />
-                <h2 className="text-2xl font-semibold">{post?.title}</h2>
+                <h2 className="text-xl font-semibold">{post?.title}</h2>
                 <p className="text-gray-500 text-sm mt-2">
                   {dateFormated(post.publishedAt)}
                 </p>
-                <p className="text-gray-500 mt-2 text-lg leading-8">
+
+                <p className="text-gray-500 mt-2 text-sm ">
                   {post?.body[0].children[0].text}
                 </p>
               </Link>

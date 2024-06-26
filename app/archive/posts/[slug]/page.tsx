@@ -1,14 +1,19 @@
+import * as React from "react";
 import { PortableText, type SanityDocument } from "next-sanity";
 import imageUrlBuilder from "@sanity/image-url";
-
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { client, sanityFetch } from "../../../sanity/lib/client";
-
 import Header from "../../../Components/Header";
 import Footer from "../../../Components/Footer";
-
 import Link from "next/link";
 import Image from "next/image";
+import Typography from "@mui/material/Typography";
+import Breadcrumbs from "@mui/material/Breadcrumbs";
+import {
+  CalendarDaysIcon,
+  UserCircleIcon,
+  UserGroupIcon,
+} from "@heroicons/react/24/outline";
 
 const POST_QUERY = `*[
     _type == "post" &&
@@ -50,9 +55,9 @@ export default async function PostPage({
   });
 
   return (
-    <main className="">
+    <main>
       <Header />
-      <div className="flex justify-center items-center bg-white min-h-screen">
+      <div className="flex justify-center items-center bg-white">
         <div className="relative isolate px-6 pt-140 lg:px-8">
           <div
             className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
@@ -66,45 +71,58 @@ export default async function PostPage({
               }}
             />
           </div>
-          <div className="mx-auto max-w-full py-32 sm:py-48 lg:py-56">
+          <div className="mx-auto max-w-full py-32 sm:py-48 lg:py-32">
             {post ? (
               <div className="text-center text-balance visited:text-slate-900">
-                <a href="/archive"> Back to blog</a>
-
-                <h1 className="py-8 -my-2 text-4xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-emerald-600 to-violet-500 sm:text-6xl">
-                  {title}
+                <h1 className="my-8 py-2 text-4xl hidden text-balance font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-emerald-600 to-violet-500 lg:text-6xl lg:block">
+                  Digital Marketing Tips 2024{" "}
                 </h1>
-                <div className="flex mt-4 items-center gap-4 justify-center">
-                  <p className="text-sm font-semibold leading-6 text-gray-900">
-                    {dateFormated}
-                  </p>{" "}
-                  |
-                  <p className="text-sm font-semibold leading-6 text-gray-900">
-                    {categories[0]?.title}
-                  </p>
-                  |
-                  <p className="text-sm font-semibold leading-6 text-gray-900">
-                    By: {author?.name}
-                  </p>{" "}
-                </div>
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mt-8 mx-auto items-top justify-center lg:mx-20 ">
-                  <div className="col-span-1 mt-8">
-                    <Image
-                      src={
-                        eventImageUrl || "https://via.placeholder.com/550x310"
-                      }
-                      alt={title || "Article"}
-                      className="mx-auto aspect-video overflow-hidden sticky top-10 rounded-xl object-center w-full "
-                      height="620"
-                      width="1100"
-                    />
+
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mt-20 mx-auto items-top justify-center lg:mx-20 ">
+                  <div className="col-span-1 mt-0 lg:mt-4 mx-4 lg:mx-0 ">
+                    <div role="presentation" className="sticky top-20 relative">
+                      <Image
+                        src={
+                          eventImageUrl || "https://via.placeholder.com/550x310"
+                        }
+                        alt={title || "Article"}
+                        className="mx-auto aspect-video rounded-xl object-center w-full "
+                        height="620"
+                        width="1100"
+                      />
+                      <Breadcrumbs
+                        aria-label="breadcrumb"
+                        className="text-md mt-8 font-semibold my-2 flex leading-6 text-gray-900"
+                      >
+                        <Link underline="hover" color="inherit" href="/archive">
+                          Blog
+                        </Link>
+                        <Link underline="hover" color="inherit" href="#">
+                          {categories[0]?.title}
+                        </Link>
+                        <Typography color="text.primary">{title}</Typography>
+                      </Breadcrumbs>
+                      <h2 className="text-5xl mt-8 text-balance space-y-4 text-left font-bold relative text-gray-900">
+                        {title}
+                        <hr className="w-full my-8"></hr>
+                        <div className="flex items-center justify-start mt-4 gap-4">
+                          <CalendarDaysIcon className="inline w-4 h-4 mr-2 my-auto" />{" "}
+                          <p className="text-sm font-medium text-gray-900">
+                            Published On: {dateFormated}
+                          </p>{" "}
+                        </div>
+                        <div className="flex items-center justify-start mt-4 gap-4">
+                          <UserCircleIcon className="inline w-4 h-4 mr-2 my-auto" />{" "}
+                          <p className="text-sm font-medium text-gray-900">
+                            Written By: {author?.name}
+                          </p>{" "}
+                        </div>
+                      </h2>
+                    </div>
                   </div>
-                  <div className="bg-slate-50 rounded-xl py-8 px-12 lg:col-span-2 lg:mt-8 text-wrap leading-8 text-left">
-                    <h2 className="text-3xl font-bold tracking-tight text-gray-900 sticky top-10">
-                      {title}
-                    </h2>
+                  <div className="bg-slate-100 rounded-xl py-8 px-12 lg:col-span-2 lg:mt-4 text-wrap leading-8 text-left">
                     {body && body.length > 0 && (
-                      <div className="prose max-w-none text-lg mt-4">
+                      <div className="prose max-w-none text-md lg:text-lg mt-4 ">
                         <PortableText value={body} />
                       </div>
                     )}
