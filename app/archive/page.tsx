@@ -27,7 +27,7 @@ export default async function IndexPage() {
     <main>
       <Header />
 
-      <div className="flex justify-center items-center bg-white min-h-screen-1/3">
+      <div className="flex justify-center items-center bg-white">
         <div className="relative isolate px-6 pt-14 lg:px-8">
           <div
             className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
@@ -41,19 +41,20 @@ export default async function IndexPage() {
               }}
             />
           </div>
-          <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
-            <div className="text-center text-balance">
+          <div className="mx-auto max-w-2xl pt-24 lg:py-56">
+            <div className="text-left lg:text-center text-balance ml-4">
               <h1 className="py-8 -my-8 text-4xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-emerald-600 to-violet-500 sm:text-6xl">
                 Digital Marketing Tips
               </h1>
-              <p className="mt-6 text-lg leading-8 text-gray-600">
+              <p className="mt-4 text-md lg:text-lg text-gray-600">
                 Get the latest trends and valuable digital marketing tips.
               </p>
             </div>
           </div>
+          <hr className="lg:hidden mt-8"></hr>
         </div>
       </div>
-      <div className="flex flex-col gap-12 px-4 lg:px-32 py-8 bg-white justify-center items-center">
+      <div className="flex flex-col gap-12 sm:-mt-12 px-4 lg:px-32 py-8 bg-white justify-center items-center">
         <ul className="grid grid-cols-1 gap-6 lg:grid-cols-2">
           {posts.map((post) => (
             <li
@@ -61,12 +62,12 @@ export default async function IndexPage() {
               key={post._id}
             >
               <Link
-                className="text-emerald-600 visited:text-emerald-600 "
+                className="link:text-emerald-600 link:visited:text-emerald-300"
                 href={`/archive/posts/${post?.slug.current}`}
               >
                 <div className="flex flex-row items-center justify-left">
                   <Image
-                    className="hidden lg:block lg:h-32 lg:w-32 mr-6 object-cover rounded-lg"
+                    className="hidden lg:block lg:h-32 lg:w-32 mr-6 object-cover rounded-sm"
                     src={urlFor(post.mainImage)}
                     alt={post.title}
                     width={500}

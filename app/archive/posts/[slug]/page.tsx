@@ -94,10 +94,16 @@ export default async function PostPage({
                         aria-label="breadcrumb"
                         className="text-md mt-8 font-medium my-2 flex leading-6 text-gray-900"
                       >
-                        <Link href="/archive" className="decoration-none">
+                        <Link
+                          href="/archive"
+                          className="link:text-emerald-600 link:visited:text-emerald-300"
+                        >
                           Blog
                         </Link>
-                        <Link href="#" className="decoration-none">
+                        <Link
+                          href="#"
+                          className="link:text-emerald-600 link:visited:text-emerald-300"
+                        >
                           {categories[0]?.title}
                         </Link>
                         <Typography color="text.primary">...</Typography>
