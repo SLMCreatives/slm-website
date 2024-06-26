@@ -116,7 +116,7 @@ export default async function PostPage({
                       </h2>
                     </div>
                   </div>
-                  <div className="bg-slate-100 rounded-xl py-8 px-12 lg:col-span-2 lg:mt-4 text-wrap leading-8 text-left">
+                  <div className="bg-slate-100 rounded-xl py-8 px-8 lg:px-12 lg:col-span-2 lg:mt-4 text-wrap leading-8 text-left">
                     {body && body.length > 0 && (
                       <div className="prose max-w-none text-md lg:text-lg mt-4 ">
                         <PortableText value={body} />
