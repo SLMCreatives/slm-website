@@ -94,12 +94,8 @@ export default async function PostPage({
                         aria-label="breadcrumb"
                         className="text-md mt-8 font-semibold my-2 flex leading-6 text-gray-900"
                       >
-                        <Link underline="hover" color="inherit" href="/archive">
-                          Blog
-                        </Link>
-                        <Link underline="hover" color="inherit" href="#">
-                          {categories[0]?.title}
-                        </Link>
+                        <Link href="/archive">Blog</Link>
+                        <Link href="#">{categories[0]?.title}</Link>
                         <Typography color="text.primary">{title}</Typography>
                       </Breadcrumbs>
                       <h2 className="text-5xl mt-8 text-balance space-y-4 text-left font-bold relative text-gray-900">
