@@ -78,7 +78,7 @@ export default async function PostPage({
                   Digital Marketing Tips 2024{" "}
                 </h1>
 
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mt-20 mx-auto items-top justify-center lg:mx-20 ">
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mt-4 lg:mt-20 mx-auto items-top justify-center lg:mx-20 ">
                   <div className="col-span-1 mt-0 lg:mt-4 mx-4 lg:mx-0 ">
                     <div role="presentation" className="sticky top-20 relative">
                       <Image
@@ -92,23 +92,27 @@ export default async function PostPage({
                       />
                       <Breadcrumbs
                         aria-label="breadcrumb"
-                        className="text-md mt-8 font-semibold my-2 flex leading-6 text-gray-900"
+                        className="text-md mt-8 font-medium my-2 flex leading-6 text-gray-900"
                       >
-                        <Link href="/archive">Blog</Link>
-                        <Link href="#">{categories[0]?.title}</Link>
-                        <Typography color="text.primary">{title}</Typography>
+                        <Link href="/archive" className="decoration-none">
+                          Blog
+                        </Link>
+                        <Link href="#" className="decoration-none">
+                          {categories[0]?.title}
+                        </Link>
+                        <Typography color="text.primary">...</Typography>
                       </Breadcrumbs>
-                      <h2 className="text-5xl mt-8 text-balance space-y-4 text-left font-bold relative text-gray-900">
+                      <h2 className="text-4xl lg:text-5xl mt-4 lg:mt-8 text-balance space-y-4 text-left font-bold relative text-gray-900">
                         {title}
-                        <hr className="w-full my-8"></hr>
-                        <div className="flex items-center justify-start mt-4 gap-4">
-                          <CalendarDaysIcon className="inline w-4 h-4 mr-2 my-auto" />{" "}
+                        <hr className="w-full my-4 lg:my-8 "></hr>
+                        <div className="flex items-center my-4 pt-4 gap-4">
+                          <CalendarDaysIcon className="inline text-emerald-600 w-4 h-4 mr-2 my-auto" />{" "}
                           <p className="text-sm font-medium text-gray-900">
                             Published On: {dateFormated}
                           </p>{" "}
                         </div>
                         <div className="flex items-center justify-start mt-4 gap-4">
-                          <UserCircleIcon className="inline w-4 h-4 mr-2 my-auto" />{" "}
+                          <UserCircleIcon className="inline text-emerald-600 w-4 h-4 mr-2 my-auto" />{" "}
                           <p className="text-sm font-medium text-gray-900">
                             Written By: {author?.name}
                           </p>{" "}
@@ -118,7 +122,7 @@ export default async function PostPage({
                   </div>
                   <div className="bg-slate-100 rounded-xl py-8 px-8 lg:px-12 lg:col-span-2 lg:mt-4 text-wrap leading-8 text-left">
                     {body && body.length > 0 && (
-                      <div className="prose max-w-none text-md lg:text-lg mt-4 ">
+                      <div className="prose max-w-none text-md lg:text-lg lg:mt-4 lg:px-8">
                         <PortableText value={body} />
                       </div>
                     )}
