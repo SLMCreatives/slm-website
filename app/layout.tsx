@@ -2,6 +2,13 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "/app/globals.css";
 import { Analytics } from "@vercel/analytics/react";
+import TagManager from "react-gtm-module";
+
+const tagManagerArgs = {
+  gtmId: "G-4S5TW94WM7",
+};
+
+TagManager.initialize(tagManagerArgs);
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -44,16 +51,6 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <link rel="icon" href="/logo.png" sizes="any" />
-
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-4S5TW94WM7"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-4S5TW94WM7');
-</script>
-
       </head>
       <body className={inter.className}>
         {children}

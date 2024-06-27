@@ -33,6 +33,7 @@
     "next-sanity": "^9.4.2",
     "react": "^18",
     "react-dom": "^18.3.1",
+    "react-gtm-module": "^2.0.11",
     "react-native-web": "^0.19.12",
     "sanity": "^3.47.1"
   },
@@ -41,6 +42,7 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@types/react-gtm-module": "^2.0.3",
     "eslint": "^8",
     "eslint-config-next": "14.2.4",
     "postcss": "^8",
