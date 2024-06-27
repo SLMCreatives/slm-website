@@ -1,7 +1,7 @@
 {
   "name": "slm-website",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -15,13 +15,16 @@
     "@headlessui/react": "^2.0.4",
     "@heroicons/react": "^2.1.3",
     "@mui/material": "^5.15.20",
+    "@react-three/fiber": "^8.16.8",
     "@sanity/image-url": "^1.0.2",
     "@sanity/vision": "^3.47.1",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "@types/three": "^0.165.0",
     "@vercel/analytics": "^1.3.1",
     "expo": "^51.0.14",
+    "framer-motion": "^11.2.12",
     "glob": "^10.4.2",
     "keen-slider": "^6.8.6",
     "lru-cache": "^10.2.2",
@@ -32,7 +35,9 @@
     "react-dom": "^18.3.1",
     "react-native-web": "^0.19.12",
     "sanity": "^3.47.1",
+    "shadergradient": "^1.2.14",
     "styled-components": "^6.1.11",
+    "three": "^0.165.0",
     "web-vitals": "^2.1.4"
   },
   "devDependencies": {
