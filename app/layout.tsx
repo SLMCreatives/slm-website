@@ -44,6 +44,16 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <link rel="icon" href="/logo.png" sizes="any" />
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4S5TW94WM7"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-4S5TW94WM7');
+</script>
+
       </head>
       <body className={inter.className}>
         {children}
