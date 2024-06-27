@@ -3,7 +3,7 @@ import { PortableText, type SanityDocument } from "next-sanity";
 import imageUrlBuilder from "@sanity/image-url";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { client, sanityFetch } from "../../../sanity/lib/client";
-import Header from "../../../Components/Header";
+import HeaderBlog from "../../../Components/HeaderBlog";
 import Footer from "../../../Components/Footer";
 import Link from "next/link";
 import Image from "next/image";
@@ -29,6 +29,16 @@ const POST_QUERY = `*[
     category->
 }`;
 
+export async function generateStaticParams() {
+  const posts = await fetch("https://.../archive/posts").then((res) =>
+    res.json()
+  );
+
+  return posts.map((post: { slug: any }) => ({
+    slug: post.slug,
+  }));
+}
+
 const { projectId, dataset } = client.config();
 const urlFor = (source: SanityImageSource) =>
   projectId && dataset
@@ -44,7 +54,8 @@ export default async function PostPage({
     query: POST_QUERY,
     params,
   });
-  const { title, publishedAt, body, author, categories, mainImage } = post;
+  const { title, publishedAt, body, author, categories, category, mainImage } =
+    post;
   const eventImageUrl = mainImage
     ? urlFor(mainImage)?.width(550).height(310).url()
     : null;
@@ -56,7 +67,7 @@ export default async function PostPage({
 
   return (
     <main>
-      <Header />
+      <HeaderBlog />
       <div className="flex justify-center items-center bg-white">
         <div className="relative isolate px-6 pt-140 lg:px-8">
           <div
