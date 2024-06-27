@@ -18,10 +18,6 @@ import {
 import Header from "Sulaiman/app/Components/Header";
 import Footer from "Sulaiman/app/Components/Footer";
 import Testimonial from "Sulaiman/app/Components/Testimonial";
-import { ShaderGradientCanvas, ShaderGradient } from "shadergradient";
-import * as reactSpring from "@react-spring/three";
-import * as drei from "@react-three/drei";
-import * as fiber from "@react-three/fiber";
 
 const features = [
   {

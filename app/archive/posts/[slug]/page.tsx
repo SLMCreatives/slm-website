@@ -30,12 +30,11 @@ const POST_QUERY = `*[
 }`;
 
 export async function generateStaticParams() {
-  const posts = await fetch("https://.../archive/posts").then((res) =>
-    res.json()
-  );
-
-  return posts.map((post: { slug: any }) => ({
-    slug: post.slug,
+  const posts = await sanityFetch<SanityDocument[]>({
+    query: `*[_type == "post"]{slug}`,
+  });
+  return posts.map((post) => ({
+    slug: post.slug.current,
   }));
 }
 
