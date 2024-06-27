@@ -45,7 +45,7 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/logo.png" sizes="any" />
         {process.env.NODE_ENV === "production" ? (
-          <GoogleTagManager gtmId="GTM-MJ2XRWJ" />
+          <GoogleTagManager gtmId="G-4S5TW94WM7" />
         ) : null}
       </head>
       <body className={inter.className}>{children}</body>
