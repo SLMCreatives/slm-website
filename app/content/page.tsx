@@ -83,7 +83,7 @@ const faqs = [
   },
 ];
 
-export default function Content() {
+export default async function Content() {
   return (
     <main className="bg-white px-4">
       <Header />

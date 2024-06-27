@@ -1,21 +1,14 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "/app/globals.css";
-import { Analytics } from "@vercel/analytics/react";
-import TagManager from "react-gtm-module";
-
-const tagManagerArgs = {
-  gtmId: "G-4S5TW94WM7",
-};
-
-TagManager.initialize(tagManagerArgs);
+import { GoogleTagManager } from "@next/third-parties/google";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "SLM Creatives",
   description: "Creative Digital Marketing Freelancer in Selangor, Malaysia.",
-  authors: [{ name: "SLM Creatives" }],
+  authors: [{ name: "Sulaiman Shafiq" }],
   creator: "SLM Creatives",
   robots: {
     index: true,
@@ -51,11 +44,11 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <link rel="icon" href="/logo.png" sizes="any" />
+        {process.env.NODE_ENV === "production" ? (
+          <GoogleTagManager gtmId="GTM-MJ2XRWJ" />
+        ) : null}
       </head>
-      <body className={inter.className}>
-        {children}
-        <Analytics />
-      </body>
+      <body className={inter.className}>{children}</body>
     </html>
   );
 }

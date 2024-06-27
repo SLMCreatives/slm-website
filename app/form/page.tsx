@@ -1,12 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import Image from "next/image";
 import Header from "Sulaiman/app/Components/Header";
 import Footer from "Sulaiman/app/Components/Footer";
-import FStepOne from "Sulaiman/app/Components/FormField";
-import FStepTwo from "Sulaiman/app/Components/FStepTwo";
-import { Field, Button } from "@headlessui/react";
 import MarketingForm from "../Components/MarketingForm";
 import { Dialog, DialogPanel } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
@@ -16,7 +12,6 @@ export default function Form() {
   return (
     <main>
       <Header />
-
       <div className="flex justify-center items-center bg-white">
         <div className="absolute isolate px-6 pt-14 lg:px-8">
           <div
