@@ -139,32 +139,36 @@ export default function Home() {
                 </p>
 
                 <div className="overflow-scroll xl:overflow-visible lg:overflow-scroll m-2 mt-6 md:max-w-xl scrollbar-hide">
-                  <dl className="grid grid-cols-3 gap-8 mt-4 min-w-[80rem] lg:min-w-none text-lg leading-8 text-gray-600">
+                  <dl className="grid grid-cols-3 gap-8 lg:gap-32 mt-4 min-w-[70rem] lg:min-w-none text-lg leading-8 text-gray-600">
                     {features.map((feature) => (
                       <div
                         key={feature.name}
                         className="relative bg-white rounded-xl p-8 lg:min-w-[380px] text-balance"
                       >
-                        <dt className="block items-center text-2xl text-emerald-600 font-bold">
+                        <dt className="block items-center text-xl lg:text-2xl text-emerald-600 font-bold">
                           <feature.icon
                             className="block h-12 w-12 mb-6 text-slate-600"
                             aria-hidden="true"
                           />{" "}
                           Myth {feature.id} - {feature.name}
                         </dt>{" "}
-                        <dd className="mt-4 text-lg leading-8 text-gray-600 ">
+                        <dd className="mt-4 text-md lg:text-lg leading-6 text-gray-600 ">
                           {feature.description}
                         </dd>
                       </div>
                     ))}
                   </dl>
                 </div>
+                <p className="block md:hidden pl-2 mt-4 text-xs text-right leading-8 text-gray-600">
+                  <ArrowRightCircleIcon className="inline-block h-4 w-4 text-emerald-600" />{" "}
+                  Swipe for more{" "}
+                </p>
               </div>
             </div>
             <img
               src="/features.jpg"
               alt="Product screenshot"
-              className="intems-center -z-9 h-[40rem] max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-[57rem] md:-ml-4 lg:-ml-0"
+              className="intems-center hidden lg:block -z-9 h-[40rem] max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-[57rem] md:-ml-4 lg:-ml-0"
               width={2432}
               height={1442}
             />

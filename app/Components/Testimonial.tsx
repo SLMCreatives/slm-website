@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import "keen-slider/keen-slider.min.css";
 import KeenSlider from "keen-slider";
@@ -56,7 +58,7 @@ const Testimonial = () => {
                 type="button"
                 aria-label="Previous slide"
                 id="keen-slider-previous-desktop"
-                onClick={prevSlide}
+                onClick={() => prevSlide()}
                 className="rounded-full border border-emerald-600 p-3 text-emerald-600 transition hover:bg-emerald-600 hover:text-white"
               >
                 <svg
@@ -79,7 +81,7 @@ const Testimonial = () => {
                 aria-label="Next slide"
                 id="keen-slider-next-desktop"
                 type="button"
-                onClick={nextSlide}
+                onClick={() => nextSlide()}
                 className="rounded-full border border-emerald-600 p-3 text-emerald-600 transition hover:bg-emerald-600 hover:text-white"
               >
                 <svg
@@ -320,7 +322,7 @@ const Testimonial = () => {
           <button
             aria-label="Previous slide"
             id="keen-slider-previous"
-            onClick={prevSlide}
+            onClick={() => prevSlide()}
             className="rounded-full border border-emerald-600 p-4 text-emerald-600 transition hover:bg-emerald-600 hover:text-white"
           >
             <svg
@@ -342,7 +344,7 @@ const Testimonial = () => {
           <button
             aria-label="Next slide"
             id="keen-slider-next"
-            onClick={nextSlide}
+            onClick={() => nextSlide()}
             className="rounded-full border border-emerald-600 p-4 text-emerald-600 transition hover:bg-emerald-600 hover:text-white"
           >
             <svg

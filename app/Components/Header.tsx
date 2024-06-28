@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useEffect } from "react";
 import React from "react";
 import { useState } from "react";
 import "/app/globals.css";
@@ -16,6 +17,12 @@ const navigation = [
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const mobileOpenButton = () => {
+    setMobileMenuOpen(true);
+  };
+  const mobileCloseButton = () => {
+    setMobileMenuOpen(false);
+  };
   return (
     <header className="absolute inset-x-0 top-0 z-50">
       <nav
@@ -38,7 +45,7 @@ const Header = () => {
           <button
             type="button"
             className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
-            onClick={() => setMobileMenuOpen(true)}
+            onClick={() => mobileOpenButton()}
           >
             <span className="sr-only">Open main menu</span>
             <Bars3Icon className="h-6 w-6" aria-hidden="true" />
@@ -80,7 +87,7 @@ const Header = () => {
             <button
               type="button"
               className="-m-2.5 rounded-md p-2.5 text-gray-700"
-              onClick={() => setMobileMenuOpen(false)}
+              onClick={() => mobileCloseButton()}
             >
               <span className="sr-only">Close menu</span>
               <XMarkIcon className="h-6 w-6" aria-hidden="true" />

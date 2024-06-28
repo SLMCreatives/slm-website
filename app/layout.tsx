@@ -36,10 +36,6 @@ export const metadata: Metadata = {
   },
 };
 
-const onLoad = () => {
-  console.log("GTM Loaded");
-};
-
 export default function RootLayout({
   children,
 }: Readonly<{
