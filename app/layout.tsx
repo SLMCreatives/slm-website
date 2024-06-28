@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "/app/globals.css";
-import { GoogleTagManager } from "@next/third-parties/google";
-import Script from "next/script";
+import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -45,22 +44,10 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <link rel="icon" href="/logo.png" sizes="any" />
-        <Script
-          src="https://www.googletagmanager.com/gtm.js?id=GTM-KP6LQJP"
-          strategy="afterInteractive"
-        />
-        <GoogleTagManager gtmId="GTM-KP6LQJP" />
+        <GoogleTagManager gtmId="G-NP6J43WF60" />
+        <GoogleAnalytics gaId="G-NP6J43WF60" />
       </head>
-      <body className={inter.className}>
-        {process.env.NODE_ENV === "production" && (
-          <noscript
-            dangerouslySetInnerHTML={{
-              __html: `<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KP6LQJP" height="0" width="0" style="display:none;visibility:hidden"></iframe>`,
-            }}
-          ></noscript>
-        )}
-        {children}
-      </body>
+      <body className={inter.className}>{children}</body>
     </html>
   );
 }
