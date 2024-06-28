@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "/app/globals.css";
 import { GoogleTagManager } from "@next/third-parties/google";
+import Script from "next/script";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -35,6 +36,10 @@ export const metadata: Metadata = {
   },
 };
 
+const onLoad = () => {
+  console.log("GTM Loaded");
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -44,11 +49,22 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <link rel="icon" href="/logo.png" sizes="any" />
-        {process.env.NODE_ENV === "production" ? (
-          <GoogleTagManager gtmId="G-4S5TW94WM7" />
-        ) : null}
+        <Script
+          src="https://www.googletagmanager.com/gtm.js?id=GTM-KP6LQJP"
+          strategy="afterInteractive"
+        />
+        <GoogleTagManager gtmId="GTM-KP6LQJP" />
       </head>
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        {process.env.NODE_ENV === "production" && (
+          <noscript
+            dangerouslySetInnerHTML={{
+              __html: `<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KP6LQJP" height="0" width="0" style="display:none;visibility:hidden"></iframe>`,
+            }}
+          ></noscript>
+        )}
+        {children}
+      </body>
     </html>
   );
 }
