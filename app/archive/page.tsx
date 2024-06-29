@@ -4,6 +4,7 @@ import Header from "../Components/Header";
 import Footer from "../Components/Footer";
 import imageUrlBuilder from "@sanity/image-url";
 import Image from "next/image";
+import { Metadata } from "next";
 
 import { client, sanityFetch } from "../sanity/lib/client";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
@@ -19,6 +20,15 @@ const dateFormated = (publishedAt: string) => {
     day: "numeric",
   });
   return dateFormated;
+};
+
+export const metadata: Metadata = {
+  title: "Digital Marketing Tips | SLM Creatives",
+  description: "Archive",
+  openGraph: {
+    title: "Digital Marketing Tips | SLM Creatives",
+    description: "Archive",
+  },
 };
 
 export default async function IndexPage() {

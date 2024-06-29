@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { Metadata } from "next";
 import Image from "next/image";
 import Header from "Sulaiman/app/Components/Header";
 import Footer from "Sulaiman/app/Components/Footer";
@@ -82,6 +83,17 @@ const faqs = [
       "All current marketing and brand materials that you already have, social media accounts and any other relevant documents that would help me get a clear picture of your brand identity and marketing strategy.",
   },
 ];
+
+export const metadata: Metadata = {
+  title: "Social Media Marketing | SLM Creatives",
+  description:
+    "Hire a Social Media Content Manager to manage and grow your social platforms.",
+  openGraph: {
+    title: "Social Media Marketing | SLM Creatives",
+    description:
+      "Hire a Social Media Content Manager to manage and grow your social platforms.",
+  },
+};
 
 export default async function Content() {
   return (
