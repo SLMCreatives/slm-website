@@ -14,20 +14,22 @@ import {
   UserCircleIcon,
   UserGroupIcon,
 } from "@heroicons/react/24/outline";
+import type { Metadata, ResolvingMetadata } from "next";
 
 const POST_QUERY = `*[
-    _type == "post" &&
-    slug.current == $slug
-  ][0]{
-    _id,
-    title,
-    publishedAt,
-    body,
-    author->,
-    mainImage,
+  _type == "post" &&
+  slug.current == $slug
+][0]{
+  _id,
+  title,
+  publishedAt,
+  body,
+  author->,
+  mainImage,
     categories[]->,
-    category->
-}`;
+    category->,
+    description
+  }`;
 
 export async function generateStaticParams() {
   const posts = await sanityFetch<SanityDocument[]>({
@@ -38,7 +40,24 @@ export async function generateStaticParams() {
   }));
 }
 
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Promise<Metadata> {
+  const post = await sanityFetch<SanityDocument>({
+    query: POST_QUERY,
+    params,
+  });
+  const { title, description } = post || {};
+  return {
+    title,
+    description,
+  };
+}
+
 const { projectId, dataset } = client.config();
+
 const urlFor = (source: SanityImageSource) =>
   projectId && dataset
     ? imageUrlBuilder({ projectId, dataset }).image(source)
@@ -53,11 +72,20 @@ export default async function PostPage({
     query: POST_QUERY,
     params,
   });
-  const { title, publishedAt, body, author, categories, category, mainImage } =
-    post;
+  const {
+    title,
+    publishedAt,
+    body,
+    author,
+    categories,
+    description,
+    mainImage,
+  } = post || {};
+
   const eventImageUrl = mainImage
     ? urlFor(mainImage)?.width(550).height(310).url()
     : null;
+
   const dateFormated = new Date(publishedAt).toLocaleDateString("en-US", {
     year: "numeric",
     month: "long",
@@ -118,7 +146,7 @@ export default async function PostPage({
                         </Link>
                         <Typography color="text.primary">...</Typography>
                       </Breadcrumbs>
-                      <h2 className="text-4xl lg:text-5xl mt-4 lg:mt-8 text-balance space-y-4 text-left font-bold relative text-gray-900">
+                      <h2 className="text-4xl  lg:text-4xl mt-4 lg:mt-8 text-balance space-y-4 text-left font-bold relative text-gray-900">
                         {title}
                         <hr className="w-full my-4 lg:my-8 "></hr>
                         <div className="flex items-center my-4 pt-4 gap-4">
