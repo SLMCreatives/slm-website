@@ -84,7 +84,7 @@ const faqs = [
   },
 ];
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
   title: "Social Media Marketing | SLM Creatives",
   description:
     "Hire a Social Media Content Manager to manage and grow your social platforms.",
