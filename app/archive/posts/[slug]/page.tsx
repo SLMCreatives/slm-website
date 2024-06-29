@@ -49,10 +49,20 @@ export async function generateMetadata({
     query: POST_QUERY,
     params,
   });
-  const { title, description } = post || {};
+  const { title, excerpt } = post || {};
   return {
     title,
-    description,
+    description: excerpt,
+    robots: { index: true, follow: true, noarchive: true },
+    openGraph: {
+      title,
+      description: excerpt,
+      url: `https://slmcreatives.com/archive/posts/${params.slug}`,
+    },
+    twitter: {
+      title,
+      description: excerpt,
+    },
   };
 }
 
@@ -72,15 +82,8 @@ export default async function PostPage({
     query: POST_QUERY,
     params,
   });
-  const {
-    title,
-    publishedAt,
-    body,
-    author,
-    categories,
-    description,
-    mainImage,
-  } = post || {};
+  const { title, publishedAt, body, author, categories, mainImage } =
+    post || {};
 
   const eventImageUrl = mainImage
     ? urlFor(mainImage)?.width(550).height(310).url()
