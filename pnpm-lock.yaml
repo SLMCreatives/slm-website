@@ -89,6 +89,9 @@ dependencies:
   sanity:
     specifier: ^3.47.1
     version: 3.48.1(@types/node@20.14.9)(@types/react@18.3.3)(react-dom@18.3.1)(react@18.3.1)(styled-components@6.1.11)
+  styled-components:
+    specifier: ^6.1.11
+    version: 6.1.11(react-dom@18.3.1)(react@18.3.1)
 
 devDependencies:
   '@tailwindcss/typography':
