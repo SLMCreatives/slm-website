@@ -9,6 +9,8 @@ import {
 } from "@heroicons/react/24/outline";
 import { Chip } from "@mui/material";
 import Testimonial from "../Components/Testimonial";
+import { Metadata } from "next";
+
 const features = [
   {
     name: "Strategic Planning",
@@ -23,15 +25,15 @@ const features = [
     icon: ArrowUpRightIcon,
   },
   {
-    name: "Content Scheduling",
+    name: "Ads Management",
     description:
-      "A consistent schedule that ensures that your content is produced in a timely manner and that you never miss a festival, event or announcement.",
+      "Analyse and identify most effective strategy and to adjust the ad strategy to get the most out of the ads.",
     icon: ArrowUpRightIcon,
   },
   {
-    name: "Audience Engagement",
+    name: "Lead Qualification",
     description:
-      "Socializing with your audience by replying comments, sharing content and providing feedback in a consistent voice.",
+      "It's not about quantity, but also not about quality. It's about striking a balance between the two to allow a broad spectrum of targets. ",
     icon: ArrowUpRightIcon,
   },
   {
@@ -79,6 +81,17 @@ const faqs = [
   },
 ];
 
+export const metadata: Metadata = {
+  title: "Paid Ads Marketing | SLM Creatives",
+  description:
+    "Get the most out of your digital marketing ads with creative marketing strategy.",
+  openGraph: {
+    title: "Paid Ads Marketing | SLM Creatives",
+    description:
+      "Get the most out of your digital marketing ads with creative marketing strategy.",
+  },
+};
+
 export default function Paid() {
   return (
     <main className="bg-white px-4">
@@ -101,15 +114,14 @@ export default function Paid() {
           <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
             <div className="text-center text-balance">
               <h1 className="py-8 -my-8 text-4xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-emerald-600 to-violet-500 sm:text-6xl">
-                Social Media Content Marketing
+                Lead Generation
               </h1>
               <p className="mt-6 text-lg leading-8 text-gray-600">
-                Hire your very own{" "}
+                Get quick leads with{" "}
                 <span className="text-emerald-600 font-bold">
-                  Social Media Content Manager
+                  Creative Dynamic Marketing Streategy
                 </span>{" "}
-                to grow your social media channels with value-rich strategic
-                content.
+                to grow your client database and reach your business potential.
               </p>
             </div>
             <div className="mt-10 flex items-center justify-center gap-x-6">
@@ -144,10 +156,10 @@ export default function Paid() {
               KEY ELEMENTS
             </h2>
             <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-              What to expect from hiring a Social Media Content Manager like me.
+              Launching a new product, service or company?
             </p>
             <p className="mt-6 text-lg leading-8 text-gray-600">
-              Here are some the things that I do for my existing clients.
+              Here are some the things that you might need to get started.
             </p>
           </div>
           <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-4xl">
@@ -253,8 +265,8 @@ export default function Paid() {
                     </div>
                   </div>
                   <div className="text-slate-500">
-                    I will begin work on crafting your social media strategy,
-                    start designing your posts and schedule them on your
+                    I will begin work on crafting your paid ad strategy, start
+                    designing the creative materials and schedule them on your
                     platforms.
                   </div>
                 </div>

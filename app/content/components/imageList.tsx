@@ -5,19 +5,29 @@ import ImageListItem from "@mui/material/ImageListItem";
 
 const MasonryImageList = () => {
   return (
-    <Box>
+    <Box
+      sx={{
+        width: "100%",
+        overflow: "hidden",
+        scrollbarWidth: "none",
+        "&::-webkit-scrollbar": {
+          display: "none",
+        },
+      }}
+    >
       <ImageList
         variant="masonry"
         cols={9}
         gap={10}
-        className="justify-center items-center overflow-scroll-y"
+        className="justify-center items-center grid-flow-row-dense overflow-hidden"
       >
         {itemData.map((item) => (
-          <ImageListItem key={item.img}>
+          <ImageListItem key={item.img} sx={{ width: "10rem", height: "auto" }}>
             <img
               srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
               src={`${item.img}?w=248&fit=crop&auto=format`}
               alt={item.title}
+              className="hover:scale-200 hover:z-10 transition-all duration-300 ease-in-out"
             />
           </ImageListItem>
         ))}

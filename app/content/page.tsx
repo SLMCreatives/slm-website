@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import { Metadata } from "next";
 import Image from "next/image";
@@ -84,7 +82,7 @@ const faqs = [
   },
 ];
 
-const metadata: Metadata = {
+export const metadata: Metadata = {
   title: "Social Media Marketing | SLM Creatives",
   description:
     "Hire a Social Media Content Manager to manage and grow your social platforms.",
