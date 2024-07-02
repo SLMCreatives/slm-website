@@ -5,14 +5,16 @@ import Footer from "../Components/Footer";
 import imageUrlBuilder from "@sanity/image-url";
 import Image from "next/image";
 import { Metadata } from "next";
-
 import { client, sanityFetch } from "../sanity/lib/client";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
 
 const POSTS_QUERY = `*[_type == "post"]{title, body, author->, slug, date, mainImage, publishedAt, categories[]->, category->}|order(date desc)`;
-const urlFor = (source: SanityImageSource) =>
-  imageUrlBuilder(client).image(source).auto("format").fit("max").url();
+
+const imageBuilder = imageUrlBuilder(client);
+export const urlForImage = (source: SanityImageSource) =>
+  imageBuilder.image(source).auto("format").fit("max");
+
 const dateFormated = (publishedAt: string) => {
   const dateFormated = new Date(publishedAt).toLocaleDateString("en-US", {
     year: "numeric",
@@ -69,7 +71,7 @@ export default async function IndexPage() {
           {posts.map((post) => (
             <li
               className="bg-white shadow-sm items-center justify-center lg:justify-left hover:bg-slate-50 hover:shadow-lg p-8 lg:p-8 rounded-lg"
-              key={post._id}
+              key={post?._id}
             >
               <Link
                 className="link:text-emerald-600 link:visited:text-emerald-300"
@@ -78,13 +80,15 @@ export default async function IndexPage() {
                 <div className="flex flex-row items-center justify-left">
                   <Image
                     className="hidden lg:block lg:h-32 lg:w-32 mr-6 object-cover rounded-sm"
-                    src={urlFor(post.mainImage)}
+                    src={urlForImage(post.mainImage).url()}
                     alt={post.title}
                     width={500}
                     height={500}
                   />
-                  <h2 className="text-xl text-gray-800 lg:text-3xl my-4 leading-2 font-semibold">
-                    {post?.title}
+                  <div>
+                    <h2 className="text-xl text-gray-800 lg:text-3xl my-4 leading-2 font-semibold">
+                      {post?.title}
+                    </h2>
                     <p className="text-gray-500 text-sm font-light mt-2">
                       {post?.categories[0].title} -{" "}
                       {dateFormated(post.publishedAt)}
@@ -96,7 +100,7 @@ export default async function IndexPage() {
                       Read Now
                       <ArrowRightIcon className="inline text-emerald-600 ml-4 w-4 h-4 my-auto" />
                     </a>
-                  </h2>
+                  </div>
                 </div>
               </Link>
             </li>

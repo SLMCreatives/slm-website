@@ -15,6 +15,7 @@ import {
   UserGroupIcon,
 } from "@heroicons/react/24/outline";
 import type { Metadata, ResolvingMetadata } from "next";
+import { comments } from "Sulaiman/app/sanity/schemaTypes/comments";
 
 const POST_QUERY = `*[
   _type == "post" &&
@@ -26,10 +27,32 @@ const POST_QUERY = `*[
   body,
   author->,
   mainImage,
+  comments[]->,
     categories[]->,
     category->,
-    description
+  excerpt,
   }`;
+
+const COMMENT_QUERY = `*[_type == "comment" && approved == true] {
+  _id,
+  name,
+  email,
+  comment,
+  _createdAt,
+  post->{
+    title
+  }
+}`;
+
+const { _createdAt } = comments || {};
+
+const commentDateFormated = (_createdAt: string) => {
+  const commentDateFormated = new Date(_createdAt).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  });
+};
 
 export async function generateStaticParams() {
   const posts = await sanityFetch<SanityDocument[]>({
@@ -82,6 +105,12 @@ export default async function PostPage({
     query: POST_QUERY,
     params,
   });
+
+  const comments = await sanityFetch<SanityDocument[]>({
+    query: COMMENT_QUERY,
+    params,
+  });
+
   const { title, publishedAt, body, author, categories, mainImage } =
     post || {};
 
@@ -151,20 +180,42 @@ export default async function PostPage({
                       </Breadcrumbs>
                       <h2 className="text-4xl  lg:text-4xl mt-4 lg:mt-8 text-balance space-y-4 text-left font-bold relative text-gray-900">
                         {title}
-                        <hr className="w-full my-4 lg:my-8 "></hr>
-                        <div className="flex items-center my-4 pt-4 gap-4">
+                        <hr className="w-full hidden my-4 lg:my-4 "></hr>
+                        <div className="hidden items-center my-4 pt-4 gap-4">
                           <CalendarDaysIcon className="inline text-emerald-600 w-4 h-4 mr-2 my-auto" />{" "}
                           <p className="text-sm font-medium text-gray-900">
                             Published On: {dateFormated}
                           </p>{" "}
                         </div>
-                        <div className="flex items-center justify-start mt-4 gap-4">
+                        <div className="hidden items-center justify-start mt-4 gap-4">
                           <UserCircleIcon className="inline text-emerald-600 w-4 h-4 mr-2 my-auto" />{" "}
                           <p className="text-sm font-medium text-gray-900">
                             Written By: {author?.name}
                           </p>{" "}
                         </div>
                       </h2>
+                      <div className="bg-white mt-4 lg:mt-10 text-wrap leading-8 text-left w-full">
+                        <h2 className="text-xl font-semibold leading-tight">
+                          Comments:
+                        </h2>
+                        {comments?.map(({ _id, name, email, comment }) => (
+                          <li key={_id} className="my-5 list-none mt-4">
+                            <p className="text-md my-2  bg-slate-100 rounded-xl p-4 leading-relaxed text-black">
+                              {comment}
+                            </p>
+                            <h4 className="text-sm ml-4 mb-4 float-right font-semibold leading-tight">
+                              {name}
+                              <a
+                                href={`mailto:${email}`}
+                                className="font-medium text-xs ml-2 text-gray-600/50"
+                              >
+                                / {email}
+                              </a>
+                            </h4>
+                            <hr className="my-4 mb-8" />
+                          </li>
+                        ))}
+                      </div>
                     </div>
                   </div>
                   <div className="bg-slate-100 rounded-xl py-8 px-8 lg:px-12 lg:col-span-2 lg:mt-4 text-wrap leading-8 text-left">
