@@ -12,7 +12,7 @@ import { ArrowRightIcon } from "@heroicons/react/24/outline";
 const POSTS_QUERY = `*[_type == "post"]{title, body, author->, slug, date, mainImage, publishedAt, categories[]->, category->}|order(date desc)`;
 
 const imageBuilder = imageUrlBuilder(client);
-export const urlForImage = (source: SanityImageSource) =>
+const urlForImage = (source: SanityImageSource) =>
   imageBuilder.image(source).auto("format").fit("max").url();
 
 function dateFormated(publishedAt: string) {
