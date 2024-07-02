@@ -13,16 +13,16 @@ const POSTS_QUERY = `*[_type == "post"]{title, body, author->, slug, date, mainI
 
 const imageBuilder = imageUrlBuilder(client);
 export const urlForImage = (source: SanityImageSource) =>
-  imageBuilder.image(source).auto("format").fit("max");
+  imageBuilder.image(source).auto("format").fit("max").url();
 
-const dateFormated = (publishedAt: string) => {
+function dateFormated(publishedAt: string) {
   const dateFormated = new Date(publishedAt).toLocaleDateString("en-US", {
     year: "numeric",
     month: "long",
     day: "numeric",
   });
   return dateFormated;
-};
+}
 
 export const metadata: Metadata = {
   title: "Digital Marketing Tips | SLM Creatives",
@@ -80,7 +80,7 @@ export default async function IndexPage() {
                 <div className="flex flex-row items-center justify-left">
                   <Image
                     className="hidden lg:block lg:h-32 lg:w-32 mr-6 object-cover rounded-sm"
-                    src={urlForImage(post.mainImage).url()}
+                    src={urlForImage(post?.mainImage)}
                     alt={post.title}
                     width={500}
                     height={500}
