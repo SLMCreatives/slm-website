@@ -11,6 +11,7 @@ function AddComments({ postId }: Props) {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors, isSubmitting },
   } = useForm();
 
@@ -26,9 +27,7 @@ function AddComments({ postId }: Props) {
       console.log("Failed");
       return;
     }
-
-    console.log("Comment added");
-    reset({ name: "", email: "", comment: "" });
+    reset();
   };
   return (
     <>
