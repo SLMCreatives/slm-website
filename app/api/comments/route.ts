@@ -10,7 +10,7 @@ export async function POST(req: Request, res: Response) {
 
   try {
     const newComment = await client.create({
-      _type: "comment",
+      _type: "comments",
       name,
       email,
       comment,
