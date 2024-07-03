@@ -63,11 +63,5 @@
       "browserTarget": "chrome",
       "url": "http://localhost:8081"
     }
-  ],
-  "pnpm": {
-    "overrides": {
-      "node-fetch@<2.6.1": ">=2.6.1",
-      "node-fetch@<2.6.7": ">=2.6.7"
-    }
-  }
+  ]
 }
