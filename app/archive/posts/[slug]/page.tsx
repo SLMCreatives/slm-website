@@ -16,6 +16,7 @@ import {
 } from "@heroicons/react/24/outline";
 import type { Metadata, ResolvingMetadata } from "next";
 import AddComments from "../../../Components/AddComments";
+import AllComments from "../../../Components/AllComments";
 
 const POST_QUERY = `*[
   _type == "post" &&
@@ -32,7 +33,7 @@ const POST_QUERY = `*[
   excerpt,
   }`;
 
-const COMMENT_QUERY = `*[_type == "comment" && post->slug.current == $slug  && approved == true] {
+const COMMENT_QUERY = `*[_type == "comments" && post->slug.current == $slug  && approved == true] {
   _id,
   name,
   email,
@@ -113,15 +114,6 @@ export default async function PostPage({
     day: "numeric",
   });
 
-  const commentDateFormated = new Date(_createdAt).toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "numeric",
-    day: "numeric",
-    hour: "numeric",
-    minute: "numeric",
-    formatMatcher: "best fit",
-  });
-
   const imagesrc = urlForImage(post?.mainImage).width(800).height(450).url();
 
   return (
@@ -192,37 +184,9 @@ export default async function PostPage({
                           </p>{" "}
                         </div>
                       </h2>
-                      <div className="bg-white hidden md:block mt-4 lg:mt-10 text-wrap leading-8 text-left w-full">
-                        <h2 className="text-xl font-semibold leading-tight">
-                          Comments:
-                        </h2>
-                        {comments.map(({ _id, name, email, comment }) => (
-                          <li key={_id} className="my-5 list-none mt-4">
-                            <p className="text-md my-2  bg-slate-100 rounded-xl p-4 leading-relaxed text-black">
-                              {comment}
-                            </p>
-                            <h4 className="text-sm ml-4 mb-4 inline font-semibold leading-tight">
-                              {name}
-                            </h4>
-                            <a
-                              href={`mailto:${email}`}
-                              className="font-medium text-xs ml-2 text-gray-600/50"
-                            >
-                              / {email}
-                            </a>
-                            <p className="text-xs ml-2 text-gray-600/50 inline ">
-                              {" "}
-                              {commentDateFormated}
-                            </p>
-                            <hr className="my-4 mb-8" />
-                          </li>
-                        ))}
-                      </div>
-                      <div className="mt-4 p-2 flex-start justify-start text-left">
-                        <p className="text-md my-2 pt-4 leading-relaxed text-gray-800">
-                          What did you think of this article?
-                        </p>
-                        <AddComments postId={post?._id} />
+
+                      <div className="mt-4 hidden lg:block p-2 flex-start justify-start text-left">
+                        <AllComments comments={comments} />
                       </div>
                     </div>
                   </div>
@@ -233,27 +197,11 @@ export default async function PostPage({
                       </div>
                     )}
                   </div>
-                  <div className="bg-white md:hidden mt-4 lg:mt-10 text-wrap leading-8 text-left w-full">
-                    <h2 className="text-xl font-semibold leading-tight">
-                      Comments:
-                    </h2>
-                    {comments.map(({ _id, name, email, comment }) => (
-                      <li key={_id} className="my-5 list-none mt-4">
-                        <p className="text-md my-2  bg-slate-100 rounded-xl p-4 leading-relaxed text-black">
-                          {comment}
-                        </p>
-                        <h4 className="text-sm ml-4 mb-4 float-right font-semibold leading-tight">
-                          {name}
-                          <a
-                            href={`mailto:${email}`}
-                            className="font-medium text-xs ml-2 text-gray-600/50"
-                          >
-                            / {email}
-                          </a>
-                        </h4>
-                        <hr className="my-4 mb-8" />
-                      </li>
-                    ))}
+                  <div className="mt-4 p-2  col-span-1.5 text-left ">
+                    <div className="block md:hidden">
+                      <AllComments comments={comments} />
+                    </div>
+                    <AddComments postId={post?._id} />
                   </div>
                 </div>
               </div>
