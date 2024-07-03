@@ -14,7 +14,7 @@ export async function POST(req: Request, res: Response) {
       name,
       email,
       comment,
-      approved: false,
+      approved: true,
       post: {
         _type: "reference",
         _ref: postId,
