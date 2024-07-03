@@ -6,9 +6,8 @@ export const client = createClient({
   projectId: "5s8iyu5r",
   dataset: "production",
   apiVersion: "2024-07-01",
-  token:
-    "skyOAZ5tY7xp8VDchlkxfjQ4Y8rZAS4QGj6MOVpQOotaarTNsFCXdk5JNWwoj5MAODx6RUqCpqSWzpuzMeTszA6tKqHQjN7bF6zPg1g7DOwd2wdkPXKWPbtiMjEmzrAqfWiQcUJCe222u4ohanFJiPl1I34MQZ3RnO6CmvaETpw1Kyc15iFX",
-  useCdn: false,
+  token: process.env.SANITY_SECRET_TOKEN,
+  useCdn: true,
 });
 
 export async function sanityFetch<QueryResponse>({
