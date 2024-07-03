@@ -85,6 +85,9 @@ const builder = imageUrlBuilder(client);
 const urlForImage = (source: SanityImageSource) => {
   return builder.image(source);
 };
+
+const revalidate = 20;
+
 export default async function PostPage({
   params,
 }: {
