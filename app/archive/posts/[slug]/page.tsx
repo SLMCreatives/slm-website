@@ -184,10 +184,6 @@ export default async function PostPage({
                           </p>{" "}
                         </div>
                       </h2>
-
-                      <div className="mt-4 hidden lg:block p-2 flex-start justify-start text-left">
-                        <AllComments comments={comments} />
-                      </div>
                     </div>
                   </div>
                   <div className="bg-slate-100 rounded-xl py-8 px-8 lg:px-12 lg:col-span-2 lg:mt-4 text-wrap leading-8 text-left">
@@ -197,10 +193,8 @@ export default async function PostPage({
                       </div>
                     )}
                   </div>
-                  <div className="mt-4 p-2  col-span-1.5 text-left ">
-                    <div className="block md:hidden">
-                      <AllComments comments={comments} />
-                    </div>
+                  <div className="mt-4 p-2  lg:col-span-3 grid lg:grid-cols-2 gap-4 text-left ">
+                    <AllComments comments={comments} />
                     <AddComments postId={post?._id} />
                   </div>
                 </div>
