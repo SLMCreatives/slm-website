@@ -1,9 +1,9 @@
 import { defineField, defineType } from "sanity";
 
 export default defineType({
-  name: "comment",
-  type: "array",
-  title: "Comment",
+  name: "comments",
+  type: "document",
+  title: "Comments",
   fields: [
     defineField({
       title: "Approved",

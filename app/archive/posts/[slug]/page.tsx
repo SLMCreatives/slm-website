@@ -81,11 +81,10 @@ export async function generateMetadata({
 
 const { projectId, dataset } = client.config();
 
-const urlFor = (source: SanityImageSource) =>
-  projectId && dataset
-    ? imageUrlBuilder({ projectId, dataset }).image(source)
-    : null;
-
+const builder = imageUrlBuilder(client);
+const urlForImage = (source: SanityImageSource) => {
+  return builder.image(source);
+};
 export default async function PostPage({
   params,
 }: {
@@ -106,10 +105,6 @@ export default async function PostPage({
 
   const { _createdAt, name, email, comment } = comments[0] || {};
 
-  const eventImageUrl = mainImage
-    ? urlFor(mainImage)?.width(550).height(310).url()
-    : null;
-
   const dateFormated = new Date(publishedAt).toLocaleDateString("en-US", {
     year: "numeric",
     month: "long",
@@ -124,6 +119,8 @@ export default async function PostPage({
     minute: "numeric",
     formatMatcher: "best fit",
   });
+
+  const imagesrc = urlForImage(post?.mainImage).width(800).height(450).url();
 
   return (
     <main>
@@ -151,11 +148,9 @@ export default async function PostPage({
 
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mt-4 lg:mt-20 mx-auto items-top justify-center lg:mx-20 ">
                   <div className="col-span-1 mt-0 lg:mt-4 mx-4 lg:mx-0 ">
-                    <div role="presentation" className="sticky top-10 relative">
+                    <div role="presentation" className="sticky top-10">
                       <Image
-                        src={
-                          eventImageUrl || "https://via.placeholder.com/550x310"
-                        }
+                        src={imagesrc}
                         alt={title || "Article"}
                         className="mx-auto aspect-video rounded-xl object-center w-full "
                         height="620"

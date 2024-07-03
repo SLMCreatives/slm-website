@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { useForm } from "react-hook-form";
+import { FieldValues, useForm } from "react-hook-form";
 
 type Props = {
   postId: string;
@@ -14,7 +14,7 @@ function AddComments({ postId }: Props) {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = async (data: any) => {
+  const onSubmit = async (data: FieldValues) => {
     const { name, email, comment } = data;
 
     const res = await fetch("/api/comments", {

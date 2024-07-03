@@ -1,18 +1,9 @@
-"use client";
-
-import Image from "next/image";
-import Link from "next/link";
 import React from "react";
-import { useState } from "react";
-import { CheckCircleIcon } from "@heroicons/react/24/outline";
 import {
-  PlayCircleIcon,
   CurrencyDollarIcon,
   MagnifyingGlassCircleIcon,
   ArrowRightCircleIcon,
-  SwatchIcon,
   CalendarDaysIcon,
-  UserGroupIcon,
   BellAlertIcon,
 } from "@heroicons/react/24/outline";
 import Header from "Sulaiman/app/Components/Header";
@@ -44,8 +35,6 @@ const features = [
 ];
 
 export default function Home() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
   return (
     <main>
       <Header />

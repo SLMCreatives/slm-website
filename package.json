@@ -12,45 +12,46 @@
     "@emailjs/browser": "^4.3.3",
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
-    "@headlessui/react": "^2.0.4",
-    "@heroicons/react": "^2.1.3",
-    "@mui/material": "^5.15.20",
+    "@headlessui/react": "^2.1.1",
+    "@heroicons/react": "^2.1.4",
+    "@mui/material": "^5.15.21",
     "@next/third-parties": "^14.2.4",
     "@react-three/fiber": "^8.16.8",
     "@sanity/image-url": "^1.0.2",
-    "@sanity/vision": "^3.47.1",
-    "@testing-library/jest-dom": "^5.17.0",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
-    "@types/three": "^0.165.0",
+    "@sanity/vision": "^3.49.0",
+    "@swc/helpers": "^0.5.11",
+    "@testing-library/jest-dom": "^6.4.6",
+    "@testing-library/react": "^16.0.0",
+    "@testing-library/user-event": "^14.5.2",
+    "@types/three": "^0.166.0",
     "@vercel/analytics": "^1.3.1",
-    "expo": "^51.0.14",
+    "expo": "^51.0.17",
     "framer-motion": "^11.2.12",
     "glob": "^10.4.2",
     "keen-slider": "^6.8.6",
-    "lru-cache": "^10.2.2",
-    "mdbreact": "^5.2.0",
+    "lru-cache": "^10.3.0",
+    "mdbreact": "^4.6.1",
     "next": "14.2.4",
     "next-sanity": "^9.4.2",
-    "react": "^18",
+    "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-gtm-module": "^2.0.11",
     "react-hook-form": "^7.52.1",
     "react-native-web": "^0.19.12",
-    "sanity": "^3.47.1",
+    "sanity": "^3.49.0",
     "styled-components": "^6.1.11"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.13",
-    "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
+    "@types/node": "^20.14.9",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
     "@types/react-gtm-module": "^2.0.3",
-    "eslint": "^8",
+    "eslint": "^9.6.0",
     "eslint-config-next": "14.2.4",
-    "postcss": "^8",
-    "tailwindcss": "^3.4.1",
-    "typescript": "^5"
+    "postcss": "^8.4.39",
+    "tailwindcss": "^3.4.4",
+    "typescript": "^5.5.3"
   },
   "configurations": [
     {
@@ -62,5 +63,11 @@
       "browserTarget": "chrome",
       "url": "http://localhost:8081"
     }
-  ]
+  ],
+  "pnpm": {
+    "overrides": {
+      "node-fetch@<2.6.1": ">=2.6.1",
+      "node-fetch@<2.6.7": ">=2.6.7"
+    }
+  }
 }

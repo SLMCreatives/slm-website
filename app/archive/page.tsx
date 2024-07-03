@@ -9,11 +9,13 @@ import { client, sanityFetch } from "../sanity/lib/client";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
 
-const POSTS_QUERY = `*[_type == "post"]{title, body, author->, slug, date, mainImage, publishedAt, categories[]->, category->}| order(publishedAt desc)`;
+const POSTS_QUERY = `*[_type == "post" && !(_id in path("drafts.**")) ]{title, body, author->, slug, date, mainImage, publishedAt, categories[]->, category->}| order(publishedAt desc)`;
 
-const imageBuilder = imageUrlBuilder(client);
-const urlForImage = (source: SanityImageSource) =>
-  imageBuilder.image(source).auto("format").fit("max").url();
+const builder = imageUrlBuilder(client);
+
+function urlForPosts(mainImage: SanityImageSource) {
+  return builder.image(mainImage).width(200).height(200).url();
+}
 
 function dateFormated(publishedAt: string) {
   const dateFormated = new Date(publishedAt).toLocaleDateString("en-US", {
@@ -78,20 +80,19 @@ export default async function IndexPage() {
                 href={`/archive/posts/${post?.slug.current}`}
               >
                 <div className="flex flex-row items-center justify-left">
-                  <Image
+                  {/*     <Image
                     className="hidden lg:block lg:h-32 lg:w-32 mr-6 object-cover rounded-sm"
-                    src={urlForImage(post?.mainImage)}
+                    src={urlForPosts(post?.mainImage) || "/logo.png"}
                     alt={post.title}
                     width={500}
                     height={500}
-                  />
+                  /> */}
                   <div>
                     <h2 className="text-xl text-gray-800 lg:text-3xl my-4 leading-2 font-semibold">
                       {post?.title}
                     </h2>
                     <p className="text-gray-500 text-sm font-light mt-2">
-                      {post?.categories[0].title} -{" "}
-                      {dateFormated(post.publishedAt)}
+                      {post?.category} - {dateFormated(post.publishedAt)}
                     </p>
                     <p className="text-emerald-600 visited:text-emerald-600 text-sm">
                       Read Now
