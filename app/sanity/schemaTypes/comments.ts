@@ -1,8 +1,8 @@
 import { defineField, defineType } from "sanity";
 
-export const comments = defineType({
+export default defineType({
   name: "comment",
-  type: "document",
+  type: "array",
   title: "Comment",
   fields: [
     defineField({
@@ -26,7 +26,7 @@ export const comments = defineType({
     defineField({
       name: "post",
       type: "reference",
-      to: [{ type: "post", type: "_id" }],
+      to: [{ type: "post" }],
     }),
   ],
 });

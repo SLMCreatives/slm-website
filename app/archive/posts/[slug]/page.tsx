@@ -15,7 +15,7 @@ import {
   UserGroupIcon,
 } from "@heroicons/react/24/outline";
 import type { Metadata, ResolvingMetadata } from "next";
-import { comments } from "Sulaiman/app/sanity/schemaTypes/comments";
+import AddComments from "../../../Components/AddComments";
 
 const POST_QUERY = `*[
   _type == "post" &&
@@ -27,32 +27,22 @@ const POST_QUERY = `*[
   body,
   author->,
   mainImage,
-  comments[]->,
     categories[]->,
     category->,
   excerpt,
+  comments[]->
   }`;
 
-const COMMENT_QUERY = `*[_type == "comment" && approved == true] {
+const COMMENT_QUERY = `*[_type == "comment" && post->slug.current == $slug  && approved == true] {
   _id,
   name,
   email,
   comment,
   _createdAt,
   post->{
-    title
+    title,
   }
-}`;
-
-const { _createdAt } = comments || {};
-
-const commentDateFormated = (_createdAt: string) => {
-  const commentDateFormated = new Date(_createdAt).toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-  });
-};
+} | order(_createdAt desc)`;
 
 export async function generateStaticParams() {
   const posts = await sanityFetch<SanityDocument[]>({
@@ -111,8 +101,10 @@ export default async function PostPage({
     params,
   });
 
-  const { title, publishedAt, body, author, categories, mainImage } =
+  const { title, _id, publishedAt, body, author, categories, mainImage } =
     post || {};
+
+  const { _createdAt, name, email, comment } = comments[0] || {};
 
   const eventImageUrl = mainImage
     ? urlFor(mainImage)?.width(550).height(310).url()
@@ -122,6 +114,15 @@ export default async function PostPage({
     year: "numeric",
     month: "long",
     day: "numeric",
+  });
+
+  const commentDateFormated = new Date(_createdAt).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "numeric",
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+    formatMatcher: "best fit",
   });
 
   return (
@@ -194,27 +195,37 @@ export default async function PostPage({
                           </p>{" "}
                         </div>
                       </h2>
-                      <div className="bg-white mt-4 lg:mt-10 text-wrap leading-8 text-left w-full">
+                      <div className="bg-white hidden md:block mt-4 lg:mt-10 text-wrap leading-8 text-left w-full">
                         <h2 className="text-xl font-semibold leading-tight">
                           Comments:
                         </h2>
-                        {comments?.map(({ _id, name, email, comment }) => (
+                        {comments.map(({ _id, name, email, comment }) => (
                           <li key={_id} className="my-5 list-none mt-4">
                             <p className="text-md my-2  bg-slate-100 rounded-xl p-4 leading-relaxed text-black">
                               {comment}
                             </p>
-                            <h4 className="text-sm ml-4 mb-4 float-right font-semibold leading-tight">
+                            <h4 className="text-sm ml-4 mb-4 inline font-semibold leading-tight">
                               {name}
-                              <a
-                                href={`mailto:${email}`}
-                                className="font-medium text-xs ml-2 text-gray-600/50"
-                              >
-                                / {email}
-                              </a>
                             </h4>
+                            <a
+                              href={`mailto:${email}`}
+                              className="font-medium text-xs ml-2 text-gray-600/50"
+                            >
+                              / {email}
+                            </a>
+                            <p className="text-xs ml-2 text-gray-600/50 inline ">
+                              {" "}
+                              {commentDateFormated}
+                            </p>
                             <hr className="my-4 mb-8" />
                           </li>
                         ))}
+                      </div>
+                      <div className="mt-4 p-2 flex-start justify-start text-left">
+                        <p className="text-md my-2 pt-4 leading-relaxed text-gray-800">
+                          What did you think of this article?
+                        </p>
+                        <AddComments postId={post?._id} />
                       </div>
                     </div>
                   </div>
@@ -224,6 +235,28 @@ export default async function PostPage({
                         <PortableText value={body} />
                       </div>
                     )}
+                  </div>
+                  <div className="bg-white md:hidden mt-4 lg:mt-10 text-wrap leading-8 text-left w-full">
+                    <h2 className="text-xl font-semibold leading-tight">
+                      Comments:
+                    </h2>
+                    {comments.map(({ _id, name, email, comment }) => (
+                      <li key={_id} className="my-5 list-none mt-4">
+                        <p className="text-md my-2  bg-slate-100 rounded-xl p-4 leading-relaxed text-black">
+                          {comment}
+                        </p>
+                        <h4 className="text-sm ml-4 mb-4 float-right font-semibold leading-tight">
+                          {name}
+                          <a
+                            href={`mailto:${email}`}
+                            className="font-medium text-xs ml-2 text-gray-600/50"
+                          >
+                            / {email}
+                          </a>
+                        </h4>
+                        <hr className="my-4 mb-8" />
+                      </li>
+                    ))}
                   </div>
                 </div>
               </div>

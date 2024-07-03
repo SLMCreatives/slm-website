@@ -9,7 +9,7 @@ import { client, sanityFetch } from "../sanity/lib/client";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
 
-const POSTS_QUERY = `*[_type == "post"]{title, body, author->, slug, date, mainImage, publishedAt, categories[]->, category->}|order(date desc)`;
+const POSTS_QUERY = `*[_type == "post"]{title, body, author->, slug, date, mainImage, publishedAt, categories[]->, category->}| order(publishedAt desc)`;
 
 const imageBuilder = imageUrlBuilder(client);
 const urlForImage = (source: SanityImageSource) =>
@@ -93,13 +93,10 @@ export default async function IndexPage() {
                       {post?.categories[0].title} -{" "}
                       {dateFormated(post.publishedAt)}
                     </p>
-                    <a
-                      href={`/archive/posts/${post?.slug.current}`}
-                      className="text-emerald-600 visited:text-emerald-600 text-sm"
-                    >
+                    <p className="text-emerald-600 visited:text-emerald-600 text-sm">
                       Read Now
                       <ArrowRightIcon className="inline text-emerald-600 ml-4 w-4 h-4 my-auto" />
-                    </a>
+                    </p>
                   </div>
                 </div>
               </Link>
