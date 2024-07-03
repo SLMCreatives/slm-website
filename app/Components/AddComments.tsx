@@ -27,9 +27,9 @@ function AddComments({ postId }: Props) {
       return;
     }
     const form = document.getElementById("comment-form");
-    form.name.value = "";
-    form.email.value = "";
-    form.comment.value = "";
+    form?.name.value = "";
+    form?.email.value = "";
+    form?.comment.value = "";
   };
   return (
     <>
