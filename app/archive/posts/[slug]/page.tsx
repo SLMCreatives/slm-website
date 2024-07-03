@@ -30,7 +30,6 @@ const POST_QUERY = `*[
     categories[]->,
     category->,
   excerpt,
-  comments[]->
   }`;
 
 const COMMENT_QUERY = `*[_type == "comment" && post->slug.current == $slug  && approved == true] {

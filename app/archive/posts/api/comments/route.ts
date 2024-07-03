@@ -21,7 +21,7 @@ export async function POST(req: Request, res: Response) {
       },
     });
     return NextResponse.json(
-      { message: "Comment submitted", comment: newComment },
+      { message: "Comment submitted", comments: newComment },
       { status: 201 }
     );
   } catch (error) {

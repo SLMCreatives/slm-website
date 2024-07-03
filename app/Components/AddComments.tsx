@@ -17,7 +17,7 @@ function AddComments({ postId }: Props) {
   const onSubmit = async (data: FieldValues) => {
     const { name, email, comment } = data;
 
-    const res = await fetch("/api/comments", {
+    const res = await fetch("./api/comments", {
       method: "POST",
       body: JSON.stringify({ name, email, comment, postId }),
     });
@@ -25,6 +25,9 @@ function AddComments({ postId }: Props) {
     if (!res.ok) {
       console.log("Failed");
       return;
+    }
+    if (res.ok) {
+      console.log("Success");
     }
   };
   return (
@@ -66,6 +69,7 @@ function AddComments({ postId }: Props) {
         {errors.comment && <p>Enter at least 3 characters.</p>}
         <input
           type="submit"
+          value="Submit"
           className="p-2 rounded-md bg-emerald-600 text-gray-200 hover:bg-emerald-900 hover:text-white"
         />
       </form>

@@ -11,11 +11,11 @@ export const projectId = assertValue(
 );
 
 export const token = assertValue(
-  process.env.SANITY_SECRET_TOKEN,
-  "Missing environment variable: SANITY_SECRET_TOKEN"
+  process.env.SANITY_STUDIO_SECRET_TOKEN,
+  "Missing environment variable: SANITY_STUDIO_SECRET_TOKEN"
 );
 
-export const useCdn = false;
+export const useCdn = true;
 
 function assertValue<T>(v: T | undefined, errorMessage: string): T {
   if (v === undefined) {
