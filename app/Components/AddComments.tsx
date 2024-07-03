@@ -26,10 +26,9 @@ function AddComments({ postId }: Props) {
       console.log("Failed");
       return;
     }
-    const form = document.getElementById("comment-form");
-    form?.name.value = "";
-    form?.email.value = "";
-    form?.comment.value = "";
+
+    console.log("Comment added");
+    reset({ name: "", email: "", comment: "" });
   };
   return (
     <>
