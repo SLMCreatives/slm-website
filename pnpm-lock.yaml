@@ -83,6 +83,9 @@ dependencies:
   react-gtm-module:
     specifier: ^2.0.11
     version: 2.0.11
+  react-hook-form:
+    specifier: ^7.52.1
+    version: 7.52.1(react@18.3.1)
   react-native-web:
     specifier: ^0.19.12
     version: 0.19.12(react-dom@18.3.1)(react@18.3.1)
@@ -10919,6 +10922,15 @@ packages:
 
   /react-gtm-module@2.0.11:
     resolution: {integrity: sha512-8gyj4TTxeP7eEyc2QKawEuQoAZdjKvMY4pgWfycGmqGByhs17fR+zEBs0JUDq4US/l+vbTl+6zvUIx27iDo/Vw==}
+    dev: false
+
+  /react-hook-form@7.52.1(react@18.3.1):
+    resolution: {integrity: sha512-uNKIhaoICJ5KQALYZ4TOaOLElyM+xipord+Ha3crEFhTntdLvWZqVY49Wqd/0GiVCA/f9NjemLeiNPjG7Hpurg==}
+    engines: {node: '>=12.22.0'}
+    peerDependencies:
+      react: ^16.8.0 || ^17 || ^18 || ^19
+    dependencies:
+      react: 18.3.1
     dev: false
 
   /react-i18next@13.5.0(i18next@23.11.5)(react-dom@18.3.1)(react@18.3.1):
