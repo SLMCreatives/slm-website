@@ -4,4 +4,5 @@ export interface Comments {
   _createdAt: string;
   _id: string;
   comment: string;
+  approved: boolean;
 }

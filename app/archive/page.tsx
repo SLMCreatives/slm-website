@@ -9,7 +9,7 @@ import { client, sanityFetch } from "../sanity/lib/client";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
 
-const POSTS_QUERY = `*[_type == "post" && !(_id in path("drafts.**")) ]{title, body, author->, slug, date, mainImage, publishedAt, categories[]->, category->}| order(publishedAt desc)`;
+const POSTS_QUERY = `*[_type == "post" && !(_id in path("drafts.**")) ]{title, body, author->, slug, excerpt, date, mainImage, publishedAt, categories[]->, category->}| order(publishedAt desc)`;
 
 const builder = imageUrlBuilder(client);
 
@@ -65,18 +65,17 @@ export default async function IndexPage() {
               </p>
             </div>
           </div>
-          <hr className="lg:hidden mt-8"></hr>
         </div>
       </div>
-      <div className="flex flex-col gap-12 sm:-mt-12 px-4 lg:px-32 py-8 bg-white justify-center items-center">
-        <ul className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+      <div className="flex flex-col gap-12 sm:mt-0 px-12 lg:px-32 py-8 bg-white justify-center items-center">
+        <ul className="grid grid-cols-1 gap-6 lg:grid-cols-3 lg:gap-12">
           {posts.map((post) => (
             <li
-              className="bg-white shadow-sm items-center justify-center lg:justify-left hover:bg-slate-50 hover:shadow-lg p-8 lg:p-8 rounded-lg"
+              className="bg-slate-50 shadow-sm items-center justify-center lg:justify-left hover:bg-slate-50 hover:shadow-lg p-8 lg:p-8 rounded-lg cursor-pointer"
               key={post?._id}
             >
               <Link
-                className="link:text-emerald-600 link:visited:text-emerald-300"
+                className="link:text-emerald-600 link:visited:text-emerald-300 cursor-pointer"
                 href={`/archive/posts/${post?.slug.current}`}
               >
                 <div className="flex flex-row items-center justify-left">
@@ -87,17 +86,23 @@ export default async function IndexPage() {
                     width={500}
                     height={500}
                   /> */}
-                  <div>
-                    <h2 className="text-xl text-gray-800 lg:text-3xl my-4 leading-2 font-semibold">
+                  <div className="flex flex-col p-4">
+                    <h2 className="text-xl text-gray-800 lg:text-3xl leading-2 font-semibold line-clamp-2">
                       {post?.title}
                     </h2>
-                    <p className="text-gray-500 text-sm font-light mt-2">
-                      {post?.category} - {dateFormated(post.publishedAt)}
+                    <p className="parse text-gray-500 text-sm mt-4 font-light">
+                      {post?.excerpt}
                     </p>
-                    <p className="text-emerald-600 visited:text-emerald-600 text-sm">
-                      Read Now
-                      <ArrowRightIcon className="inline text-emerald-600 ml-4 w-4 h-4 my-auto" />
-                    </p>
+                    <div className="flex justify-between items-center mt-4">
+                      <p className="text-sm font-light  text-gray-700">
+                        {post?.categories[0].title} - on{" "}
+                        {dateFormated(post.publishedAt)}
+                      </p>
+                      <p className="text-emerald-600 link:text-emerald-600 visited:text-emerald-600 text-sm text-right">
+                        Read Now
+                        <ArrowRightIcon className="inline text-emerald-600 ml-4 w-4 h-4 my-auto" />
+                      </p>
+                    </div>
                   </div>
                 </div>
               </Link>

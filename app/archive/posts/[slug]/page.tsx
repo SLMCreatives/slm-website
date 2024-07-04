@@ -31,7 +31,13 @@ const POST_QUERY = `*[
     categories[]->,
     category->,
   excerpt,
-  }`;
+  comments[]->{
+    _id,
+    name,
+    email,
+    comment
+  }
+}`;
 
 const COMMENT_QUERY = `*[_type == "comments" && post->slug.current == $slug  && approved == true] {
   _id,
@@ -62,6 +68,7 @@ export async function generateMetadata({
     query: POST_QUERY,
     params,
   });
+
   const { title, excerpt } = post || {};
   return {
     title,
@@ -105,8 +112,6 @@ export default async function PostPage({
 
   const { title, _id, publishedAt, body, author, categories, mainImage } =
     post || {};
-
-  const { _createdAt, name, email, comment } = comments[0] || {};
 
   const dateFormated = new Date(publishedAt).toLocaleDateString("en-US", {
     year: "numeric",
@@ -194,7 +199,9 @@ export default async function PostPage({
                     )}
                   </div>
                   <div className="mt-4 p-2  lg:col-span-3 grid lg:grid-cols-2 gap-4 text-left ">
-                    <AllComments comments={comments} />
+                    {/*                     <AllComments comments={post.comments || []} />
+                     */}{" "}
+                    <p>No comments yet</p>
                     <AddComments postId={post?._id} />
                   </div>
                 </div>
