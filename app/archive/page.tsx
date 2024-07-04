@@ -19,9 +19,9 @@ function urlForPosts(mainImage: SanityImageSource) {
 
 function dateFormated(publishedAt: string) {
   const dateFormated = new Date(publishedAt).toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
+    month: "short",
     day: "numeric",
+    formatMatcher: "best fit",
   });
   return dateFormated;
 }
