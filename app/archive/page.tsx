@@ -67,11 +67,11 @@ export default async function IndexPage() {
           </div>
         </div>
       </div>
-      <div className="flex flex-col gap-12 sm:mt-0 px-12 lg:px-32 py-8 bg-white justify-center items-center">
+      <div className="flex flex-col gap-12 sm:mt-0 px-6 lg:px-32 py-8 bg-white justify-center items-center">
         <ul className="grid grid-cols-1 gap-6 lg:grid-cols-3 lg:gap-12">
           {posts.map((post) => (
             <li
-              className="bg-slate-50 shadow-sm items-center justify-center lg:justify-left hover:bg-slate-50 hover:shadow-lg p-8 lg:p-8 rounded-lg cursor-pointer"
+              className="bg-slate-50 shadow-sm items-center justify-center lg:justify-left hover:bg-slate-50 hover:shadow-lg p-2 lg:p-8 rounded-lg cursor-pointer"
               key={post?._id}
             >
               <Link
