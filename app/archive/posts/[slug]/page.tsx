@@ -16,7 +16,6 @@ import {
 } from "@heroicons/react/24/outline";
 import type { Metadata, ResolvingMetadata } from "next";
 import AddComments from "../../../Components/AddComments";
-import AllComments from "../../../Components/AllComments";
 
 const POST_QUERY = `*[
   _type == "post" &&
@@ -198,10 +197,32 @@ export default async function PostPage({
                       </div>
                     )}
                   </div>
-                  <div className="mt-4 p-2  lg:col-span-3 grid lg:grid-cols-2 gap-4 text-left ">
+                  <div className="mt-4 p-2  lg:col-span-3 grid lg:grid-cols-2 gap-24 text-left ">
                     {/*                     <AllComments comments={post.comments || []} />
                      */}{" "}
-                    <p>No comments yet</p>
+                    <div className="bg-white mt-4 lg:mt-10 text-wrap leading-8 text-left w-full">
+                      <h2 className="text-xl font-semibold leading-tight">
+                        Comments:
+                      </h2>
+                      {comments?.length === 0 && <p>No comments yet</p>}
+                      {comments?.map(({ _id, name, email, comment }) => (
+                        <li key={_id} className="my-5 list-none mt-4">
+                          <p className="text-md my-2  bg-slate-100 rounded-xl p-4 leading-relaxed text-black">
+                            {comment}
+                          </p>
+                          <h4 className="text-sm ml-4 mb-4 float-right font-semibold leading-tight">
+                            {name}
+                            <a
+                              href={`mailto:${email}`}
+                              className="font-medium text-xs ml-2 text-gray-600/50"
+                            >
+                              / {email}
+                            </a>
+                          </h4>
+                          <hr className="my-4 mb-8" />
+                        </li>
+                      ))}
+                    </div>
                     <AddComments postId={post?._id} />
                   </div>
                 </div>
