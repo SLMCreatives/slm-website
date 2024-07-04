@@ -8,4 +8,10 @@ const projectId = process.env.SANITY_STUDIO_PROJECT_ID;
 const dataset = process.env.SANITY_STUDIO_DATASET;
 const token = process.env.SANITY_STUDIO_SECRET_TOKEN;
 
-export default defineCliConfig({ api: { projectId, dataset, token } });
+if (!projectId || !dataset || !token) {
+  throw new Error(
+    "Missing environment variables: SANITY_STUDIO_PROJECT_ID, SANITY_STUDIO_DATASET, SANITY_STUDIO_SECRET_TOKEN"
+  );
+}
+
+export default defineCliConfig({ api: { projectId, dataset } });
