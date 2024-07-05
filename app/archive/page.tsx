@@ -13,8 +13,8 @@ const POSTS_QUERY = `*[_type == "post" && !(_id in path("drafts.**")) ]{title, b
 
 const builder = imageUrlBuilder(client);
 
-function urlForPosts(mainImage: SanityImageSource) {
-  return builder.image(mainImage).width(200).height(200).url();
+function urlForPosts(source: SanityImageSource) {
+  return builder.image(source).width(200).height(200).url();
 }
 
 function dateFormated(publishedAt: string) {
@@ -55,7 +55,7 @@ export default async function IndexPage() {
               }}
             />
           </div>
-          <div className="mx-auto max-w-2xl pt-24 lg:py-56">
+          <div className="mx-auto max-w-2xl pt-24 lg:pt-56 lg:pb-32">
             <div className="text-left lg:text-center text-balance ml-4">
               <h1 className="py-8 -my-8 text-4xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-emerald-600 to-violet-500 sm:text-6xl">
                 Digital Marketing Tips
@@ -67,30 +67,30 @@ export default async function IndexPage() {
           </div>
         </div>
       </div>
-      <div className="flex flex-col gap-12 sm:mt-0 px-6 lg:px-32 py-8 bg-white justify-center items-center">
-        <ul className="grid grid-cols-1 gap-6 lg:grid-cols-3 lg:gap-12">
+      <div className="flex flex-col gap-12 sm:mt-0 px-6 lg:px-32 py-8 bg-white bg-linear-gradient bg-gradient-to-b from-white to-slate-200">
+        <ul className="grid grid-cols-1 gap-6 lg:grid-cols-1 lg:gap-12 lg:w-[70%] w-[90%] mx-auto">
           {posts.map((post) => (
             <li
-              className="bg-slate-50 shadow-sm items-center justify-center lg:justify-left hover:bg-slate-50 hover:shadow-lg p-2 lg:p-8 rounded-lg cursor-pointer"
+              className="bg-white shadow-lg items-between justify-between hover:ring-1 hover:ring-emerald-600 hover:shadow-xl p-6 lg:p-4  rounded-lg cursor-pointer"
               key={post?._id}
             >
               <Link
                 className="link:text-emerald-600 link:visited:text-emerald-300 cursor-pointer"
                 href={`/archive/posts/${post?.slug.current}`}
               >
-                <div className="flex flex-row items-center justify-left">
-                  {/*     <Image
-                    className="hidden lg:block lg:h-32 lg:w-32 mr-6 object-cover rounded-sm"
+                <div className="sm:flex-flow-row md:flex  my-4 items-center justify-left lg:justify-left w-full">
+                  <Image
+                    className="hidden lg:block lg:max-h-32 lg:max-w-48 lg:mr-12 lg:ml-8 object-cover rounded-lg"
                     src={urlForPosts(post?.mainImage) || "/logo.png"}
                     alt={post.title}
                     width={500}
-                    height={500}
-                  /> */}
-                  <div className="flex flex-col p-4">
-                    <h2 className="text-xl text-gray-800 lg:text-3xl leading-2 font-semibold line-clamp-2">
+                    height={1000}
+                  />
+                  <div className="flex flex-col p-2">
+                    <h2 className="text-md text-gray-800 text-balance lg:text-3xl leading-2 font-semibold line-clamp-2">
                       {post?.title}
                     </h2>
-                    <p className="parse text-gray-500 text-sm mt-4 font-light">
+                    <p className="parse text-gray-500 text-balance text-sm mt-4 font-light line-clamp-2">
                       {post?.excerpt}
                     </p>
                     <div className="flex justify-between items-center mt-4">

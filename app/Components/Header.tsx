@@ -18,14 +18,15 @@ const navigation = [
 
 const variants = {
   hidden: {
+    //#visible
     y: 0,
     opacity: 1,
-    transition: { when: "afterChildren" },
+    transition: { delay: 0.2 },
   },
   visible: {
+    //#hidden
     y: -20,
     opacity: 0,
-    transition: { when: "beforeChildren", staggerChildren: 0.5 },
   },
 };
 
@@ -76,7 +77,12 @@ const Header = () => {
             <Bars3Icon className="h-6 w-6" aria-hidden="true" />
           </button>
         </div>
-        <div className="hidden lg:flex lg:gap-x-12">
+        <motion.div
+          initial="visible"
+          animate="hidden"
+          variants={variants}
+          className="hidden lg:flex lg:gap-x-12"
+        >
           {navigation.map((item) => (
             <a
               key={item.name}
@@ -86,15 +92,21 @@ const Header = () => {
               {item.name}
             </a>
           ))}
-        </div>
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, x: 50, scale: 0.5 }}
+          animate={{ opacity: 1, x: 0, scale: 1 }}
+          transition={{ delay: 3.5 }}
+          className="hidden lg:flex lg:flex-1 lg:justify-end"
+        >
           <a
             href="/form"
             className="text-sm font-semibold leading-6 text-gray-900"
           >
             Get Quotation <span aria-hidden="true">&rarr;</span>
           </a>
-        </div>
+        </motion.div>
       </nav>
 
       <Dialog

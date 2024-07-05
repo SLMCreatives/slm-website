@@ -1,5 +1,5 @@
 import * as React from "react";
-import { PortableText, type SanityDocument } from "next-sanity";
+import { PortableText, SanityClient, type SanityDocument } from "next-sanity";
 import imageUrlBuilder from "@sanity/image-url";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { client, sanityFetch } from "../../../sanity/lib/client";
@@ -88,7 +88,7 @@ export async function generateMetadata({
 const { projectId, dataset } = client.config();
 
 const builder = imageUrlBuilder(client);
-const urlForImage = (source: SanityImageSource) => {
+const urlForImage = (source: any) => {
   return builder.image(source);
 };
 
@@ -118,7 +118,7 @@ export default async function PostPage({
     day: "numeric",
   });
 
-  const imagesrc = urlForImage(post?.mainImage).width(800).height(450).url();
+  const imagesrc = urlForImage(mainImage).width(800).height(450).url();
 
   return (
     <main>
@@ -139,7 +139,10 @@ export default async function PostPage({
           </div>
           <div className="mx-auto max-w-full py-32 sm:py-48 lg:py-32">
             {post ? (
-              <div className="text-center text-balance visited:text-slate-900">
+              <div
+                className="text-center text-balance visited:text-slate-900"
+                key={_id}
+              >
                 <h1 className="my-8 py-2 text-4xl hidden text-balance font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-emerald-600 to-violet-500 lg:text-6xl lg:block">
                   Digital Marketing Tips 2024{" "}
                 </h1>
@@ -150,9 +153,10 @@ export default async function PostPage({
                       <Image
                         src={imagesrc}
                         alt={title || "Article"}
-                        className="mx-auto aspect-video rounded-xl object-center w-full "
+                        className="mx-auto aspect-video rounded-xl object-center w-full text-md font-medium text-gray-900"
                         height="620"
                         width="1100"
+                        key={mainImage}
                       />
                       <Breadcrumbs
                         aria-label="breadcrumb"
@@ -160,30 +164,40 @@ export default async function PostPage({
                       >
                         <Link
                           href="/archive"
-                          className="link:text-emerald-600 link:visited:text-emerald-300"
+                          className="text-md font-medium text-emerald-700 hover:underline cursor-pointer"
                         >
                           Blog
                         </Link>
                         <Link
                           href="#"
-                          className="link:text-emerald-600 link:visited:text-emerald-300"
+                          className="text-md font-medium text-gray-700"
+                          key={categories[0]?.title}
                         >
                           {categories[0]?.title}
                         </Link>
                         <Typography color="text.primary">...</Typography>
                       </Breadcrumbs>
-                      <h2 className="text-4xl  lg:text-4xl mt-4 lg:mt-8 text-balance space-y-4 text-left font-bold relative text-gray-900">
+                      <h2
+                        key={title}
+                        className="text-4xl  lg:text-4xl mt-4 lg:mt-8 text-balance space-y-4 text-left font-bold relative text-gray-900"
+                      >
                         {title}
                         <hr className="w-full hidden my-4 lg:my-4 "></hr>
-                        <div className="hidden items-center my-4 pt-4 gap-4">
+                        <div className="hidden lg:flex items-center my-4 pt-4 gap-4">
                           <CalendarDaysIcon className="inline text-emerald-600 w-4 h-4 mr-2 my-auto" />{" "}
-                          <p className="text-sm font-medium text-gray-900">
+                          <p
+                            key={publishedAt}
+                            className="text-sm font-medium text-gray-900"
+                          >
                             Published On: {dateFormated}
                           </p>{" "}
                         </div>
-                        <div className="hidden items-center justify-start mt-4 gap-4">
+                        <div className="hidden lg:flex items-center justify-start mt-4 gap-4">
                           <UserCircleIcon className="inline text-emerald-600 w-4 h-4 mr-2 my-auto" />{" "}
-                          <p className="text-sm font-medium text-gray-900">
+                          <p
+                            key={author?.name}
+                            className="text-sm font-medium text-gray-900"
+                          >
                             Written By: {author?.name}
                           </p>{" "}
                         </div>
@@ -192,36 +206,39 @@ export default async function PostPage({
                   </div>
                   <div className="bg-slate-100 rounded-xl py-8 px-8 lg:px-12 lg:col-span-2 lg:mt-4 text-wrap leading-8 text-left">
                     {body && body.length > 0 && (
-                      <div className="prose max-w-none text-md lg:text-lg lg:mt-4 lg:px-8">
+                      <div
+                        key={body}
+                        className="prose max-w-none text-md lg:text-md lg:mt-4 lg:px-4"
+                      >
                         <PortableText value={body} />
                       </div>
                     )}
                   </div>
                   <div className="mt-4 p-2  lg:col-span-3 grid lg:grid-cols-2 gap-24 text-left ">
-                    {/*                     <AllComments comments={post.comments || []} />
-                     */}{" "}
                     <div className="bg-white mt-4 lg:mt-10 text-wrap leading-8 text-left w-full">
                       <h2 className="text-xl font-semibold leading-tight">
                         Comments:
                       </h2>
-                      {comments?.length === 0 && <p>No comments yet</p>}
-                      {comments?.map(({ _id, name, email, comment }) => (
-                        <li key={_id} className="my-5 list-none mt-4">
-                          <p className="text-md my-2  bg-slate-100 rounded-xl p-4 leading-relaxed text-black">
-                            {comment}
-                          </p>
-                          <h4 className="text-sm ml-4 mb-4 float-right font-semibold leading-tight">
-                            {name}
-                            <a
-                              href={`mailto:${email}`}
-                              className="font-medium text-xs ml-2 text-gray-600/50"
-                            >
-                              / {email}
-                            </a>
-                          </h4>
-                          <hr className="my-4 mb-8" />
-                        </li>
-                      ))}
+                      <ul className="list-none">
+                        {comments?.length === 0 && <p>No comments yet</p>}
+                        {comments?.map(({ _id, name, email, comment }) => (
+                          <li key={comment._id} className="my-5 list-none mt-4">
+                            <p className="text-md my-2  bg-slate-100 rounded-xl p-4 leading-relaxed text-black">
+                              {comment}
+                            </p>
+                            <h4 className="text-sm ml-4 mb-4 float-right font-semibold leading-tight">
+                              {name}
+                              <a
+                                href={`mailto:${email}`}
+                                className="font-medium text-xs ml-2 text-gray-600/50"
+                              >
+                                / {email}
+                              </a>
+                            </h4>
+                            <hr className="my-4 mb-8" />
+                          </li>
+                        ))}
+                      </ul>
                     </div>
                     <AddComments postId={post?._id} />
                   </div>

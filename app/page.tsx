@@ -37,6 +37,8 @@ const features = [
   },
 ];
 
+const revalidate = 10;
+
 export default function Home() {
   return (
     <main>
@@ -47,7 +49,7 @@ export default function Home() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1.5 }}
-            className="fixed inset-x-0 -top-40 -z-99 transform-gpu overflow-hidden blur-3xl sm:-top-80"
+            className="absolute inset-x-0 -top-40 -z-99 transform-gpu overflow-hidden blur-3xl sm:-top-80"
             aria-hidden="true"
           >
             <div
@@ -140,7 +142,7 @@ export default function Home() {
         </div>
       </div>
       {/* FEATURE MENU */}
-      <div className="overflow-hidden bg-slate-100 py-24 sm:py-32">
+      <div className="overflow-hidden bg-linear-gradient bg-gradient-to-b from-white to-slate-100 py-24 sm:py-32">
         <div className="mx-auto max-w-7xl px-12 lg:px-8">
           <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
             <div className="lg:pr-8 lg:pt-4">
@@ -148,7 +150,7 @@ export default function Home() {
                 <h2 className="text-base font-semibold leading-7 text-emerald-600">
                   One Stop Marketing Solution Provider
                 </h2>
-                <p className="mt-2 text-5xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+                <p className="mt-2 text-5xl font-bold tracking-tight text-balance text-gray-900 sm:text-4xl">
                   Everything you need to know in one place.
                 </p>
                 <p className="mt-6 text-lg leading-8 text-gray-600">
@@ -162,27 +164,28 @@ export default function Home() {
                 </p>
                 <p className="mt-2 text-lg  leading-8 text-gray-600">
                   Here are some of the <span className="font-bold">myths</span>{" "}
-                  about how digital marketing works in 2024.
+                  about how digital marketing works in 2024:
                 </p>
 
-                <div className="overflow-scroll xl:overflow-visible lg:overflow-scroll m-2 mt-6 md:max-w-xl scrollbar-hide">
-                  <dl className="grid grid-cols-3 gap-8 lg:gap-32 mt-4 min-w-[70rem] lg:min-w-none text-lg leading-8 text-gray-600">
+                <div className="overflow-scroll lg:overflow-visible lg:w-[100%] w-[100%] m-2 mt-6 mr-6 lg:mt-12 md:max-w-xl scrollbar-hidden">
+                  <dl className="grid grid-cols-3 gap-[350px] m-2 text-gray-600">
                     {features.map((feature) => (
-                      <div
+                      <motion.div
+                        layout
                         key={feature.name}
-                        className="relative bg-white rounded-xl p-8 lg:min-w-[380px] text-balance"
+                        className=" bg-white rounded-xl p-8 lg:p-12 lg:min-w-[380px] min-w-[300px] text-balance shadow-xl"
                       >
-                        <dt className="block items-center text-xl lg:text-2xl text-emerald-600 font-bold">
+                        <dt className="block items-center text-xl lg:text-md text-emerald-600 font-bold">
                           <feature.icon
-                            className="block h-12 w-12 mb-6 text-slate-600"
+                            className="block h-12 w-12 mb-6 text-emerald-600"
                             aria-hidden="true"
                           />{" "}
                           Myth {feature.id} - {feature.name}
                         </dt>{" "}
-                        <dd className="mt-4 text-md lg:text-lg leading-6 text-gray-600 ">
+                        <dd className="mt-4 text-sm lg:text-sm leading-6 text-gray-600 ">
                           {feature.description}
                         </dd>
-                      </div>
+                      </motion.div>
                     ))}
                   </dl>
                 </div>
@@ -195,7 +198,7 @@ export default function Home() {
             <img
               src="/features.jpg"
               alt="Product screenshot"
-              className="intems-center hidden lg:block -z-9 h-[40rem] max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-[57rem] md:-ml-4 lg:-ml-0"
+              className="intems-center hidden lg:block -z-99 h-[40rem] max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-[57rem] md:-ml-4 lg:-ml-0"
               width={2432}
               height={1442}
             />
