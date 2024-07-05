@@ -1,5 +1,6 @@
 import * as React from "react";
-import { PortableText, SanityClient, type SanityDocument } from "next-sanity";
+import { PortableText } from "next-sanity";
+import { SanityDocument } from "next-sanity";
 import imageUrlBuilder from "@sanity/image-url";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { client, sanityFetch } from "../../../sanity/lib/client";
@@ -16,6 +17,8 @@ import {
 } from "@heroicons/react/24/outline";
 import type { Metadata, ResolvingMetadata } from "next";
 import AddComments from "../../../Components/AddComments";
+import { text } from "stream/consumers";
+import { type } from "os";
 
 const POST_QUERY = `*[
   _type == "post" &&
@@ -210,7 +213,7 @@ export default async function PostPage({
                         key={body}
                         className="prose max-w-none text-md lg:text-md lg:mt-4 lg:px-4"
                       >
-                        <PortableText value={body} />
+                        <PortableText value={body} onMissingComponent={false} />
                       </div>
                     )}
                   </div>

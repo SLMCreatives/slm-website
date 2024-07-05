@@ -68,17 +68,17 @@ export default async function IndexPage() {
         </div>
       </div>
       <div className="flex flex-col gap-12 sm:mt-0 px-6 lg:px-32 py-8 bg-white bg-linear-gradient bg-gradient-to-b from-white to-slate-200">
-        <ul className="grid grid-cols-1 gap-6 lg:grid-cols-1 lg:gap-12 lg:w-[70%] w-[90%] mx-auto">
+        <ul className="grid grid-cols-1 gap-6 lg:grid-cols-1 lg:gap-12 lg:w-[70%] w-[95%] mx-auto">
           {posts.map((post) => (
             <li
-              className="bg-white shadow-lg items-between justify-between hover:ring-1 hover:ring-emerald-600 hover:shadow-xl p-6 lg:p-4  rounded-lg cursor-pointer"
+              className="bg-white shadow-lg items-between justify-between hover:ring-1 hover:ring-emerald-600 hover:shadow-xl p-4 lg:p-4  rounded-lg cursor-pointer"
               key={post?._id}
             >
               <Link
                 className="link:text-emerald-600 link:visited:text-emerald-300 cursor-pointer"
                 href={`/archive/posts/${post?.slug.current}`}
               >
-                <div className="sm:flex-flow-row md:flex  my-4 items-center justify-left lg:justify-left w-full">
+                <div className="sm:flex-flow-row md:flex lg:my-4  mx-auto items-center justify-left lg:justify-left w-full">
                   <Image
                     className="hidden lg:block lg:max-h-32 lg:max-w-48 lg:mr-12 lg:ml-8 object-cover rounded-lg"
                     src={urlForPosts(post?.mainImage) || "/logo.png"}
@@ -87,15 +87,15 @@ export default async function IndexPage() {
                     height={1000}
                   />
                   <div className="flex flex-col p-2">
-                    <h2 className="text-md text-gray-800 text-balance lg:text-3xl leading-2 font-semibold line-clamp-2">
+                    <h2 className="text-md text-gray-800 lg:text-3xl leading-2 font-semibold line-clamp-2">
                       {post?.title}
                     </h2>
-                    <p className="parse text-gray-500 text-balance text-sm mt-4 font-light line-clamp-2">
+                    <p className="parse text-gray-500 lg:mr-8 text-sm mt-4 font-light line-clamp-2">
                       {post?.excerpt}
                     </p>
                     <div className="flex justify-between items-center mt-4">
                       <p className="text-sm font-light  text-gray-700">
-                        {post?.categories[0].title} - on{" "}
+                        {post?.categories[0].title} -{" "}
                         {dateFormated(post.publishedAt)}
                       </p>
                       <p className="text-emerald-600 link:text-emerald-600 visited:text-emerald-600 text-sm text-right">
