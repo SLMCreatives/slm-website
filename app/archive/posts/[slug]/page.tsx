@@ -152,7 +152,7 @@ export default async function PostPage({
 
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mt-4 lg:mt-20 mx-auto items-top justify-center lg:mx-20 ">
                   <div className="col-span-1 mt-0 lg:mt-4 mx-4 lg:mx-0 ">
-                    <div role="presentation" className="sticky top-10">
+                    <div className="sticky top-10">
                       <Image
                         src={imagesrc}
                         alt={title || "Article"}
