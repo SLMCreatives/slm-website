@@ -12,40 +12,67 @@ import MasonryImageList from "../content/components/imageList";
 
 const features = [
   {
-    name: "Strategic Planning",
+    name: "Unique Creative Design",
     description:
-      "A clear marketing strategy that suits your brand with realistic targets, specific goals and timeframes. ",
+      "First impressions count, the design of your website is the first thing that people are going to use to form their opinion on your company.",
     icon: ArrowUpRightIcon,
   },
   {
-    name: "Creative Content Production",
+    name: "Professional Copy-Writing",
     description:
-      "Creative support in designing and producing visuals (graphic design or videos) that are consistent with the rest of your brand identity.",
+      "The voice that you decide to use on your website should be consistent with your brand and relatable to your target audience.",
     icon: ArrowUpRightIcon,
   },
   {
-    name: "Content Scheduling",
+    name: "Creative Visuals",
     description:
-      "A consistent schedule that ensures that your content is produced in a timely manner and that you never miss a festival, event or announcement.",
+      "Media makes everything more relatable and accesable. Having a video to explain your business makes it easier for your audience to undersand your company better.",
     icon: ArrowUpRightIcon,
   },
   {
-    name: "Audience Engagement",
+    name: "Modern UI/UX",
     description:
-      "Socializing with your audience by replying comments, sharing content and providing feedback in a consistent voice.",
+      "An easy-to-understand user experience (UX) almost always helps your customers journey in building a long lasting relationship with your company.",
     icon: ArrowUpRightIcon,
   },
   {
-    name: "Project Management",
+    name: "Speed and Uptime",
     description:
-      "Professional project management that ensures everything task is completed on time and in budget.",
+      "Your website should be built on the latest technology that is fast, secure and accesable from anywhere around the world. ",
     icon: ArrowUpRightIcon,
   },
   {
-    name: "Measurement & Reporting",
+    name: "Search Engine Optimization",
     description:
-      "Monthly reports on the performance of the project and provide adjustments as well as suggestions for improvement.",
+      "Optimizing your website with best SEO practices is important to capture quality leads and places your brand as an expert in your field. ",
     icon: ArrowUpRightIcon,
+  },
+];
+
+const options = [
+  {
+    name: "Landing Page",
+    desc: "Single sales page or service contact page.",
+  },
+  {
+    name: "Corporate Website",
+    desc: "Complete standard 5 page website.",
+  },
+  {
+    name: "Corporate Blog",
+    desc: "Corporate website with blog for articles, events or updates.",
+  },
+  {
+    name: "E-Commerce Website",
+    desc: "Fully functioning online store with product and order management.",
+  },
+  {
+    name: "Corporate Blog",
+    desc: "Corporate website with blog for articles, events or updates.",
+  },
+  {
+    name: "E-Commerce Website",
+    desc: "Fully functioning online store with product and order management.",
   },
 ];
 
@@ -105,11 +132,9 @@ export default function Website() {
                 Website Development & Design
               </h1>
               <p className="mt-6 text-lg leading-8 text-gray-600">
-                Hire your very own{" "}
-                <span className="text-emerald-600 font-bold">
-                  Web Developer
-                </span>{" "}
-                to grow and manager your corporate website.
+                Building modern responsive{" "}
+                <span className="text-emerald-600 font-bold">websites</span> for
+                local and international corporate businessess and brands.
               </p>
             </div>
             <div className="mt-10 flex items-center justify-center gap-x-6">
@@ -144,17 +169,18 @@ export default function Website() {
               KEY ELEMENTS
             </h2>
             <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-              What to expect from hiring a Social Media Content Manager like me.
+              What are the key elements of every succesfull website?
             </p>
             <p className="mt-6 text-lg leading-8 text-gray-600">
-              Here are some the things that I do for my existing clients.
+              Here are some of the key elements that makes a website a
+              profitable asset for any company.{" "}
             </p>
           </div>
           <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-4xl">
             <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-10 lg:max-w-none lg:grid-cols-2 lg:gap-y-16">
               {features.map((feature) => (
                 <div key={feature.name} className="relative pl-16">
-                  <dt className="text-2xl font-semibold leading-7 text-gray-900">
+                  <dt className="text-xl font-semibold leading-7 text-gray-900">
                     <div className="absolute left-0 top-0 flex h-7 w-7 items-center justify-center rounded-lg bg-emerald-100">
                       <feature.icon
                         className="h-5 w-5 text-emerald-600"
@@ -172,6 +198,67 @@ export default function Website() {
           </div>
         </div>
       </div>
+
+      {/*FEATURES*/}
+
+      <section>
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="grid grid-cols-1 gap-y-8 lg:grid-cols-2 lg:items-center lg:gap-x-16">
+            <div className="mx-auto max-w-lg text-center lg:mx-0 ltr:lg:text-left rtl:lg:text-right">
+              <h2 className="text-3xl font-bold sm:text-4xl">
+                Common Website Structure
+              </h2>
+
+              <p className="mt-4 text-gray-600">
+                Here are some of the most common builds of websites. It all
+                depends on what you are trying to achieve with your website.
+              </p>
+
+              <a
+                href="#"
+                className="mt-8 inline-block rounded bg-indigo-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-indigo-700 focus:outline-none focus:ring focus:ring-yellow-400"
+              >
+                Still unsure?
+              </a>
+            </div>
+
+            <div className="grid grid-cols-3 gap-4 sm:grid-cols-3">
+              {options.map((option) => (
+                <a
+                  className="block rounded-xl border border-gray-100 p-4 shadow-sm hover:border-gray-200 hover:ring-1 hover:ring-gray-200 focus:outline-none focus:ring"
+                  href="#"
+                  key={option.name}
+                >
+                  {/* <span className="inline-block rounded-lg bg-gray-50 p-3">
+                    <svg
+                      className="h-6 w-6"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M12 14l9-5-9-5-9 5 9 5z"></path>
+                      <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"></path>
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"
+                      ></path>
+                    </svg>
+                  </span> */}
+
+                  <h2 className="mt-2 font-bold">{option?.name}</h2>
+
+                  <p className="hidden sm:mt-1 sm:block sm:text-sm sm:text-gray-600">
+                    {option?.desc}
+                  </p>
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Initiation */}
       <section className="relative min-h-screen flex flex-col justify-center overflow-hidden">
