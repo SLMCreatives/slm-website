@@ -70,7 +70,7 @@ function AddComments({ postId }: Props) {
         <label htmlFor="comment" className="text-md  font-md -mb-1 ">
           Your Comment:
         </label>
-        <textarea
+        <input
           {...register("comment", { required: true, minLength: 2 })}
           className="p-2 rounded-md shadow-sm border border-gray-300 focus:border-emerald-100"
         />
