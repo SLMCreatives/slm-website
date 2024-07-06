@@ -1,5 +1,4 @@
 import React from "react";
-import "/app/globals.css";
 import { data } from "../portfolio/(Post)/posts";
 import Cards from "./Card";
 

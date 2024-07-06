@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { SanityDocument } from "next-sanity";
-import Header from "../Components/Header";
-import Footer from "../Components/Footer";
+import Header from "../_components/Header";
+import Footer from "../_components/Footer";
 import imageUrlBuilder from "@sanity/image-url";
 import Image from "next/image";
 import { Metadata } from "next";

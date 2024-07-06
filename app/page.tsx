@@ -8,9 +8,9 @@ import {
   CalendarDaysIcon,
   BellAlertIcon,
 } from "@heroicons/react/24/outline";
-import Header from "Sulaiman/app/Components/Header";
-import Footer from "Sulaiman/app/Components/Footer";
-import Testimonial from "Sulaiman/app/Components/Testimonial";
+import Header from "Sulaiman/app/_components/Header";
+import Footer from "Sulaiman/app/_components/Footer";
+import Testimonial from "Sulaiman/app/_components/Testimonial";
 import { motion } from "framer-motion";
 
 const features = [

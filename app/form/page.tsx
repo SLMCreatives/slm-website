@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useState } from "react";
-import Header from "Sulaiman/app/Components/Header";
-import Footer from "Sulaiman/app/Components/Footer";
-import MarketingForm from "../Components/MarketingForm";
+import Header from "Sulaiman/app/_components/Header";
+import Footer from "Sulaiman/app/_components/Footer";
+import MarketingForm from "../_components/MarketingForm";
 import { Dialog, DialogPanel } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 

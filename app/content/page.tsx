@@ -1,8 +1,8 @@
 import React from "react";
 import { Metadata } from "next";
 import Image from "next/image";
-import Header from "Sulaiman/app/Components/Header";
-import Footer from "Sulaiman/app/Components/Footer";
+import Header from "Sulaiman/app/_components/Header";
+import Footer from "Sulaiman/app/_components/Footer";
 import {
   ArrowUpRightIcon,
   ChatBubbleBottomCenterTextIcon,
@@ -10,7 +10,7 @@ import {
 } from "@heroicons/react/24/outline";
 import MasonryImageList from "Sulaiman/app/content/components/imageList";
 import Chip from "@mui/material/Chip";
-import Testimonial from "Sulaiman/app/Components/Testimonial";
+import Testimonial from "Sulaiman/app/_components/Testimonial";
 
 const features = [
   {

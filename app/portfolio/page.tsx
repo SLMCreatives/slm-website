@@ -1,8 +1,8 @@
 import React from "react";
 import Image from "next/image";
-import Header from "Sulaiman/app/Components/Header";
-import Footer from "Sulaiman/app/Components/Footer";
-import Archive from "Sulaiman/app/Components/Archive";
+import Header from "Sulaiman/app/_components/Header";
+import Footer from "Sulaiman/app/_components/Footer";
+import Archive from "Sulaiman/app/_components/Archive";
 
 export default function Blog() {
   return (

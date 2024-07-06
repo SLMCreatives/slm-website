@@ -4,8 +4,8 @@ import { SanityDocument } from "next-sanity";
 import imageUrlBuilder from "@sanity/image-url";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { client, sanityFetch } from "../../../sanity/lib/client";
-import HeaderBlog from "../../../Components/HeaderBlog";
-import Footer from "../../../Components/Footer";
+import HeaderBlog from "../../../_components/HeaderBlog";
+import Footer from "../../../_components/Footer";
 import Link from "next/link";
 import Image from "next/image";
 import Typography from "@mui/material/Typography";
@@ -16,7 +16,7 @@ import {
   UserGroupIcon,
 } from "@heroicons/react/24/outline";
 import type { Metadata, ResolvingMetadata } from "next";
-import AddComments from "../../../Components/AddComments";
+import AddComments from "../../../_components/AddComments";
 import { text } from "stream/consumers";
 import { type } from "os";
 
@@ -34,15 +34,7 @@ const POST_QUERY = `*[
     categories[]->,
     category->,
   excerpt,
-  comments[]->{
-    _id,
-    name,
-    email,
-    comment
-  }
-}`;
-
-const COMMENT_QUERY = `*[_type == "comments" && post->slug.current == $slug  && approved == true] {
+ "comments": *[_type == "comments" && post._ref == ^._id && approved == true] | order(_createdAt desc){
   _id,
   name,
   email,
@@ -50,12 +42,14 @@ const COMMENT_QUERY = `*[_type == "comments" && post->slug.current == $slug  && 
   _createdAt,
   post->{
     title,
+    _ref,
+} 
   }
-} | order(_createdAt desc)`;
+}`;
 
 export async function generateStaticParams() {
   const posts = await sanityFetch<SanityDocument[]>({
-    query: `*[_type == "post"]{slug}`,
+    query: `*[_type == "post"]{slug} `,
   });
   return posts.map((post) => ({
     slug: post.slug.current,
@@ -96,8 +90,6 @@ const urlForImage = (source: any) => {
   return builder.image(source);
 };
 
-const revalidate = 20;
-
 export default async function PostPage({
   params,
 }: {
@@ -105,11 +97,6 @@ export default async function PostPage({
 }) {
   const post = await sanityFetch<SanityDocument>({
     query: POST_QUERY,
-    params,
-  });
-
-  const comments = await sanityFetch<SanityDocument[]>({
-    query: COMMENT_QUERY,
     params,
   });
 
@@ -123,6 +110,8 @@ export default async function PostPage({
     categories,
     mainImage,
   } = post || {};
+
+  const comments = post?.comments || [];
 
   const dateFormated = new Date(publishedAt).toLocaleDateString("en-US", {
     year: "numeric",
@@ -278,18 +267,19 @@ export default async function PostPage({
                         {comments?.length === 0 && (
                           <p className="mt-4 -mb-20">No comments yet</p>
                         )}
-                        {comments?.map(({ name, email, comment }) => (
+
+                        {comments?.map((comment: any) => (
                           <li key={comment._id} className="my-5 list-none mt-4">
                             <p className="text-md my-2  bg-slate-100 rounded-xl p-4 leading-relaxed text-black">
-                              {comment}
+                              {comment.comment}
                             </p>
                             <h4 className="text-sm ml-4 mb-4 float-right font-semibold leading-tight">
-                              {name}
+                              {comment.name}
                               <a
-                                href={`mailto:${email}`}
+                                href={`mailto:${comment.email}`}
                                 className="font-medium text-xs ml-2 text-gray-600/50"
                               >
-                                / {email}
+                                / {comment.email}
                               </a>
                             </h4>
                             <hr className="my-4 mb-8" />

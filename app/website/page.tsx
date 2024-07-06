@@ -1,13 +1,13 @@
 import React from "react";
 import Image from "next/image";
-import Header from "Sulaiman/app/Components/Header";
-import Footer from "Sulaiman/app/Components/Footer";
+import Header from "Sulaiman/app/_components/Header";
+import Footer from "Sulaiman/app/_components/Footer";
 import {
   ArrowUpRightIcon,
   ChatBubbleBottomCenterTextIcon,
 } from "@heroicons/react/24/outline";
 import { Chip } from "@mui/material";
-import Testimonial from "../Components/Testimonial";
+import Testimonial from "../_components/Testimonial";
 import MasonryImageList from "../content/components/imageList";
 
 const features = [
