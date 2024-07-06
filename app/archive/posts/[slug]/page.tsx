@@ -127,8 +127,6 @@ export default async function PostPage({
 
   const imagesrc = urlForImage(mainImage).width(800).height(450).url();
 
-  console.log(post?._id);
-
   return (
     <main>
       <HeaderBlog />
