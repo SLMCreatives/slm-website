@@ -7,7 +7,7 @@ export const client = createClient({
   dataset: "production",
   apiVersion: "2024-07-01",
   useCdn: true,
-  token: process.env.SANITY_API_READ_TOKEN,
+  token: process.env.SANITY_API_WRITE_TOKEN,
 });
 
 export async function sanityFetch<QueryResponse>({
@@ -21,7 +21,7 @@ export async function sanityFetch<QueryResponse>({
 }) {
   return client.fetch<QueryResponse>(query, params, {
     next: {
-      revalidate: process.env.NODE_ENV === "development" ? 30 : 3600,
+      revalidate: process.env.NODE_ENV === "production" ? 30 : 3600,
       tags,
     },
   });
