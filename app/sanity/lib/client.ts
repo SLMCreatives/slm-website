@@ -1,13 +1,14 @@
 import "server-only";
 
 import { createClient, type QueryParams } from "next-sanity";
+import { mySanityToken } from "Sulaiman/app/utils/environment";
 
 export const client = createClient({
   projectId: "5s8iyu5r",
   dataset: "production",
   apiVersion: "2024-07-01",
-  token: process.env.SANITY_STUDIO_SECRET_TOKEN,
-  useCdn: true,
+  token: mySanityToken,
+  useCdn: false,
 });
 
 export async function sanityFetch<QueryResponse>({
