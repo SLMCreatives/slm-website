@@ -27,6 +27,7 @@ const POST_QUERY = `*[
   _id,
   title,
   publishedAt,
+  _updatedAt,
   body,
   author->,
   mainImage,
@@ -112,10 +113,24 @@ export default async function PostPage({
     params,
   });
 
-  const { title, _id, publishedAt, body, author, categories, mainImage } =
-    post || {};
+  const {
+    title,
+    _id,
+    _updatedAt,
+    publishedAt,
+    body,
+    author,
+    categories,
+    mainImage,
+  } = post || {};
 
   const dateFormated = new Date(publishedAt).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+
+  const upFormated = new Date(_updatedAt).toLocaleDateString("en-US", {
     year: "numeric",
     month: "long",
     day: "numeric",
@@ -152,7 +167,7 @@ export default async function PostPage({
 
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mt-4 lg:mt-20 mx-auto items-top justify-center lg:mx-20 ">
                   <div className="col-span-1 mt-0 lg:mt-4 mx-4 lg:mx-0 ">
-                    <div className="sticky top-10">
+                    <div className="sticky top-20">
                       <Image
                         src={imagesrc}
                         alt={title || "Article"}
@@ -190,19 +205,57 @@ export default async function PostPage({
                           <CalendarDaysIcon className="inline text-emerald-600 w-4 h-4 mr-2 my-auto" />{" "}
                           <p
                             key={publishedAt}
-                            className="text-sm font-medium text-gray-900"
+                            className="text-sm font-light text-gray-900"
                           >
-                            Published On: {dateFormated}
+                            Published:{" "}
+                            <span className="font-medium">
+                              {dateFormated || "N/A"}
+                            </span>
                           </p>{" "}
                         </div>
-                        <div className="hidden lg:flex items-center justify-start mt-4 gap-4">
-                          <UserCircleIcon className="inline text-emerald-600 w-4 h-4 mr-2 my-auto" />{" "}
-                          <p
-                            key={author?.name}
-                            className="text-sm font-medium text-gray-900"
-                          >
-                            Written By: {author?.name}
-                          </p>{" "}
+                        {dateFormated === upFormated && <p></p>}
+                        {dateFormated !== upFormated && (
+                          <div className="hidden lg:flex items-center my-4 gap-4">
+                            <CalendarDaysIcon className="inline text-emerald-600 w-4 h-4 mr-2 my-auto" />{" "}
+                            <p
+                              key={_updatedAt}
+                              className="text-sm font-light text-gray-900"
+                            >
+                              Updated:{" "}
+                              <span className="font-medium">
+                                {upFormated || "N/A"}
+                              </span>
+                            </p>{" "}
+                          </div>
+                        )}
+
+                        <div className="flex justify-left items-center gap-6">
+                          <Image
+                            src={urlForImage(author?.image)
+                              .width(200)
+                              .height(200)
+                              .url()}
+                            className="w-20 h-20 mt-6 rounded-full"
+                            alt={author?.name}
+                            key={author?.image}
+                            width={200}
+                            height={200}
+                          />
+                          <div className="flex-row justify-center items-center">
+                            <p
+                              key={author?.name}
+                              className="text-lg font-light text-gray-900"
+                            >
+                              <span className="font-medium">
+                                {author?.name}
+                              </span>
+                            </p>{" "}
+                            <p className="text-sm font-light text-gray-900">
+                              Freelance Digital Marketer
+                            </p>
+                          </div>
+                          {/*                           <p>{author?.bio.children.text}</p>
+                           */}{" "}
                         </div>
                       </h2>
                     </div>
@@ -218,12 +271,14 @@ export default async function PostPage({
                     )}
                   </div>
                   <div className="mt-4 p-2  lg:col-span-3 grid lg:grid-cols-2 gap-24 text-left ">
-                    <div className="bg-white mt-4 lg:mt-10 text-wrap leading-8 text-left w-full">
+                    <div className="bg-white mt-4 m-4 lg:mt-10 text-wrap leading-8 text-left w-full">
                       <h2 className="text-xl font-semibold leading-tight">
                         Comments:
                       </h2>
                       <ul className="list-none">
-                        {comments?.length === 0 && <p>No comments yet</p>}
+                        {comments?.length === 0 && (
+                          <p className="mt-4 -mb-20">No comments yet</p>
+                        )}
                         {comments?.map(({ _id, name, email, comment }) => (
                           <li key={comment._id} className="my-5 list-none mt-4">
                             <p className="text-md my-2  bg-slate-100 rounded-xl p-4 leading-relaxed text-black">

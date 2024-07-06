@@ -70,7 +70,7 @@ function AddComments({ postId }: Props) {
         <label htmlFor="comment" className="text-md  font-md -mb-1 ">
           Your Comment:
         </label>
-        <input
+        <textarea
           {...register("comment", { required: true, minLength: 2 })}
           className="p-2 rounded-md shadow-sm border border-gray-300 focus:border-emerald-100"
         />
@@ -83,7 +83,7 @@ function AddComments({ postId }: Props) {
           type="submit"
           value={isSubmitting ? "Submitting..." : "Submit"}
           disabled={isSubmitting}
-          className={`p-4 mt-4 font-bold text-lg uppercase rounded-md bg-emerald-600 text-gray-200 hover:bg-emerald-900 hover:text-white ${isSubmitting ? "opacity-50" : ""}`}
+          className={`py-2 mt-4 font-light text-lg tracking-widest uppercase rounded-md bg-emerald-600 text-gray-200 hover:bg-emerald-900 hover:text-white ${isSubmitting ? "opacity-50" : ""}`}
         />
       </form>
     </>
