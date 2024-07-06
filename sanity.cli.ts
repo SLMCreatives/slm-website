@@ -14,4 +14,4 @@ if (!projectId || !dataset || !token) {
   );
 }
 
-export default defineCliConfig({ api: { projectId, dataset } });
+export default defineCliConfig({ api: { projectId, dataset, token } });

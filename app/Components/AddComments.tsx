@@ -2,12 +2,14 @@
 
 import React from "react";
 import { FieldValues, useForm, UseFormReset } from "react-hook-form";
+import { useRouter } from "next/navigation";
 
 type Props = {
   postId: string;
 };
 
-function AddComments({ postId }: Props) {
+export default function AddComments({ postId }: Props) {
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -16,7 +18,7 @@ function AddComments({ postId }: Props) {
   } = useForm();
 
   const onSubmit = async (data: any) => {
-    const { name, email, comment } = data;
+    const { name, email, comment, postId } = data;
 
     const res = await fetch("./api/comments", {
       method: "POST",
@@ -28,6 +30,8 @@ function AddComments({ postId }: Props) {
       return;
     }
     reset();
+
+    router.refresh();
   };
   return (
     <>
@@ -39,7 +43,7 @@ function AddComments({ postId }: Props) {
         <p className="text-xl font-semibold my-2 leading-relaxed text-gray-800">
           Leave a comment:
         </p>
-        <input {...register("postId")} type="hidden" />
+        <input {...register("postId")} type="hidden" value={postId} />
         <label htmlFor="name" className="text-md font-md -mb-1">
           Name:
         </label>
@@ -89,5 +93,3 @@ function AddComments({ postId }: Props) {
     </>
   );
 }
-
-export default AddComments;
