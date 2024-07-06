@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { writeToken } from "Sulaiman/app/sanity/env";
 import { createClient } from "next-sanity";
 
-export const client = createClient({
+const client = createClient({
   projectId: "5s8iyu5r",
   dataset: "production",
   apiVersion: "2022-03-25",
