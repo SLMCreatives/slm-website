@@ -7,6 +7,7 @@ export const client = createClient({
   dataset: "production",
   apiVersion: "2024-07-01",
   useCdn: true,
+  token: process.env.SANITY_API_READ_TOKEN,
 });
 
 export async function sanityFetch<QueryResponse>({

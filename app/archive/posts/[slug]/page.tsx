@@ -83,8 +83,6 @@ export async function generateMetadata({
   };
 }
 
-const { projectId, dataset } = client.config();
-
 const builder = imageUrlBuilder(client);
 const urlForImage = (source: any) => {
   return builder.image(source);
