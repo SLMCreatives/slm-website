@@ -138,6 +138,8 @@ export default async function PostPage({
 
   const imagesrc = urlForImage(mainImage).width(800).height(450).url();
 
+  console.log(post?._id);
+
   return (
     <main>
       <HeaderBlog />
@@ -157,10 +159,7 @@ export default async function PostPage({
           </div>
           <div className="mx-auto max-w-full py-32 sm:py-48 lg:py-32">
             {post ? (
-              <div
-                className="text-center text-balance visited:text-slate-900"
-                key={_id}
-              >
+              <div className="text-center text-balance visited:text-slate-900">
                 <h1 className="my-8 py-2 text-4xl hidden text-balance font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-emerald-600 to-violet-500 lg:text-6xl lg:block">
                   Digital Marketing Tips 2024{" "}
                 </h1>
@@ -279,7 +278,7 @@ export default async function PostPage({
                         {comments?.length === 0 && (
                           <p className="mt-4 -mb-20">No comments yet</p>
                         )}
-                        {comments?.map(({ _id, name, email, comment }) => (
+                        {comments?.map(({ name, email, comment }) => (
                           <li key={comment._id} className="my-5 list-none mt-4">
                             <p className="text-md my-2  bg-slate-100 rounded-xl p-4 leading-relaxed text-black">
                               {comment}
@@ -298,7 +297,7 @@ export default async function PostPage({
                         ))}
                       </ul>
                     </div>
-                    <AddComments postId={post?._id} />
+                    <AddComments postId={_id} />
                   </div>
                 </div>
               </div>
