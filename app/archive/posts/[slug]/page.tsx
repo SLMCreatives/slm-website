@@ -262,7 +262,7 @@ export default async function PostPage({
                     )}
                   </div>
                   <div className="mt-4 p-2 lg:col-span-3 grid lg:grid-cols-3 grid-cols-1 gap-24 text-left ">
-                    <div className="flex-grow">
+                    <div className="col-span-2 lg:col-span-1">
                       <AddComments postId={_id} />
                     </div>
                     <div className="bg-white col-span-2 mt-4 m-auto lg:mt-10 text-wrap leading-8 text-left w-full">
