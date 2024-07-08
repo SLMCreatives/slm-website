@@ -6,7 +6,6 @@ import { defineCliConfig } from "sanity/cli";
 
 const projectId = process.env.SANITY_STUDIO_PROJECT_ID;
 const dataset = process.env.SANITY_STUDIO_DATASET;
-const token = process.env.SANITY_STUDIO_SECRET_TOKEN;
 
 if (!projectId || !dataset) {
   throw new Error(
@@ -15,5 +14,5 @@ if (!projectId || !dataset) {
 }
 
 export default defineCliConfig({
-  api: { projectId, dataset, token },
+  api: { projectId, dataset },
 });

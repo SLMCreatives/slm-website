@@ -144,7 +144,7 @@ export default function Home() {
       {/* FEATURE MENU */}
       <div className="overflow-hidden bg-linear-gradient bg-gradient-to-b from-white to-slate-100 py-24 sm:py-32">
         <div className="mx-auto max-w-7xl px-12 lg:px-8">
-          <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
+          <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 md:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-1 lg:gap-y-0 md: justify-items-center">
             <div className="lg:pr-8 lg:pt-4">
               <div className="lg:max-w-lg">
                 <h2 className="text-base font-semibold leading-7 text-emerald-600">
@@ -156,39 +156,35 @@ export default function Home() {
                 <p className="mt-6 text-lg leading-8 text-gray-600">
                   I believe that{" "}
                   <span className="font-bold">
-                    good, professional and effective
+                    good, professional and effective digital marketing{" "}
+                    <em className="font-bold ">is</em> for everyone.
                   </span>{" "}
-                  digital marketing <em className="font-bold ">is</em> for
-                  everyone. But unfortunately, not everyone knows how to get a
-                  good return on investment from it.
                 </p>
                 <p className="mt-2 text-lg  leading-8 text-gray-600">
                   Here are some of the <span className="font-bold">myths</span>{" "}
                   about how digital marketing works in 2024:
                 </p>
 
-                <div className="overflow-scroll lg:overflow-visible lg:w-[100%] w-[100%] m-2 mt-6 mr-6 lg:mt-12 md:max-w-xl scrollbar-hidden">
-                  <dl className="grid grid-cols-3 gap-[350px] m-2 text-gray-600">
-                    {features.map((feature) => (
-                      <motion.div
-                        layout
-                        key={feature.name}
-                        className=" bg-white rounded-xl p-8 lg:p-12 lg:min-w-[380px] min-w-[300px] text-balance shadow-xl"
-                      >
-                        <dt className="block items-center text-xl lg:text-md text-emerald-600 font-bold">
-                          <feature.icon
-                            className="block h-12 w-12 mb-6 text-emerald-600"
-                            aria-hidden="true"
-                          />{" "}
-                          Myth {feature.id} - {feature.name}
-                        </dt>{" "}
-                        <dd className="mt-4 text-sm lg:text-sm leading-6 text-gray-600 ">
-                          {feature.description}
-                        </dd>
-                      </motion.div>
-                    ))}
+                {features.map((feature) => (
+                  <dl className="grid grid-cols-3 gap-5 m-2 text-gray-600">
+                    <motion.div
+                      layout
+                      className=" bg-white rounded-xl p-8 my-4 mt-12 md:p-10 lg:p-12 lg:min-w-[380px] min-w-[300px] text-balance shadow-xl"
+                    >
+                      <dt className="items-center  text-xl lg:text-md text-emerald-600 font-bold">
+                        <feature.icon
+                          key={feature.name}
+                          className="h-12 w-12 mb-6 text-emerald-600"
+                          aria-hidden="true"
+                        />{" "}
+                        Myth {feature.id} - {feature.name}
+                      </dt>{" "}
+                      <dd className="mt-4 text-sm lg:text-sm leading-6 text-gray-600 ">
+                        {feature.description}
+                      </dd>
+                    </motion.div>
                   </dl>
-                </div>
+                ))}
                 <p className="block md:hidden pl-2 mt-4 text-xs text-right leading-8 text-gray-600">
                   <ArrowRightCircleIcon className="inline-block h-4 w-4 text-emerald-600" />{" "}
                   Swipe for more{" "}
@@ -198,7 +194,7 @@ export default function Home() {
             <img
               src="/features.jpg"
               alt="Product screenshot"
-              className="intems-center hidden lg:block -z-99 h-[40rem] max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-[57rem] md:-ml-4 lg:-ml-0"
+              className="intems-center hidden lg:block -z-10 h-[40rem] max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-[57rem] md:-ml-4 lg:-ml-0"
               width={2432}
               height={1442}
             />
@@ -277,14 +273,14 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="m-6 lg:m-2 grid grid-cols-1 col-width-1 gap-8 gap-y-12 items-center justify-center md:grid-cols-3 lg:grid-cols-3 text-balance ">
+          <div className="m-6 lg:m-2 grid grid-cols-1 col-width-1 gap-8 gap-y-12 items-top justify-center md:grid-cols-3 lg:grid-cols-3 text-balance lg:mx-12">
             <a
-              className="block bg-white rounded-xl border border-gray-200 p-8 shadow-sm transition-all hover:shadow-lg hover:bg-slate-100 group duration-500 ease-in-out"
+              className="block bg-white rounded-xl justify-top border border-gray-200 p-8 shadow-sm transition-all hover:shadow-lg hover:bg-slate-300 group duration-500 ease-in-out"
               href="/content"
             >
-              <div className="items-center justify-center text-emerald-600">
+              <div className="items-center justify-top text-emerald-600">
                 <CalendarDaysIcon className="size-12 text-emerald-600 transition-all duration-500 ease-in-out group-hover:text-slate-900 group-hover:size-14" />
-                <h2 className="mt-4 text-3xl font-semibold transition-all duration-500 ease-in-out group-hover:text-slate-900 group-hover:font-bold">
+                <h2 className="mt-4 text-2xl font-semibold transition-all duration-500 ease-in-out group-hover:text-slate-900 group-hover:font-bold">
                   Social Media
                 </h2>
               </div>
@@ -295,13 +291,13 @@ export default function Home() {
               </p>
             </a>
             <a
-              className="block bg-white rounded-xl border border-gray-200 p-8 shadow-sm transition-all hover:shadow-lg hover:bg-slate-100 group duration-500 ease-in-out"
-              href="/content"
+              className="block bg-white rounded-xl justify-top border border-gray-200 p-8 shadow-sm transition-all hover:shadow-lg hover:bg-slate-100 group duration-500 ease-in-out"
+              href="/paid"
             >
               <div className="items-center justify-center text-emerald-600">
                 <CurrencyDollarIcon className="size-12 text-emerald-600 transition-all duration-500 ease-in-out group-hover:text-slate-900 group-hover:size-14" />
-                <h2 className="mt-4 text-3xl font-semibold transition-all duration-500 ease-in-out group-hover:text-slate-900 group-hover:font-bold">
-                  Lead Generation
+                <h2 className="mt-4 text-2xl font-semibold transition-all duration-500 ease-in-out group-hover:text-slate-900 group-hover:font-bold">
+                  Lead Gen
                 </h2>
               </div>
               <p className="mt-4 text-lg text-balance text-gray-900 transition-all duration-500 ease-in-out">
@@ -310,12 +306,12 @@ export default function Home() {
               </p>
             </a>
             <a
-              className="block bg-white rounded-xl border border-gray-200 p-8 shadow-sm transition-all hover:shadow-lg hover:bg-slate-100 group duration-500 ease-in-out"
-              href="/content"
+              className="block bg-white rounded-xl justify-top border border-gray-200 p-8 shadow-sm transition-all hover:shadow-lg hover:bg-slate-100 group duration-500 ease-in-out"
+              href="/website"
             >
               <div className="items-center justify-center text-emerald-600">
                 <MagnifyingGlassCircleIcon className="size-12 text-emerald-600 transition-all duration-500 ease-in-out group-hover:text-slate-900 group-hover:size-14" />
-                <h2 className="mt-4 text-3xl font-semibold transition-all duration-500 ease-in-out group-hover:text-slate-900 group-hover:font-bold">
+                <h2 className="mt-4 text-2xl font-semibold transition-all duration-500 ease-in-out group-hover:text-slate-900 group-hover:font-bold">
                   Website Design
                 </h2>
               </div>
@@ -332,7 +328,7 @@ export default function Home() {
       {/* CLIENTS */}
       <div className="bg-white py-24 sm:py-32">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <h2 className="text-center text-lg font-semibold leading-8 text-grey-600">
+          <h2 className="text-center text-lg font-semibold leading-8 text-gray-600">
             I have worked on big projects with MNCs and small businesses alike
           </h2>
           <div className="mx-auto mt-10 grid max-w-lg grid-cols-6 items-center gap-x-8 gap-y-10 sm:max-w-xl md:grid-cols-5 sm:gap-x-10 lg:mx-0 lg:max-w-none lg:grid-cols-5">

@@ -15,11 +15,6 @@ export const token = assertValue(
   "Missing environment variable: SANITY_STUDIO_SECRET_TOKEN"
 );
 
-export const writeToken = assertValue(
-  process.env.SANITY_API_WRITE_TOKEN,
-  "Missing environment variable: SANITY_API_WRITE_TOKEN"
-);
-
 export const useCdn = true;
 
 function assertValue<T>(v: T | undefined, errorMessage: string): T {

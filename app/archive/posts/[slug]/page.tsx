@@ -40,6 +40,7 @@ const POST_QUERY = `*[
   email,
   comment,
   _createdAt,
+  approved,
   post->{
     title,
     _ref,
@@ -111,6 +112,10 @@ export default async function PostPage({
 
   const comments = post?.comments || [];
 
+  function approvedComments(comment: any) {
+    return comments.approved === true;
+  }
+
   const dateFormated = new Date(publishedAt).toLocaleDateString("en-US", {
     year: "numeric",
     month: "long",
@@ -124,6 +129,8 @@ export default async function PostPage({
   });
 
   const imagesrc = urlForImage(mainImage).width(800).height(450).url();
+
+  const revalidate = 20;
 
   return (
     <main>
@@ -244,7 +251,7 @@ export default async function PostPage({
                       </h2>
                     </div>
                   </div>
-                  <div className="bg-slate-100 rounded-xl py-8 px-8 lg:px-12 lg:col-span-2 lg:mt-4 text-wrap leading-8 text-left">
+                  <div className="bg-transparent lg:bg-slate-100  rounded-xl py-8 px-8 lg:px-12 lg:col-span-2 lg:mt-4 text-wrap leading-8 text-left">
                     {body && body.length > 0 && (
                       <div
                         key={body}
@@ -254,8 +261,11 @@ export default async function PostPage({
                       </div>
                     )}
                   </div>
-                  <div className="mt-4 p-2  lg:col-span-3 grid lg:grid-cols-2 gap-24 text-left ">
-                    <div className="bg-white mt-4 m-4 lg:mt-10 text-wrap leading-8 text-left w-full">
+                  <div className="mt-4 p-2 lg:col-span-3 grid lg:grid-cols-3 grid-cols-1 gap-24 text-left ">
+                    <div className="flex-grow">
+                      <AddComments postId={_id} />
+                    </div>
+                    <div className="bg-white col-span-2 mt-4 m-auto lg:mt-10 text-wrap leading-8 text-left w-full">
                       <h2 className="text-xl font-semibold leading-tight">
                         Comments:
                       </h2>
@@ -283,7 +293,6 @@ export default async function PostPage({
                         ))}
                       </ul>
                     </div>
-                    <AddComments postId={_id} />
                   </div>
                 </div>
               </div>

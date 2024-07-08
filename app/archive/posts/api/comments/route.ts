@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server";
-import { writeToken } from "Sulaiman/app/sanity/env";
 import { createClient } from "next-sanity";
 
 const client = createClient({
