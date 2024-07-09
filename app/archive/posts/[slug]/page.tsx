@@ -19,6 +19,7 @@ import type { Metadata, ResolvingMetadata } from "next";
 import AddComments from "../../../_components/AddComments";
 import { text } from "stream/consumers";
 import { type } from "os";
+import CodeBlock from "../../../_components/CodeBlock";
 
 const POST_QUERY = `*[
   _type == "post" &&
@@ -115,6 +116,33 @@ export default async function PostPage({
   function approvedComments(comment: any) {
     return comments.approved === true;
   }
+
+  const ptComponents = {
+    types: {
+      image: ({ value }: any) => {
+        if (!value?.asset?._ref) {
+          return null;
+        }
+
+        return (
+          <Image
+            alt={value.alt || " "}
+            loading="lazy"
+            height={value.height || 500}
+            width={value.width || 500}
+            src={urlForImage(value).url()}
+            style={{
+              width: "100%",
+              marginBottom: "24px",
+            }}
+          />
+        );
+      },
+      code: ({ value }: any) => {
+        return <CodeBlock value={value} />;
+      },
+    },
+  };
 
   const dateFormated = new Date(publishedAt).toLocaleDateString("en-US", {
     year: "numeric",
@@ -257,7 +285,11 @@ export default async function PostPage({
                         key={body}
                         className="prose max-w-none text-md lg:text-md lg:mt-4 lg:px-4"
                       >
-                        <PortableText value={body} onMissingComponent={false} />
+                        <PortableText
+                          value={body}
+                          components={ptComponents}
+                          onMissingComponent={false}
+                        />
                       </div>
                     )}
                   </div>

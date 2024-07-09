@@ -62,7 +62,6 @@ export const post = defineType({
       type: "blockContent",
     }),
   ],
-
   preview: {
     select: {
       title: "title",
