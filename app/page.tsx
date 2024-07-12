@@ -13,6 +13,7 @@ import Footer from "./_components/Footer";
 import Testimonial from "Sulaiman/app/_components/Testimonial";
 import { motion, Variants } from "framer-motion";
 import WaterDropGrid from "./_components/WaterGrid";
+import { useRouter } from "next/navigation";
 
 const itemsVariants: Variants = {
   visible: {
@@ -39,13 +40,15 @@ const features = [
       "Take control of your social platoforms and get it to generate useful value to your organisation. I cam help you set realistic targets that you can achieve in 3 months and teach you how to measure your progress.",
     icon: BellAlertIcon,
     id: "1",
+    link: "/content",
   },
   {
-    name: "Website Development and Design",
+    name: "Website Dev & Design",
     description:
       "Claim your piece of the digital market 'pie' with a fully functioning website optimized for SEO to attract the right audience and the right demographic.",
     icon: BellAlertIcon,
     id: "2",
+    link: "/website",
   },
   {
     name: "Lead Generation Package",
@@ -53,31 +56,21 @@ const features = [
       "Get short term success with targated ads designed to engage with potential clients and fitted with easy to use CRM and other tools that can populate your client database with high quality leads.",
     icon: BellAlertIcon,
     id: "3",
-  },
-  {
-    name: "Ad Hoc Services",
-    description:
-      "Includes services like Brand & Logo Design Guide, Presentation Design, Product Mockup, Packaging and Merchendise Design and more. ",
-    icon: BellAlertIcon,
-    id: "4",
+    link: "/paid",
   },
 ];
 
 const revalidate = 10;
 
 export default function Home() {
+  const router = useRouter();
   return (
     <main>
       <Header />
-      <motion.div
-        className="flex justify-center items-center h-[110vh] w-[100vw] bg-white"
-        initial={{ opacity: 0, y: 100 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1.5, damping: 10 }}
-      >
+      <div className="flex justify-center items-center h-[110vh] w-[100vw] bg-white">
         <div className=" ">
           <div className="flex gap-6 justify-left items-center">
-            <div className="hidden lg:flex absolute  -z-5 top-10 right-28  bg-white">
+            <div className="hidden lg:flex  absolute   -z-5 top-10 right-28  bg-white">
               <WaterDropGrid />
             </div>
             <div className="text-left z-10 px-12 lg:w-1/2 left-0 text-balance space-y-8">
@@ -98,23 +91,37 @@ export default function Home() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 1.25 }}
-                className="mt-6 text-xl leading-8 text-gray-600"
+                className="mt-6 text-lg leading-8 text-gray-600"
               >
-                Building digital brands for businesses with impactful creatives
-                and interactive digital experiences that drives growth and
-                conversion.
+                Creating professional unique experiences for brands that matter.
+                I am here to help you solve your marketing problems and allow
+                you to achieve your business goals.
               </motion.p>
-              <button
+              <motion.button
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 2 }}
                 onClick={() => {
                   const element = document.getElementById("my-section");
                   element?.scrollIntoView({
                     behavior: "smooth",
                   });
                 }}
-                className="bg-gradient-to-br from-emerald-600 to-emerald-900 opacity-90 hover:opacity-100 hover:from-emerald-900 hover:to-emerald-600 text-white font-medium rounded-lg px-5 py-3 mt-12 shadow-lg"
+                className="bg-gradient-to-br from-emerald-600 text-sm to-emerald-900 opacity-90 hover:opacity-100 hover:from-emerald-900 hover:to-emerald-600 text-white font-medium rounded-lg px-5 py-3 mt-12 shadow-lg"
               >
                 Marketing Solutions
-              </button>
+              </motion.button>
+              <motion.button
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 2 }}
+                onClick={() => {
+                  router.push("/contact");
+                }}
+                className="ml-6 bg-transparent ring-1 ring-emerald-700  text-emerald-700 hover:ring-2 font-medium text-sm rounded-lg px-5 py-3 mt-12 shadow-lg"
+              >
+                Get In Contact
+              </motion.button>
             </div>
           </div>
           <div
@@ -130,7 +137,7 @@ export default function Home() {
             />
           </div>
         </div>
-      </motion.div>
+      </div>
 
       {/* FEATURE MENU */}
       <div className="overflow-hidden bg-linear-gradient bg-gradient-to-b from-white to-slate-100 py-24 sm:py-32">
@@ -150,25 +157,35 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="grid grid-col-1 md:grid-col-2 lg:grid-cols-3 justify-center items-center w-full">
+            <div className="grid grid-col-1 md:grid-col-2 lg:grid-cols-3 lg:gap-16 justify-between items-top w-auto">
               {features.map((feature) => (
-                <dl className="gap-5 m-2 text-gray-600">
+                <dl className="gap-5 m-2 text-gray-600 ">
                   <motion.div
                     variants={itemsVariants}
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true }}
-                    className=" bg-white rounded-xl p-8 my-4 mt-12 md:p-10 lg:p-12 lg:min-w-[380px] min-w-[300px] text-balance shadow-xl"
+                    className=" bg-white group rounded-xl p-8 my-4 mt-12 md:p-10 lg:p-8 lg:min-w-[380px] min-w-[300px] shadow-xl hover:shadow-2xl cursor-pointer"
+                    key={feature.id}
+                    onClick={() => {
+                      router.push(feature.link);
+                    }}
                   >
                     <dt
-                      className="items-center  text-xl lg:text-md text-emerald-600 font-bold"
-                      key={feature.id}
+                      className="items-center text-4xl mt-2 leading-10 text-emerald-600 font-bold text-shadow-lg"
+                      key={feature.name}
                     >
                       {feature.name}
                     </dt>{" "}
-                    <dd className="mt-4 text-sm lg:text-sm leading-6 text-gray-600 ">
+                    <motion.dd
+                      className="mt-6 text-sm leading-6 text-gray-600 transition-all duration-600 ease-in-out"
+                      key={feature.description}
+                    >
                       {feature.description}
-                    </dd>
+                      <button className="bg-emerald-600 block w-full hover:opacity-100 group-hover:bg-gradient-to-br group-hover:from-emerald-900 group-hover:to-emerald-600 text-white text-sm leading-5 font-light rounded-lg px-4 py-2 my-4 shadow-lg transition-colors duration-300 ease-in-out">
+                        LEARN MORE
+                      </button>
+                    </motion.dd>
                   </motion.div>
                 </dl>
               ))}

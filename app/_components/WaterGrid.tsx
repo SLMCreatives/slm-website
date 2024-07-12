@@ -5,14 +5,18 @@ import { motion } from "framer-motion";
 
 const WaterDropGrid = () => {
   return (
-    <div className="relative grid h-screen place-content-center bg-white">
+    <motion.div
+      className="relative grid h-screen place-content-center bg-white"
+      drag
+      dragConstraints={{ left: 50, right: 10, top: 10, bottom: 10 }}
+    >
       <DotGrid />
-    </div>
+    </motion.div>
   );
 };
 
-const GRID_WIDTH = 31;
-const GRID_HEIGHT = 19;
+const GRID_WIDTH = 41;
+const GRID_HEIGHT = 31;
 
 const DotGrid = () => {
   const handleDotClick = (e: any) => {
@@ -20,10 +24,10 @@ const DotGrid = () => {
       targets: ".dot-point",
       scale: [
         { value: 1.2, easing: "easeOutSine", duration: 250 },
-        { value: 0.8, easing: "easeInOutSine", duration: 500 },
+        { value: 1, easing: "easeInOutSine", duration: 500 },
       ],
       translateY: [
-        { value: -35, easing: "easeOutSine", duration: 250 },
+        { value: -30, easing: "easeOutSine", duration: 250 },
         { value: 0, easing: "easeInOutSine", duration: 500 },
       ],
       opacity: [
@@ -46,7 +50,7 @@ const DotGrid = () => {
         <div
           onClick={handleDotClick}
           onTouchStart={handleDotClick}
-          className="group cursor-pointer rounded-full p-2 transition-colors hover:bg-slate-200/50"
+          className="group cursor-crosshair rounded-full p-1 transition-colors hover:bg-slate-200 opacity-50"
           data-index={index}
           key={`dot-${i}-${j}`}
         >
@@ -54,7 +58,7 @@ const DotGrid = () => {
             initial={{ opacity: 0, scale: 0.5 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 2.5, delay: 1.5 }}
-            className="dot-point h-2 w-2 rounded-full bg-gradient-to-b from-emerald-700 to-emerald-400 opacity-50 group-hover:from-emerald-600 group-hover:to-white"
+            className="dot-point h-2 w-2 rounded-full bg-gradient-to-b from-emerald-700 to-emerald-400 bg-opacity-50 group-hover:from-emerald-600 group-hover:to-white"
             data-index={index}
           />
         </div>
