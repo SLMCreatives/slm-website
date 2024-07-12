@@ -8,11 +8,11 @@ import {
   CalendarDaysIcon,
   BellAlertIcon,
 } from "@heroicons/react/24/outline";
-import Header from "./_components/Header";
-import Footer from "./_components/Footer";
+import Header from "Sulaiman/app/_components/Header";
+import Footer from "Sulaiman/app/_components/Footer";
 import Testimonial from "Sulaiman/app/_components/Testimonial";
 import { motion, Variants } from "framer-motion";
-import WaterDropGrid from "./_components/WaterGrid";
+import WaterDropGrid from "../_components/WaterGrid";
 
 const itemsVariants: Variants = {
   visible: {
@@ -65,7 +65,7 @@ const features = [
 
 const revalidate = 10;
 
-export default function Home() {
+export default function Test() {
   return (
     <main>
       <Header />
@@ -134,10 +134,13 @@ export default function Home() {
 
       {/* FEATURE MENU */}
       <div className="overflow-hidden bg-linear-gradient bg-gradient-to-b from-white to-slate-100 py-24 sm:py-32">
-        <div id="my-section" className="mx-auto max-w-7xl px-12 lg:px-8">
+        <div className="mx-auto max-w-7xl px-12 lg:px-8">
           <div className="lg:pr-8 lg:pt-4">
             <div className="lg:max-w-full ">
-              <h2 className="text-base font-semibold leading-7 text-emerald-600">
+              <h2
+                className="text-base font-semibold leading-7 text-emerald-600"
+                id="my-section"
+              >
                 One Stop Marketing Solution Provider
               </h2>
               <p className="mt-2 text-5xl font-bold tracking-tight text-balance text-gray-900 sm:text-4xl">

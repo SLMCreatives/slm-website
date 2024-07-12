@@ -2,7 +2,6 @@ import * as React from "react";
 import { PortableText } from "next-sanity";
 import { SanityDocument } from "next-sanity";
 import imageUrlBuilder from "@sanity/image-url";
-import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { client, sanityFetch } from "../../../sanity/lib/client";
 import HeaderBlog from "../../../_components/HeaderBlog";
 import Footer from "../../../_components/Footer";
@@ -10,16 +9,15 @@ import Link from "next/link";
 import Image from "next/image";
 import Typography from "@mui/material/Typography";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
-import {
-  CalendarDaysIcon,
-  UserCircleIcon,
-  UserGroupIcon,
-} from "@heroicons/react/24/outline";
-import type { Metadata, ResolvingMetadata } from "next";
+import { CalendarDaysIcon } from "@heroicons/react/24/outline";
+import type { Metadata } from "next";
 import AddComments from "../../../_components/AddComments";
-import { text } from "stream/consumers";
-import { type } from "os";
+
 import CodeBlock from "../../../_components/CodeBlock";
+import SignIn from "../../../_components/SignIn";
+import SignOut from "../../../_components/SignOut";
+import { auth } from "Sulaiman/auth";
+import { motion } from "framer-motion";
 
 const POST_QUERY = `*[
   _type == "post" &&
@@ -160,6 +158,28 @@ export default async function PostPage({
 
   const revalidate = 20;
 
+  const session = await auth();
+
+  if (!session)
+    return (
+      <main>
+        <HeaderBlog />
+        <div className="flex justify-center items-center h-screen bg-slate-100">
+          <div className="flex flex-col gap-3 justify-center items-center w-[50%] p-10 ring-1 ring-emerald-400 shadow-lg rounded-xl bg-white">
+            <p className="text-md font-md">Sign In to continue reading </p>
+            <p className="text-4xl text-balance font-bold text-center text-emerald-500">
+              {title}
+            </p>
+            <img
+              src={imagesrc}
+              className="w-[50%] rounded-xl my-4 ring-1 ring-emerald-400"
+            />
+            <SignIn />
+          </div>
+        </div>
+      </main>
+    );
+
   return (
     <main>
       <HeaderBlog />
@@ -178,6 +198,7 @@ export default async function PostPage({
             />
           </div>
           <div className="mx-auto max-w-full py-32 sm:py-48 lg:py-32">
+            <SignOut />
             {post ? (
               <div className="text-center text-balance visited:text-slate-900">
                 <h1 className="my-8 py-2 text-4xl hidden text-balance font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-emerald-600 to-violet-500 lg:text-6xl lg:block">
