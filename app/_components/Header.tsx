@@ -14,6 +14,7 @@ const navigation = [
   { name: "Paid Ads", href: "/paid" },
   { name: "Website Development", href: "/website" },
   { name: "Blog", href: "/archive" },
+  { name: "Lab", href: "/lab" },
 ];
 
 const variants = {

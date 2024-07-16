@@ -1,14 +1,7 @@
 "use client";
-import React, { useState, useEffect } from "react";
-const { GoogleGenerativeAI } = require("@google/generative-ai");
-import Markdown from "react-markdown";
-import remarkGfm from "remark-gfm";
-import "dotenv/config";
-import Header from "../_components/Header";
-import { Metadata } from "next";
 
-const apiKey = process.env.NEXT_PUBLIC_GEMINI_API_KEY;
-// const apiKey = "AIzaSyDnQevxvnpRUMFuLT4A7OkNQ-RrP7LSpbw";
+import React, { useState, useEffect } from "react";
+import "dotenv/config";
 
 const GroceryListGenerator: React.FC = () => {
   const [recipeText, setRecipeText] = useState("");
@@ -33,29 +26,20 @@ const GroceryListGenerator: React.FC = () => {
     setError(false);
 
     try {
-      const genAI = new GoogleGenerativeAI(
-        process.env.NEXT_PUBLIC_GEMINI_API_KEY
-      );
-
-      async function run() {
-        const model = genAI.getGenerativeModel({
-          model: "gemini-1.5-flash",
-        });
-        const prompt = `
-        Generate a childrens story in poem format for bedtime with the following things.
-        ${recipeText}
-        Make the poem as simple as possible but, it must rhyme. Also include a moral lesson attached to the end of the story.
-        poem of 16 lines. Start each line on a new line. Localise to Malaysia.
-        `;
-        const result = await model.generateContent(prompt);
-        const response = await result.response;
-        const ingredients = response.text;
-        // const data = JSON.parse(ingredients);
-        setGroceryList(ingredients);
+      const response = await fetch("/api/nraigen", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ recipeText: recipeText }),
+      });
+      const data = await response.json();
+      if (!response.ok) {
+        console.error(data.error);
+      } else {
+        setGroceryList(data.poem);
         setIsLoading(false);
-        // console.log(data);
       }
-      run();
     } catch (error) {
       console.error(error);
       setError(true);
@@ -86,7 +70,7 @@ const GroceryListGenerator: React.FC = () => {
                     onKeyDown={(e) => e.key === "Enter" && enterKey(e)}
                     required
                     className="border border-slate-400 bg-slate-600 text-gray-300 rounded-xl p-2"
-                    placeholder="Write down any particular things you want to have in your story."
+                    placeholder="Write down the first line of your poem."
                   />
                   <button
                     type="submit"
@@ -101,21 +85,25 @@ const GroceryListGenerator: React.FC = () => {
 
               {/* Display the generated grocery list */}
             </div>
-            {groceryList.length === 0 && <p></p>}
-            {groceryList.length > 0 && (
-              <section className="flex-row gap-4 mt-12 h-[100vh] justify-center items-center">
-                <div className="p-8 mt-4 rounded-xl text-center">
-                  <em className="text-3xl text-slate-100 leading-10 font-serif text-italic">
+            {groceryList && (
+              <section className="flex-row gap-4 mt-12 justify-center items-center">
+                <div className="lg:p-8 p-4 mt-4 rounded-xl text-center">
+                  <em className="lg:text-3xl text-xl text-slate-100 leading-10 font-serif text-italic">
                     "{groceryList}"
                   </em>
                 </div>
               </section>
             )}
           </div>
-          <div className="w-[100vw] fixed bottom-6 justify-between items-center opacity-50">
-            <p className="text-gray-300 text-xs">Generated using GenimiAI</p>
+          <div className="fixed bottom-6 justify-between items-center opacity-50">
             <p className="text-gray-300 text-xs">
-              Made by <a href="/">SLM Creatives</a>
+              Generated using Google Generative AI
+            </p>
+            <p className="text-gray-300 text-xs">
+              Made by{" "}
+              <a href="/" className="text-xs link-decoration-none">
+                SLM Creatives
+              </a>
             </p>
           </div>
         </div>
