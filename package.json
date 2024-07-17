@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@ai-sdk/google": "^0.0.27",
     "@emailjs/browser": "^4.3.3",
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
@@ -27,6 +28,7 @@
     "@testing-library/user-event": "^14.5.2",
     "@types/three": "^0.166.0",
     "@vercel/analytics": "^1.3.1",
+    "ai": "^3.2.27",
     "animejs": "^3.2.2",
     "axios": "^1.7.2",
     "expo": "^51.0.18",
@@ -46,7 +48,8 @@
     "react-native-web": "^0.19.12",
     "react-syntax-highlighter": "^15.5.0",
     "sanity": "^3.49.0",
-    "styled-components": "^6.1.11"
+    "styled-components": "^6.1.11",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.13",
