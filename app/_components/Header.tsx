@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect } from "react";
 import React from "react";
 import { useState } from "react";
 import "/app/globals.css";
@@ -13,8 +12,8 @@ const navigation = [
   { name: "Social Media", href: "/content" },
   { name: "Paid Ads", href: "/paid" },
   { name: "Website Development", href: "/website" },
+  { name: "Minder", href: "/lab/minder" },
   { name: "Blog", href: "/archive" },
-  { name: "Gemini Chatbot", href: "/lab/chatbot" },
 ];
 
 const variants = {
