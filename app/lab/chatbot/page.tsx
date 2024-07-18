@@ -7,7 +7,7 @@ import { readStreamableValue } from "ai/rsc";
 // Force the page to be dynamic and allow streaming responses up to 30 seconds
 export const dynamic = "force-dynamic";
 
-export default function Home() {
+export default function Chatbot() {
   const [conversation, setConversation] = useState<Message[]>([]);
   const [input, setInput] = useState<string>("");
 
@@ -17,9 +17,9 @@ export default function Home() {
         <h1 className="text-white font- text-4xl">Gemini Chatbot</h1>
       </div>
       <div className="flex flex-col [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)] h-screen items-center">
-        <div className="flex flex-col gap-4 p-4 text-white w-[70vw]">
+        <div className="flex flex-col gap-4 lg:p-4 p-2 text-white w-[70vw]">
           {conversation.map((message, index) => (
-            <div key={index} className="grid grid-cols-4">
+            <div key={index} className="grid grid-cols-4 overflow-y-scroll">
               <p className="font-semibold capitalize">{message.role}:</p>
               <p className="text-md col-span-3">{message.content}</p>
             </div>

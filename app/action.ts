@@ -1,6 +1,6 @@
 "use server";
 
-import { generateText, streamText } from "ai";
+import { streamText } from "ai";
 import { createGoogleGenerativeAI } from "@ai-sdk/google";
 import { createStreamableValue } from "ai/rsc";
 
@@ -11,6 +11,14 @@ const google = createGoogleGenerativeAI({
 export interface Message {
   role: "user" | "assistant";
   content: string;
+}
+
+export interface Movies {
+  title: string;
+  overview: string;
+  backdrop_path: string;
+  genre: string[];
+  vote_average: number;
 }
 
 export async function continueConversation(history: Message[]) {
