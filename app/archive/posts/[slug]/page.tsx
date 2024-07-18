@@ -7,17 +7,10 @@ import HeaderBlog from "../../../_components/HeaderBlog";
 import Footer from "../../../_components/Footer";
 import Link from "next/link";
 import Image from "next/image";
-import Typography from "@mui/material/Typography";
-import Breadcrumbs from "@mui/material/Breadcrumbs";
-import { CalendarDaysIcon } from "@heroicons/react/24/outline";
+import { ArrowLeftIcon, CalendarDaysIcon } from "@heroicons/react/24/outline";
 import type { Metadata } from "next";
 import AddComments from "../../../_components/AddComments";
-
 import CodeBlock from "../../../_components/CodeBlock";
-import SignIn from "../../../_components/SignIn";
-import SignOut from "../../../_components/SignOut";
-import { auth } from "Sulaiman/auth";
-import { motion } from "framer-motion";
 
 const POST_QUERY = `*[
   _type == "post" &&
@@ -66,10 +59,12 @@ export async function generateMetadata({
     params,
   });
 
-  const { title, excerpt } = post || {};
+  const { title, excerpt, mainImage } = post || {};
   return {
     title,
     description: excerpt,
+    authors: [{ name: "Sulaiman Shafiq" }],
+    creator: "Sulaiman Shafiq",
     robots: { index: true, follow: true, noarchive: true },
     openGraph: {
       title,
@@ -79,6 +74,7 @@ export async function generateMetadata({
     twitter: {
       title,
       description: excerpt,
+      images: [urlForImage(mainImage).width(1200).height(630).url()],
     },
   };
 }
@@ -155,31 +151,6 @@ export default async function PostPage({
   });
 
   const imagesrc = urlForImage(mainImage).width(800).height(450).url();
-
-  const revalidate = 20;
-
-  const session = await auth();
-
-  if (!session)
-    return (
-      <main>
-        <HeaderBlog />
-        <div className="flex justify-center items-center h-screen bg-slate-100">
-          <div className="flex flex-col gap-3 justify-center items-center w-[50%] p-10 ring-1 ring-emerald-400 shadow-lg rounded-xl bg-white">
-            <p className="text-md font-md">Sign In to continue reading </p>
-            <p className="text-4xl text-balance font-bold text-center text-emerald-500">
-              {title}
-            </p>
-            <img
-              src={imagesrc}
-              className="w-[50%] rounded-xl my-4 ring-1 ring-emerald-400"
-            />
-            <SignIn />
-          </div>
-        </div>
-      </main>
-    );
-
   return (
     <main>
       <HeaderBlog />
@@ -198,7 +169,6 @@ export default async function PostPage({
             />
           </div>
           <div className="mx-auto max-w-full py-32 sm:py-48 lg:py-32">
-            <SignOut />
             {post ? (
               <div className="text-center text-balance visited:text-slate-900">
                 <h1 className="my-8 py-2 text-4xl hidden text-balance font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-emerald-600 to-violet-500 lg:text-6xl lg:block">
@@ -216,31 +186,20 @@ export default async function PostPage({
                         width="1100"
                         key={mainImage}
                       />
-                      <Breadcrumbs
-                        aria-label="breadcrumb"
-                        className="text-md mt-8 font-medium my-2 flex leading-6 text-gray-900"
+
+                      <Link
+                        href="/archive"
+                        className="text-md font-medium text-emerald-700 hover:underline cursor-pointer flex mt-8"
                       >
-                        <Link
-                          href="/archive"
-                          className="text-md font-medium text-emerald-700 hover:underline cursor-pointer"
-                        >
-                          Blog
-                        </Link>
-                        <Link
-                          href="#"
-                          className="text-md font-medium text-gray-700"
-                          key={categories[0]?.title}
-                        >
-                          {categories[0]?.title}
-                        </Link>
-                        <Typography color="text.primary">...</Typography>
-                      </Breadcrumbs>
+                        <ArrowLeftIcon className="inline text-emerald-600 w-4 h-4 mr-2 my-auto" />
+                        Back to Blog
+                      </Link>
+
                       <h2
                         key={title}
                         className="text-4xl  lg:text-4xl mt-4 lg:mt-8 text-balance space-y-4 text-left font-bold relative text-gray-900"
                       >
                         {title}
-                        <hr className="w-full hidden my-4 lg:my-4 "></hr>
                         <div className="hidden lg:flex items-center my-4 pt-4 gap-4">
                           <CalendarDaysIcon className="inline text-emerald-600 w-4 h-4 mr-2 my-auto" />{" "}
                           <p

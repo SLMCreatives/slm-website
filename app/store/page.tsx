@@ -2,6 +2,7 @@ import { Card, CardContent } from "@mui/material";
 import Link from "next/link";
 import Footer from "../_components/Footer";
 import Header from "../_components/Header";
+import { Metadata } from "next";
 
 const products = [
   {
@@ -17,6 +18,11 @@ const products = [
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
   },
 ];
+
+const metadata: Metadata = {
+  title: "Store | SLM Creatives",
+  description: "Store",
+};
 
 export default function Store() {
   return (
