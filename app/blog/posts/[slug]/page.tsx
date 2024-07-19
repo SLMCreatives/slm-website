@@ -11,12 +11,16 @@ import { ArrowLeftIcon, CalendarDaysIcon } from "@heroicons/react/24/outline";
 import type { Metadata } from "next";
 import AddComments from "../../../_components/AddComments";
 import CodeBlock from "../../../_components/CodeBlock";
+import ShareButtons from "../../../_components/ShareButtons";
+import { url } from "inspector";
+import { cursorTo } from "readline";
 
 const POST_QUERY = `*[
   _type == "post" &&
   slug.current == $slug
 ][0]{
   _id,
+  slug,
   title,
   publishedAt,
   _updatedAt,
@@ -69,7 +73,7 @@ export async function generateMetadata({
     openGraph: {
       title,
       description: excerpt,
-      url: `https://slmcreatives.com/archive/posts/${params.slug}`,
+      url: `https://slmcreatives.com/blog/posts/${params.slug}`,
     },
     twitter: {
       title,
@@ -103,6 +107,8 @@ export default async function PostPage({
     author,
     categories,
     mainImage,
+    slug,
+    url,
   } = post || {};
 
   const comments = post?.comments || [];
@@ -151,6 +157,8 @@ export default async function PostPage({
   });
 
   const imagesrc = urlForImage(mainImage).width(800).height(450).url();
+
+  const urlCurrent = `https://slmcreatives.com/blog/posts/${params.slug}`;
   return (
     <main>
       <HeaderBlog />
@@ -171,10 +179,6 @@ export default async function PostPage({
           <div className="mx-auto max-w-full py-32 sm:py-48 lg:py-32">
             {post ? (
               <div className="text-center text-balance visited:text-slate-900">
-                <h1 className="my-8 py-2 text-4xl hidden text-balance font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-emerald-600 to-violet-500 lg:text-6xl lg:block">
-                  Digital Marketing Tips 2024{" "}
-                </h1>
-
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mt-4 lg:mt-20 mx-auto items-top justify-center lg:mx-20 ">
                   <div className="col-span-1 mt-0 lg:mt-4 mx-4 lg:mx-0 ">
                     <div className="sticky top-20">
@@ -188,18 +192,18 @@ export default async function PostPage({
                       />
 
                       <Link
-                        href="/archive"
+                        href="/blog"
                         className="text-md font-medium text-emerald-700 hover:underline cursor-pointer flex mt-8"
                       >
                         <ArrowLeftIcon className="inline text-emerald-600 w-4 h-4 mr-2 my-auto" />
                         Back to Blog
                       </Link>
-
                       <h2
                         key={title}
-                        className="text-4xl  lg:text-4xl mt-4 lg:mt-8 text-balance space-y-4 text-left font-bold relative text-gray-900"
+                        className="text-4xl  lg:text-4xl my-4 lg:mt-8 text-balance space-y-4 text-left font-bold relative text-gray-900"
                       >
                         {title}
+
                         <div className="hidden lg:flex items-center my-4 pt-4 gap-4">
                           <CalendarDaysIcon className="inline text-emerald-600 w-4 h-4 mr-2 my-auto" />{" "}
                           <p
@@ -253,8 +257,6 @@ export default async function PostPage({
                               Freelance Digital Marketer
                             </p>
                           </div>
-                          {/*                           <p>{author?.bio.children.text}</p>
-                           */}{" "}
                         </div>
                       </h2>
                     </div>
@@ -270,6 +272,9 @@ export default async function PostPage({
                           components={ptComponents}
                           onMissingComponent={false}
                         />
+                        <div className="flex justify-end">
+                          <ShareButtons urlR={urlCurrent} titleR={title} />
+                        </div>
                       </div>
                     )}
                   </div>

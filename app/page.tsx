@@ -60,9 +60,8 @@ const features = [
   },
 ];
 
-const revalidate = 10;
-
 export default function Home() {
+  const revalidate = 20;
   const router = useRouter();
   return (
     <main>
@@ -107,7 +106,7 @@ export default function Home() {
                     behavior: "smooth",
                   });
                 }}
-                className="bg-gradient-to-br from-emerald-600 text-sm to-emerald-900 opacity-90 hover:opacity-100 hover:from-emerald-900 hover:to-emerald-600 text-white font-medium rounded-lg px-5 py-3 mt-12 shadow-lg"
+                className="bg-gradient-to-br from-emerald-600 text-sm to-emerald-900 opacity-90 hover:opacity-100 hover:from-emerald-900 hover:to-emerald-600 text-white font-medium rounded-lg px-5 py-3 mt-12 shadow-lg cursor-pointer"
               >
                 Marketing Solutions
               </motion.button>
@@ -116,11 +115,11 @@ export default function Home() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 2 }}
                 onClick={() => {
-                  router.push("/contact");
+                  router.push("/form");
                 }}
-                className="ml-6 bg-transparent ring-1 ring-emerald-700  text-emerald-700 hover:ring-2 font-medium text-sm rounded-lg px-5 py-3 mt-12 shadow-lg"
+                className="ml-6 bg-transparent cursor-pointer ring-1 ring-emerald-700  text-emerald-700 hover:ring-2 font-medium text-sm rounded-lg px-5 py-3 mt-12 shadow-lg"
               >
-                Get In Contact
+                Get Free Quotation
               </motion.button>
             </div>
           </div>

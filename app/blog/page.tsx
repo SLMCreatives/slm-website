@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { SanityDocument } from "next-sanity";
-import Header from "../_components/Header";
+import HeaderBlog from "../_components/Header";
 import Footer from "../_components/Footer";
 import imageUrlBuilder from "@sanity/image-url";
 import Image from "next/image";
@@ -28,10 +28,12 @@ function dateFormated(publishedAt: string) {
 
 export const metadata: Metadata = {
   title: "Digital Marketing Tips | SLM Creatives",
-  description: "Archive",
+  description:
+    "The latest trends and valuable insight on current digital marketing tips as a freelancer in Malaysia",
   openGraph: {
     title: "Digital Marketing Tips | SLM Creatives",
-    description: "Archive",
+    description:
+      "The latest trends and valuable insight on current digital marketing tips as a freelancer in Malaysia",
   },
 };
 
@@ -39,14 +41,14 @@ export default async function IndexPage() {
   const posts = await sanityFetch<SanityDocument[]>({ query: POSTS_QUERY });
   return (
     <main>
-      <Header />
+      <HeaderBlog />
 
       <div className="flex justify-center items-center bg-white">
         <div className="relative isolate px-6 pt-14 lg:px-8">
           <div className="mx-auto max-w-2xl pt-24 lg:pt-56 lg:pb-32">
             <div className="text-left lg:text-center text-balance ml-4">
               <h1 className="py-8 -my-8 text-4xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-emerald-600 to-violet-500 sm:text-6xl">
-                Digital Marketing Tips
+                Digital Marketing Blog Malaysia
               </h1>
               <p className="mt-4 text-md lg:text-lg text-gray-600">
                 Get the latest trends and valuable digital marketing tips.
@@ -64,7 +66,7 @@ export default async function IndexPage() {
             >
               <Link
                 className="link:text-emerald-600 link:visited:text-emerald-300 cursor-pointer"
-                href={`/archive/posts/${post?.slug.current}`}
+                href={`/blog/posts/${post?.slug.current}`}
               >
                 <div className="sm:flex-flow-row md:flex-auto lg:flex  lg:my-4  mx-auto items-center justify-left w-full">
                   <Image

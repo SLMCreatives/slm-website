@@ -129,6 +129,9 @@ dependencies:
   react-native-web:
     specifier: ^0.19.12
     version: 0.19.12(react-dom@18.3.1)(react@18.3.1)
+  react-share:
+    specifier: ^5.1.0
+    version: 5.1.0(react@18.3.1)
   react-syntax-highlighter:
     specifier: ^15.5.0
     version: 15.5.0(react@18.3.1)
@@ -3563,7 +3566,7 @@ packages:
       '@types/jss': 9.5.8
       '@types/react-transition-group': 2.9.2
       brcast: 3.0.2
-      classnames: 2.2.6
+      classnames: 2.5.1
       csstype: 2.6.21
       debounce: 1.2.1
       deepmerge: 3.3.0
@@ -10070,6 +10073,14 @@ packages:
       graceful-fs: 4.2.11
     dev: false
 
+  /jsonp@0.2.1:
+    resolution: {integrity: sha512-pfog5gdDxPdV4eP7Kg87M8/bHgshlZ5pybl+yKxAnCZ5O7lCIn7Ixydj03wOlnDQesky2BPyA91SQ+5Y/mNwzw==}
+    dependencies:
+      debug: 2.6.9
+    transitivePeerDependencies:
+      - supports-color
+    dev: false
+
   /jss-camel-case@6.1.0(jss@9.8.7):
     resolution: {integrity: sha512-HPF2Q7wmNW1t79mCqSeU2vdd/vFFGpkazwvfHMOhPlMgXrJDzdj9viA2SaHk9ZbD5pfL63a8ylp4++irYbbzMQ==}
     peerDependencies:
@@ -12620,6 +12631,18 @@ packages:
       react-dom: 18.3.1(react@18.3.1)
     dev: false
 
+  /react-share@5.1.0(react@18.3.1):
+    resolution: {integrity: sha512-OvyfMtj/0UzH1wi90OdHhZVJ6WUC/+IeWvBwppeZozwIGyAjQgyR0QXlHOrxVHVECqnGvcpBaFTXVrqouTieaw==}
+    peerDependencies:
+      react: ^17 || ^18
+    dependencies:
+      classnames: 2.5.1
+      jsonp: 0.2.1
+      react: 18.3.1
+    transitivePeerDependencies:
+      - supports-color
+    dev: false
+
   /react-style-proptype@3.2.2:
     resolution: {integrity: sha512-ywYLSjNkxKHiZOqNlso9PZByNEY+FTyh3C+7uuziK0xFXu9xzdyfHwg4S9iyiRRoPCR4k2LqaBBsWVmSBwCWYQ==}
     dependencies:
@@ -12655,7 +12678,7 @@ packages:
       react-dom: '>=15.0.0'
     dependencies:
       '@babel/runtime': 7.24.7
-      classnames: 2.2.6
+      classnames: 2.5.1
       prop-types: 15.7.2
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
