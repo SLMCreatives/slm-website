@@ -29,11 +29,11 @@ function dateFormated(publishedAt: string) {
 export const metadata: Metadata = {
   title: "Digital Marketing Tips | SLM Creatives",
   description:
-    "The latest trends and valuable insight on current digital marketing tips as a freelancer in Malaysia",
+    "The latest trends and valuable insight on current digital marketing tips by a freelancer creative digital marketer in Malaysia",
   openGraph: {
     title: "Digital Marketing Tips | SLM Creatives",
     description:
-      "The latest trends and valuable insight on current digital marketing tips as a freelancer in Malaysia",
+      "The latest trends and valuable insight on current digital marketing tips by a freelancer creative digital marketer in Malaysia",
   },
 };
 
@@ -45,7 +45,7 @@ export default async function IndexPage() {
 
       <div className="flex justify-center items-center bg-white">
         <div className="relative isolate px-6 pt-14 lg:px-8">
-          <div className="mx-auto max-w-2xl pt-24 lg:pt-56 lg:pb-32">
+          <div className="mx-auto max-w-2xl pt-24 lg:pt-32 lg:pb-12">
             <div className="text-left lg:text-center text-balance ml-4">
               <h1 className="py-8 -my-8 text-4xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-emerald-600 to-violet-500 sm:text-6xl">
                 Digital Marketing Blog Malaysia
@@ -57,27 +57,30 @@ export default async function IndexPage() {
           </div>
         </div>
       </div>
-      <div className="flex flex-col gap-12 px-6 md:px-24 lg:px-32 py-8 bg-white bg-linear-gradient bg-gradient-to-b from-white to-slate-200">
+      <div className="flex flex-col gap-12 px-6 md:px-24 lg:px-12 py-8 bg-linear-gradient bg-gradient-to-b from-white to-slate-200">
         <ul className="grid grid-cols-1 gap-6 lg:grid-cols-1 lg:gap-12 lg:w-[70%] w-[95%] mx-auto">
-          {posts.map((post) => (
+          {posts.map((post: SanityDocument) => (
             <li
-              className="bg-white shadow-lg items-between justify-between hover:ring-1 hover:ring-emerald-600 hover:shadow-xl p-4 lg:p-4 ring-1 ring-gray-200 rounded-lg cursor-pointer"
+              className="bg-slate-100 shadow-lg items-between justify-between hover:ring-1 hover:ring-emerald-600 hover:shadow-xl p-4 lg:p-4 ring-1 ring-gray-200 rounded-lg cursor-pointer"
               key={post?._id}
             >
               <Link
                 className="link:text-emerald-600 link:visited:text-emerald-300 cursor-pointer"
                 href={`/blog/posts/${post?.slug.current}`}
               >
-                <div className="sm:flex-flow-row md:flex-auto lg:flex  lg:my-4  mx-auto items-center justify-left w-full">
+                <div
+                  className="sm:flex-flow-row  md:flex-auto lg:flex  lg:my-4  mx-auto items-center justify-left w-full"
+                  key={post?._id}
+                >
                   <Image
-                    className="hidden lg:block lg:max-h-32 lg:max-w-48 lg:mr-12 lg:ml-8 object-cover rounded-lg"
+                    className="hidden lg:block lg:max-h-36 w-1/2 lg:mr-12 lg:ml-8 object-cover rounded-lg"
                     src={urlForPosts(post?.mainImage) || "/logo.png"}
                     alt={post.title}
                     width={500}
                     height={1000}
                   />
                   <div className="flex flex-col w-full p-2 mr-4">
-                    <h2 className="text-md text-gray-800 lg:text-3xl leading-2 font-semibold line-clamp-2">
+                    <h2 className="text-xl text-gray-800 lg:text-2xl leading-2 font-semibold line-clamp-2">
                       {post?.title}
                     </h2>
                     <p className="parse text-gray-500 lg:mr-8 text-sm mt-4 font-light line-clamp-3">

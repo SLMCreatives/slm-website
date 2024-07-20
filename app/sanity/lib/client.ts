@@ -1,5 +1,3 @@
-import "server-only";
-
 import { createClient, type QueryParams } from "next-sanity";
 
 export const client = createClient({
@@ -13,16 +11,18 @@ export const client = createClient({
 export async function sanityFetch<QueryResponse>({
   query,
   params = {},
-  tags,
+  revalidate = 60, // default revalidation time in seconds
+  tags = [],
 }: {
   query: string;
   params?: QueryParams;
+  revalidate?: number | false;
   tags?: string[];
 }) {
   return client.fetch<QueryResponse>(query, params, {
     next: {
-      revalidate: process.env.NODE_ENV === "production" ? 30 : 3600,
-      tags,
+      revalidate: tags.length ? false : revalidate, // for simple, time-based revalidation
+      tags, // for tag-based revalidation
     },
   });
 }

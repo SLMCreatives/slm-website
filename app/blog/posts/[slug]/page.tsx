@@ -12,8 +12,6 @@ import type { Metadata } from "next";
 import AddComments from "../../../_components/AddComments";
 import CodeBlock from "../../../_components/CodeBlock";
 import ShareButtons from "../../../_components/ShareButtons";
-import { url } from "inspector";
-import { cursorTo } from "readline";
 
 const POST_QUERY = `*[
   _type == "post" &&
