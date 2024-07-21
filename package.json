@@ -18,6 +18,7 @@
     "@heroicons/react": "^2.1.4",
     "@mui/material": "^5.16.0",
     "@next/third-parties": "^14.2.4",
+    "@operationnation/sanity-plugin-schema-markup": "^1.0.12",
     "@react-three/fiber": "^8.16.8",
     "@sanity/cli": "^3.51.0",
     "@sanity/code-input": "^4.1.4",

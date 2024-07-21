@@ -13,17 +13,17 @@
   <priority>1.00</priority>
 </url>
 <url>
-  <loc>https://www.slmcreatives.com/content</loc>
+  <loc>https://www.slmcreatives.com/services/content</loc>
   <lastmod>2024-07-18T19:36:50+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://www.slmcreatives.com/paid</loc>
+  <loc>https://www.slmcreatives.com/services/lead-gen</loc>
   <lastmod>2024-07-18T19:36:50+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://www.slmcreatives.com/website</loc>
+  <loc>https://www.slmcreatives.com/services/website</loc>
   <lastmod>2024-07-18T19:36:50+00:00</lastmod>
   <priority>0.80</priority>
 </url>
@@ -88,7 +88,7 @@
   <priority>0.64</priority>
 </url>
 <url>
-  <loc>https://www.slmcreatives.com/archive/posts/website-checklist-for-corporate-website</loc>
+  <loc>https://www.slmcreatives.com/archive/posts/services/website-checklist-for-corporate-website</loc>
   <lastmod>2024-07-18T19:36:50+00:00</lastmod>
   <priority>0.64</priority>
 </url>

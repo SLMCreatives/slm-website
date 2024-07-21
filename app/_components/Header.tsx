@@ -9,9 +9,9 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { motion } from "framer-motion";
 
 const navigation = [
-  { name: "Social Media", href: "/content" },
-  { name: "Lead Generation", href: "/paid" },
-  { name: "Website Development", href: "/website" },
+  { name: "Social Media", href: "/services/content" },
+  { name: "Lead Generation", href: "/services/lead-gen" },
+  { name: "Website Development", href: "/services/website" },
 ];
 
 const variants = {

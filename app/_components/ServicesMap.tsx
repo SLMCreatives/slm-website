@@ -4,17 +4,17 @@ import Link from "next/link";
 const services = [
   {
     name: "Social Media Marketing",
-    href: "/content",
+    href: "/services/content",
     desc: "Creative content creation based on marketing strategy",
   },
   {
     name: "Website Development",
-    href: "/website",
+    href: "/services/website",
     desc: "Modern web experience for your brand",
   },
   {
     name: "Lead Generation",
-    href: "/paid",
+    href: "/services/lead-gen",
     desc: "Generate quality leads and convert them into customers",
   },
 ];

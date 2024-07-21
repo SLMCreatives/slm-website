@@ -27,7 +27,7 @@ const Footer = () => {
           <li>
             <a
               className="text-gray-700 transition hover:text-gray-700/75"
-              href="/content"
+              href="/services/content"
             >
               {" "}
               Social Media{" "}
@@ -37,7 +37,7 @@ const Footer = () => {
           <li>
             <a
               className="text-gray-700 transition hover:text-gray-700/75"
-              href="/paid"
+              href="/services/lead-gen"
             >
               {" "}
               Lead Generation{" "}
@@ -47,7 +47,7 @@ const Footer = () => {
           <li>
             <a
               className="text-gray-700 transition hover:text-gray-700/75"
-              href="/website"
+              href="/services/website"
             >
               {" "}
               Website Dev{" "}
