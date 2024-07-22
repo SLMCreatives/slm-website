@@ -1,10 +1,18 @@
-import { PortableText, SanityDocument } from "next-sanity";
+import { SanityDocument } from "next-sanity";
 import Header from "../../../_components/Header";
 import Footer from "../../../_components/Footer";
 import { client, sanityFetch } from "../../../sanity/lib/client";
 import imageUrlBuilder from "@sanity/image-url";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import { buttonVariants } from "Sulaiman/S/components/ui/button";
+import { PortableText } from "next-sanity";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "Sulaiman/S/components/ui/carousel";
 
 const builder = imageUrlBuilder(client);
 const urlForImage = (source: any) => {
@@ -70,22 +78,26 @@ export default async function Page({ params }: { params: { slug: string } }) {
                     <PortableText value={product.instruction} />
                   </div>
 
-                  {product.gallery && product.gallery.length > 0 ? (
-                    <div className="grid grid-cols-2 gap-4 mt-4">
-                      {product.gallery.map((image: any) => (
-                        <img
-                          src={urlForImage(image)
-                            .width(1080)
-                            .height(1080)
-                            .url()}
-                          alt={image.alt}
-                          width={1080}
-                          height={1080}
-                          className="rounded-xl first-of-type:col-span-2"
-                        />
+                  <Carousel className="mt-8">
+                    <CarouselPrevious className="absolute -left-4 top-1/2 -translate-y-1/2 z-10" />
+                    <CarouselContent>
+                      {product?.gallery.map((product: any) => (
+                        <CarouselItem key={product._id} className="p-4">
+                          <img
+                            src={urlForImage(product)
+                              .width(1080)
+                              .height(1080)
+                              .url()}
+                            alt={product.title}
+                            width={500}
+                            height={500}
+                            className="rounded-xl"
+                          />
+                        </CarouselItem>
                       ))}
-                    </div>
-                  ) : null}
+                    </CarouselContent>
+                    <CarouselNext className="absolute -right-4 top-1/2 -translate-y-1/2 z-10" />
+                  </Carousel>
                 </div>
               </div>
             </div>
