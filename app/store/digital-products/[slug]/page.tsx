@@ -3,6 +3,8 @@ import Header from "../../../_components/Header";
 import Footer from "../../../_components/Footer";
 import { client, sanityFetch } from "../../../sanity/lib/client";
 import imageUrlBuilder from "@sanity/image-url";
+import { ArrowRightIcon } from "@heroicons/react/24/outline";
+import { buttonVariants } from "Sulaiman/S/components/ui/button";
 
 const builder = imageUrlBuilder(client);
 const urlForImage = (source: any) => {
@@ -27,49 +29,64 @@ export default async function Page({ params }: { params: { slug: string } }) {
         {product ? (
           <div className="relative isolate px-6 pt-14 lg:px-8">
             <div className="mx-auto max-w-2xl pt-24 lg:pt-32 lg:pb-12">
-              <div className="text-left lg:text-center text-balance ml-4">
-                <img
-                  src={imagesrc}
-                  alt={product.title}
-                  width={1080}
-                  height={1080}
-                  className="rounded-3xl"
-                />
-                {product.gallery && product.gallery.length > 0 ? (
-                  <div className="grid grid-cols-3 gap-4 mt-4">
-                    {product.gallery.map((image: any) => (
-                      <img
-                        src={urlForImage(image).width(200).height(200).url()}
-                        alt={image.alt}
-                        width={1080}
-                        height={1080}
-                        className="rounded-xl"
-                      />
-                    ))}
+              <div className="text-left ml-4">
+                <div className="flex flex-col lg:flex-grow-0">
+                  <div>
+                    <img
+                      src={imagesrc}
+                      alt={product.title}
+                      width={1080}
+                      height={1080}
+                      className="rounded-xl"
+                    />
                   </div>
-                ) : null}
-                <h1 className="py-8 -my-8 text-4xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-emerald-600 to-violet-500 sm:text-6xl">
-                  {product.title}
-                </h1>
-                <p className="mt-4 text-md lg:text-lg text-gray-600">
-                  {product.description}
-                </p>
-                <p className="inline">{product.priceCurrency}</p> {""}
-                <p className="inline text-md lg:text-lg text-gray-600">
-                  {product.price}
-                </p>
-                <div
-                  key={product._id}
-                  className="prose max-w-none text-md lg:text-md lg:mt-4 lg:px-4"
-                >
-                  <PortableText value={product.instruction} />
-                </div>{" "}
-                <a
-                  href={product.paymentUrl}
-                  className="mt-4 text-md lg:text-lg text-gray-600 rounded-xl p-2 font-semibold leading-relaxed text-center"
-                >
-                  Buy Now!
-                </a>
+                </div>
+                <div className="">
+                  <div className="flex flex-row flex-nowrap items-center justify-between">
+                    <h1 className="py-8  text-4xl font-black bg-clip-text text-transparent bg-gradient-to-r from-emerald-600 to-violet-500 sm:text-6xl">
+                      {product.title}
+                      <p className="mt-4 text-lg font-medium text-gray-600">
+                        {product.description}
+                      </p>
+                      <div className="flex flex-row gap-4 items-center justify-between">
+                        <p className="mt-4 text-lg font-semibold text-gray-600">
+                          {"RM " + product.price + "0"}
+                        </p>
+                        <a
+                          href="{product.paymentUrl}"
+                          className={buttonVariants({ variant: "secondary" })}
+                        >
+                          Buy Now
+                          <ArrowRightIcon className="w-4 h-4 ml-2 inline" />
+                        </a>
+                      </div>
+                    </h1>
+                  </div>
+
+                  <div
+                    key={product._id}
+                    className="prose mt-2 p-8 border border-gray-300 rounded-xl"
+                  >
+                    <PortableText value={product.instruction} />
+                  </div>
+
+                  {product.gallery && product.gallery.length > 0 ? (
+                    <div className="grid grid-cols-2 gap-4 mt-4">
+                      {product.gallery.map((image: any) => (
+                        <img
+                          src={urlForImage(image)
+                            .width(1080)
+                            .height(1080)
+                            .url()}
+                          alt={image.alt}
+                          width={1080}
+                          height={1080}
+                          className="rounded-xl first-of-type:col-span-2"
+                        />
+                      ))}
+                    </div>
+                  ) : null}
+                </div>
               </div>
             </div>
           </div>
