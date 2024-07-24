@@ -14,30 +14,37 @@ import {
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Card, CardContent, CardHeader } from "@mui/material";
-import { StarIcon } from "@heroicons/react/24/outline";
+import { ArrowRightCircleIcon, StarIcon } from "@heroicons/react/24/outline";
 
 export default function ModeToggle() {
   return (
     <main>
       <div className="flex flex-col gap-2 bg-white dark:bg-black dark:text-slate-50">
-        <div className="fixed top-2 left-2 flex flex-row items-center justify-between h-[1rem] z-10 gap-4 p-4 bg-white dark:bg-black rounded-full">
+        <div className="absolute top-2 left-2 flex flex-row items-center justify-between h-[1rem] z-10 gap-4 p-4 bg-white dark:bg-black rounded-full">
           <h1 className="uppercase ">Mfhror.com</h1>
           <ThemeToggle />
         </div>
-        <div className="grid grid-cols-1 gap-10 items-center justify-center p-10 lg:px-24">
+        <div className="grid grid-cols-1 gap-10 items-center justify-center pl-6 py-4 lg:px-24">
           <div className="flex flex-col items-center justify-center ">
             <ReviewCard />
           </div>
           <div className="flex flex-col gap-4">
-            <p className="font-md text-sm uppercase">TTDI</p>
+            <p className="font-md text-sm uppercase opacity-70">
+              TTDI <ArrowRightCircleIcon className="w-5 h-5 inline ml-4" />
+            </p>
             <Poloroid />
           </div>
           <div className="flex flex-col gap-4">
-            <p className="font-md text-sm uppercase">Ampang</p>
+            <p className="font-md text-sm uppercase opacity-70">
+              Ampang <ArrowRightCircleIcon className="w-5 h-5 inline ml-4" />
+            </p>
             <Poloroid />
           </div>
           <div className="flex flex-col gap-4">
-            <p className="font-md text-sm uppercase">Kota Damansara</p>
+            <p className="font-md text-sm uppercase opacity-70">
+              Kota Damansara
+              <ArrowRightCircleIcon className="w-5 h-5 inline ml-4" />
+            </p>
             <Poloroid />
           </div>
         </div>
@@ -61,7 +68,10 @@ function ThemeToggle() {
           <span className="sr-only">Toggle theme</span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
+      <DropdownMenuContent
+        align="end"
+        className="dark:bg-slate-900 bg-white p-2 flex flex-col gap-2 rounded-md absolute isolate top-2 left-2"
+      >
         <DropdownMenuItem onClick={() => setTheme("light")}>
           Light
         </DropdownMenuItem>
@@ -82,14 +92,14 @@ function ReviewCard() {
     <>
       <div className="absolute p-8 right-0 top-4">
         <Button
-          className="fixed top-2 right-2 hover:bg-slate-100 dark:hover:bg-slate-900 dark:bg-slate-700"
+          className="fixed top-4 right-2 hover:bg-slate-100 bg-slate-50 dark:hover:bg-slate-900 dark:bg-slate-700"
           variant="outline"
           onClick={() => setOpen(true)}
         >
           Add Review
         </Button>
         {open === true && (
-          <div className="absolute top-10 right-2">
+          <div className="absolute top-10 right-2 z-10">
             <div className="w-[20em] h-auto border border-black dark:border-slate-200/50 dark:shadow-white dark:shadow-sm dark:bg-slate-900 rounded-md p-2 bg-white shadow-xl">
               <Button
                 className="absolute top-2 right-1 bg-white dark:bg-slate-900 dark:text-white"
