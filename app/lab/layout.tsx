@@ -1,4 +1,4 @@
-import { ThemeProvider } from "../../../S/components/theme-provider";
+import { ThemeProvider } from "../../S/components/theme-provider";
 
 export default function RootLayout({
   children,
