@@ -6,7 +6,9 @@ import { StarIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import ScrollTop from "Sulaiman/app/_components/ScrollTop";
 import { motion, useAnimate, useMotionValue, animate } from "framer-motion";
 import {
+  Check,
   CheckIcon,
+  ChevronsUpDown,
   ExternalLinkIcon,
   LinkIcon,
   Moon,
@@ -44,6 +46,18 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "Sulaiman/S/components/ui/popover";
+import { Item } from "@radix-ui/react-dropdown-menu";
+import { useFormStatus } from "react-dom";
+import Search from "Sulaiman/app/lab/minder/components/Search";
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+} from "Sulaiman/S/components/ui/command";
+import { cn } from "Sulaiman/S/lib/utils";
 
 const initialItems = [0, 1, 2, 3, 4];
 const height = 70;
@@ -166,8 +180,11 @@ export default function Minder() {
   const { top, bottom } = useConstraints(movies);
   const totalScroll = getHeight(movies);
   const scrollContainer = 150;
+  const { pending } = useFormStatus();
+  const [open, setOpen] = React.useState(false);
+  const [value, setValue] = React.useState("");
 
-  async function onDelete(index: number) {
+  async function onDelete(index: number, movie: any) {
     const newMovies = [...movies];
     newMovies.splice(index, 1);
 
@@ -189,64 +206,133 @@ export default function Minder() {
         <ScrollTop />
         <ThemeToggle />
       </div>
-      <div className="flex flex-col p-6 pb-2 justify-center bg-white dark:bg-black text-slate-900 dark:text-white">
-        <h1 className="font-black text-6xl">Movie Search by Genre</h1>
-        <p className="pt-4">Find the perfect movie to watch</p>
-      </div>
+      <div className="w-full">
+        <div className="flex flex-col p-6 lg:pt-20 pb-2 lg:items-center justify-center bg-white dark:bg-black text-slate-900 dark:text-white">
+          <h1 className="font-black text-6xl">Movie Search by Genre</h1>
+          <p className="pt-4">Find the perfect movie to watch</p>
+        </div>
+        <div className="flex lg:flex-col flex-row p-6 lg:px-64 lg:items-center justify-left bg-white dark:bg-black text-slate-900 dark:text-white">
+          {/* <Search search={genre} /> */}
 
-      <div className="flex lg:flex-col flex-row p-6 justify-left bg-white dark:bg-black text-slate-900 dark:text-white">
-        <form
-          className="flex gap-4"
-          onSubmit={(event) => {
-            event.preventDefault();
-            handleReset();
-            setPage(1);
-            handleLoad(page, genre);
-            return setMovies([...movies]);
-          }}
-        >
-          <select
-            name="genres"
-            id="genres"
-            className="bg-slate-300 dark:bg-slate-700 p-4 font-black rounded uppercase "
-            onChange={(event) => {
+          <Popover open={open} onOpenChange={setOpen}>
+            <PopoverTrigger asChild>
+              <Button
+                variant="outline"
+                role="combobox"
+                aria-expanded={open}
+                className="w-[400px] justify-between dark:bg-slate-950 dark:hover:text-slate-200"
+              >
+                {value
+                  ? genres_names.find((genre) => genre.name === value)?.name
+                  : "Select genre..."}
+                <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent className="w-[400px] p-0 dark:bg-slate-950">
+              <Command>
+                <CommandInput
+                  placeholder="Search genre..."
+                  className="p-2 focus:outline-none"
+                />
+                <CommandEmpty>No genre found.</CommandEmpty>
+                <CommandList>
+                  <CommandGroup>
+                    {genres_names.map((genre) => (
+                      <CommandItem
+                        className=" p-2"
+                        key={genre.id}
+                        value={genre.name}
+                        onSelect={(currentValue) => {
+                          setValue(currentValue === value ? "" : currentValue);
+                          setOpen(false);
+                          setGenre(currentValue);
+                          setPage(1);
+                          handleLoad(page, genre.id.toString());
+                        }}
+                      >
+                        <Check
+                          className={cn(
+                            "mr-2 h-4 w-4",
+                            value === genre.name ? "opacity-100" : "opacity-0"
+                          )}
+                        />
+                        {genre.name}
+                      </CommandItem>
+                    ))}
+                  </CommandGroup>
+                </CommandList>
+                <Command></Command>
+              </Command>
+            </PopoverContent>
+          </Popover>
+          {/*  <form
+            className="flex gap-4"
+            onSubmit={(event) => {
               event.preventDefault();
-              setGenre(event.target.value);
+              setPage(1);
+              handleLoad(page, genre);
+              return setMovies([...movies]);
             }}
           >
-            {genres_names.map((genre) => (
-              <option key={genre.id} value={genre.id} className="p-6">
-                {genre.name}
+            <select
+              name="genres"
+              id="genres"
+              value={genre}
+              className="bg-slate-300 dark:bg-slate-700 p-4 px-8 w-72 font-black rounded-full uppercase"
+              onChange={(event) => {
+                event.preventDefault();
+                setGenre(event.target.value);
+                setPage(1);
+                handleLoad(page, event.target.value);
+                window.scrollTo({ top: 400, behavior: "smooth" });
+              }}
+              disabled={pending}
+            >
+              <option disabled value="">
+                Pick a genre
               </option>
-            ))}
-          </select>
-          <button
-            type="submit"
-            className="bg-slate-200 dark:bg-slate-700 hover:bg-slate-700 hover:text-white dark:hover:bg-slate-200 dark:hover:text-slate-900 font-bold py-2 px-4 rounded"
-          >
-            Discover
-          </button>
-          {movies.length !== 0 && (
+              {genres_names.map((genre, index) => (
+                <option
+                  key={genre.id}
+                  defaultChecked
+                  id={genre.name}
+                  value={genre.id}
+                >
+                  {genre.name}
+                </option>
+              ))}
+            </select>
             <button
               type="submit"
-              className="ring-1 ring-slate-300 hover:bg-slate-500 text-slate-300 font-bold py-2 px-4 rounded hover:text-white hover:ring-0"
-              onClick={handleReset}
+              className="bg-slate-200 dark:bg-slate-700 hover:bg-slate-700 hover:text-white dark:hover:bg-slate-200 dark:hover:text-slate-900 font-bold py-2 px-4 rounded"
+              disabled={pending}
             >
-              Reset
+              {pending ? "Collecting..." : "Discover"}
             </button>
+            {movies.length !== 0 && (
+              <button
+                type="submit"
+                className="ring-1 ring-slate-300 hover:bg-slate-500 text-slate-300 font-bold py-2 px-4 rounded hover:text-white hover:ring-0"
+                onClick={handleReset}
+              >
+                Reset
+              </button>
+            )}
+          </form> */}
+        </div>
+        {/* Movies Cards */}
+        <section className="flex flex-col min-h-[90vh] p-6 lg:px-64 lg:pt-20  justify-top bg-white dark:bg-gradient-to-b dark:from-black dark:to-slate-700 text-slate-900 dark:text-white relative items-center">
+          <h3 className=" text-2xl font-semibold">Latest Movies </h3>
+          {movies.length === 0 && (
+            <p className="py-8 pb-[50%] opacity-50">
+              Pick a Genre and hit the discover button
+            </p>
           )}
-        </form>
-      </div>
-      <section className="flex flex-col min-h-[90vh] p-6  justify-top bg-white dark:bg-black text-slate-900 dark:text-white relative">
-        <h3 className=" text-2xl font-semibold">Results List</h3>
-        {movies.length === 0 && (
-          <p className="py-8 pb-[50%] opacity-50">
-            Pick a Genre and hit the discover button
-          </p>
-        )}
-        <Suspense fallback={<Loading />}>
           {movies.length !== 0 && (
-            <div className="flex flex-col p-1 justify-center" key={page}>
+            <div
+              className="grid grid-cols-1 p-1 lg:px-56 justify-center"
+              key={page}
+            >
               <div>
                 <MovieCard
                   movies={movies}
@@ -257,24 +343,27 @@ export default function Minder() {
               </div>
             </div>
           )}
-        </Suspense>
-        {movies.length > 1 && (
-          <button
-            className=" bg-slate-700 hover:bg-slate-800 font-bold py-3 rounded-xl mt-8"
-            onClick={() => {
-              setPage((prevPage) => prevPage + 1);
-              handleLoad(page + 1, genre);
-              return setMovies((prevMovies) => [...prevMovies, ...movies]);
-            }}
-          >
-            Load More
-          </button>
-        )}
-        <p className="text-xs relative bottom-1 opacity-50">
-          *This product uses the TMDB API but is not endorsed or certified by
-          TMDB.
-        </p>
-      </section>
+          <div className="flex flex-col items-center gap-4">
+            {/* {movies.length > 1 && (
+              <button
+                className="flex justify-center w-1/2 bg-slate-200 hover:bg-slate-800 hover:text-white font-bold py-3 rounded-xl mt-8"
+                onClick={() => {
+                  setPage((page) => page + 1);
+                  //handleLoad(page, genre);
+                  window.scrollTo({ top: 400, behavior: "smooth" });
+                  return setMovies((prevMovies) => [...prevMovies, ...movies]);
+                }}
+              >
+                Reload
+              </button>
+            )} */}
+            <p className="text-xs opacity-50">
+              *This product uses the TMDB API but is not endorsed or certified
+              by TMDB.
+            </p>
+          </div>
+        </section>
+      </div>
     </main>
   );
 }
@@ -306,54 +395,55 @@ function MovieCard({ movies, index, onDelete }: any) {
             layout
             transition={{ type: "spring", stiffness: 600, damping: 30 }}
           >
-            <motion.div
-              className="p-6 flex flex-col justify-top bg-slate-50 ring-1 ring-slate-300 dark:bg-slate-800 text-slate-800 dark:text-slate-200 rounded-xl group"
-              key={index}
-              drag="x"
-              dragDirectionLock
-              onDragEnd={handleDragEnd}
-              ref={scope}
-            >
-              <img
-                className="rounded-lg ring-1 ring-slate-300 dark:ring-slate-700 shadow-md"
-                src={
-                  "https://image.tmdb.org/t/p/original" + movie.backdrop_path
-                }
-                alt={movie.title}
-              />
-              <div
-                className="flex flex-col gap-4 mt-6 justify-between"
-                key={movie.title}
+            <Suspense fallback={<Loading />}>
+              <motion.div
+                className="p-6 flex flex-col justify-top bg-slate-50 ring-1 ring-slate-300 dark:bg-slate-800 text-slate-800 dark:text-slate-200 rounded-xl group"
+                key={index}
+                drag="x"
+                dragDirectionLock
+                onDragEnd={handleDragEnd}
+                ref={scope}
               >
-                <p className=" text-2xl font-black">{movie.title}</p>
-                <div className=" text-xs flex flex-wrap gap-2 overflow-auto scrollbar-hide">
-                  <span className=" bg-slate-700 text-white dark:text-slate-700 dark:bg-slate-200 px-3 py-1 text-nowrap rounded-xl font-bold">
-                    {movie.release_date.slice(0, 4)}
-                  </span>
-                  {movie.genre_ids.map((genreId: Key | null | undefined) => {
-                    const genre = genres_names.find(
-                      (items) => items.id === genreId
-                    );
-                    return (
-                      <span
-                        className="bg-slate-200 dark:bg-slate-700 px-3 py-1 text-nowrap rounded-xl"
-                        key={genreId}
-                      >
-                        {genre ? genre.name : "Unknown"}
-                      </span>
-                    );
-                  })}
-                </div>
-                <p className=" text-xs font-bold">Overview:</p>
-                <p className=" text-sm -mt-2 font-light">{movie.overview}</p>
-                <div className="grid grid-cols-6 gap-2 ">
-                  <button
-                    className="text-red-700 dark:text-red-200 hover:bg-red-100 font-bold py-3 rounded-xl col-span-2"
-                    onClick={() => onDelete(scope.current.index)}
-                  >
-                    <XMarkIcon className="w-6 h-6 inline" />
-                  </button>
-                  {/* <button
+                <img
+                  className="rounded-lg ring-1 ring-slate-300 dark:ring-slate-700 shadow-md"
+                  src={
+                    "https://image.tmdb.org/t/p/original" + movie.backdrop_path
+                  }
+                  alt={movie.title}
+                />
+                <div
+                  className="flex flex-col gap-4 mt-6 justify-between"
+                  key={movie.title}
+                >
+                  <p className=" text-2xl font-black">{movie.title}</p>
+                  <div className=" text-xs flex flex-wrap gap-2 overflow-auto scrollbar-hide">
+                    <span className=" bg-slate-700 text-white dark:text-slate-700 dark:bg-slate-200 px-3 py-1 text-nowrap rounded-xl font-bold">
+                      {movie.release_date.slice(0, 4)}
+                    </span>
+                    {movie.genre_ids.map((genreId: Key | null | undefined) => {
+                      const genre = genres_names.find(
+                        (items) => items.id === genreId
+                      );
+                      return (
+                        <span
+                          className="bg-slate-200 dark:bg-slate-700 px-3 py-1 text-nowrap rounded-xl"
+                          key={genreId}
+                        >
+                          {genre ? genre.name : "Unknown"}
+                        </span>
+                      );
+                    })}
+                  </div>
+                  <p className=" text-xs font-bold">Overview:</p>
+                  <p className=" text-sm -mt-2 font-light">{movie.overview}</p>
+                  <div className="grid grid-cols-6 gap-2 ">
+                    <button
+                      className="text-red-700 dark:text-red-200 hover:bg-red-100 font-bold py-3 rounded-xl col-span-2"
+                      onClick={() => onDelete(scope.current.index)}
+                    >
+                      <XMarkIcon className="w-6 h-6 inline" />
+                    </button>
+                    {/* <button
                     className="text-green-700 dark:text-green-200  hover:bg-green-100 font-bold py-3 rounded-xl col-span-2"
                     onClick={() =>
                       window.open(
@@ -363,21 +453,22 @@ function MovieCard({ movies, index, onDelete }: any) {
                   >
                     <CheckIcon className="w-6 h-6 inline" />
                   </button> */}
-                  <RatingToggle rating={movie.vote_average} key={movie.id} />
-                  <button
-                    className="dark:text-slate-100 text-sm dark:ring-1 dark:ring-slate-700 py-3 rounded-xl col-span-2 hover:bg-slate-200 "
-                    onClick={() =>
-                      window.open(
-                        `https://www.themoviedb.org/movie/${movie.id}` +
-                          `_blank`
-                      )
-                    }
-                  >
-                    <ExternalLinkIcon className="w-4 h-4 inline" />
-                  </button>
+                    <RatingToggle rating={movie.vote_average} key={movie.id} />
+                    <button
+                      className="dark:text-slate-100 text-sm dark:ring-1 dark:ring-slate-700 py-3 rounded-xl col-span-2 hover:bg-slate-200 "
+                      onClick={() =>
+                        window.open(
+                          `https://www.themoviedb.org/movie/${movie.id}` +
+                            `_blank`
+                        )
+                      }
+                    >
+                      <ExternalLinkIcon className="w-4 h-4 inline" />
+                    </button>
+                  </div>
                 </div>
-              </div>
-            </motion.div>
+              </motion.div>
+            </Suspense>
           </motion.div>
         ))}{" "}
     </motion.div>
