@@ -222,7 +222,7 @@ export default function Minder() {
           </select>
           <button
             type="submit"
-            className="bg-slate-200 dark:bg-slate-700 hover:bg-slate-700 hover:text-white dark:hover:bg-slate-200 font-bold py-2 px-4 rounded"
+            className="bg-slate-200 dark:bg-slate-700 hover:bg-slate-700 hover:text-white dark:hover:bg-slate-200 dark:hover:text-slate-900 font-bold py-2 px-4 rounded"
           >
             Discover
           </button>
@@ -237,7 +237,7 @@ export default function Minder() {
           )}
         </form>
       </div>
-      <section className="flex flex-col min-h-[90vh] p-10  justify-top bg-white dark:bg-black text-slate-900 dark:text-white relative">
+      <section className="flex flex-col min-h-[90vh] p-6  justify-top bg-white dark:bg-black text-slate-900 dark:text-white relative">
         <h3 className=" text-2xl font-semibold">Results List</h3>
         {movies.length === 0 && (
           <p className="py-8 pb-[50%] opacity-50">
@@ -246,29 +246,21 @@ export default function Minder() {
         )}
         <Suspense fallback={<Loading />}>
           {movies.length !== 0 && (
-            <div className="flex flex-col p-2 justify-center" key={page}>
-              <motion.div
-                className="relative"
-                style={{ y: y, height: "100%" }}
-                drag="y"
-                dragDirectionLock
-                dragConstraints={{ top, bottom }}
-              >
-                <motion.div className="relative">
-                  <MovieCard
-                    movies={movies}
-                    total={movies.length}
-                    onDelete={onDelete}
-                    key={movies.length}
-                  />
-                </motion.div>
-              </motion.div>
+            <div className="flex flex-col p-1 justify-center" key={page}>
+              <div>
+                <MovieCard
+                  movies={movies}
+                  total={movies.length}
+                  onDelete={onDelete}
+                  key={movies.length}
+                />
+              </div>
             </div>
           )}
         </Suspense>
         {movies.length > 1 && (
           <button
-            className="text-white bg-slate-700 hover:bg-slate-800 font-bold py-3 rounded-xl mt-8"
+            className=" bg-slate-700 hover:bg-slate-800 font-bold py-3 rounded-xl mt-8"
             onClick={() => {
               setPage((prevPage) => prevPage + 1);
               handleLoad(page + 1, genre);
@@ -278,7 +270,7 @@ export default function Minder() {
             Load More
           </button>
         )}
-        <p className="text-white text-xs relative bottom-1 opacity-50">
+        <p className="text-xs relative bottom-1 opacity-50">
           *This product uses the TMDB API but is not endorsed or certified by
           TMDB.
         </p>
@@ -302,89 +294,90 @@ function MovieCard({ movies, index, onDelete }: any) {
     }
   }
   return (
-    <motion.div
-      className="grid grid-cols-1 gap-8 mt-10"
-      whileTap={{ cursor: "grabbing" }}
-      layout
-      transition={{ type: "spring", stiffness: 600, damping: 30 }}
-    >
+    <motion.div>
       {movies.length === 0 && (
         <p className="text-white h-screen">Pick a genre</p>
       )}
       {movies.length !== 0 &&
         movies?.map((movie: any) => (
           <motion.div
-            className="p-6 flex flex-col justify-top bg-slate-50 ring-1 ring-slate-300 dark:bg-slate-800 text-slate-800 dark:text-slate-200 rounded-xl group"
-            key={index}
-            drag="x"
-            dragDirectionLock
-            onDragEnd={handleDragEnd}
-            ref={scope}
+            className="grid grid-cols-1 gap-8 mt-10"
+            whileTap={{ cursor: "grabbing" }}
+            layout
+            transition={{ type: "spring", stiffness: 600, damping: 30 }}
           >
-            <img
-              className="rounded-lg ring-1 ring-slate-300 dark:ring-slate-700 shadow-md"
-              src={"https://image.tmdb.org/t/p/original" + movie.backdrop_path}
-              alt={movie.title}
-            />
-            <div
-              className="flex flex-col gap-4 mt-6 justify-between"
-              key={movie.title}
+            <motion.div
+              className="p-6 flex flex-col justify-top bg-slate-50 ring-1 ring-slate-300 dark:bg-slate-800 text-slate-800 dark:text-slate-200 rounded-xl group"
+              key={index}
+              drag="x"
+              dragDirectionLock
+              onDragEnd={handleDragEnd}
+              ref={scope}
             >
-              <p className=" text-2xl font-black">{movie.title}</p>
-              <div className=" text-xs flex flex-nowrap gap-2 overflow-auto scrollbar-hide">
-                <span className=" font-bold px-2 py-1 text-nowrap rounded-xl">
-                  {movie.release_date.slice(0, 4)}
-                </span>
-                {movie.genre_ids.map((genreId: Key | null | undefined) => {
-                  const genre = genres_names.find(
-                    (items) => items.id === genreId
-                  );
-
-                  return (
-                    <span
-                      className="bg-slate-200 dark:bg-slate-700 px-3 py-1 text-nowrap rounded-xl"
-                      key={genreId}
-                    >
-                      {genre ? genre.name : "Unknown"}
-                    </span>
-                  );
-                })}
+              <img
+                className="rounded-lg ring-1 ring-slate-300 dark:ring-slate-700 shadow-md"
+                src={
+                  "https://image.tmdb.org/t/p/original" + movie.backdrop_path
+                }
+                alt={movie.title}
+              />
+              <div
+                className="flex flex-col gap-4 mt-6 justify-between"
+                key={movie.title}
+              >
+                <p className=" text-2xl font-black">{movie.title}</p>
+                <div className=" text-xs flex flex-wrap gap-2 overflow-auto scrollbar-hide">
+                  <span className=" bg-slate-700 text-white dark:text-slate-700 dark:bg-slate-200 px-3 py-1 text-nowrap rounded-xl font-bold">
+                    {movie.release_date.slice(0, 4)}
+                  </span>
+                  {movie.genre_ids.map((genreId: Key | null | undefined) => {
+                    const genre = genres_names.find(
+                      (items) => items.id === genreId
+                    );
+                    return (
+                      <span
+                        className="bg-slate-200 dark:bg-slate-700 px-3 py-1 text-nowrap rounded-xl"
+                        key={genreId}
+                      >
+                        {genre ? genre.name : "Unknown"}
+                      </span>
+                    );
+                  })}
+                </div>
+                <p className=" text-xs font-bold">Overview:</p>
+                <p className=" text-sm -mt-2 font-light">{movie.overview}</p>
+                <div className="grid grid-cols-6 gap-2 ">
+                  <button
+                    className="text-red-700 dark:text-red-200 hover:bg-red-100 font-bold py-3 rounded-xl col-span-2"
+                    onClick={() => onDelete(scope.current.index)}
+                  >
+                    <XMarkIcon className="w-6 h-6 inline" />
+                  </button>
+                  {/* <button
+                    className="text-green-700 dark:text-green-200  hover:bg-green-100 font-bold py-3 rounded-xl col-span-2"
+                    onClick={() =>
+                      window.open(
+                        `https://www.themoviedb.org/movie/${movie.id}` + `_blank`
+                      )
+                    }
+                  >
+                    <CheckIcon className="w-6 h-6 inline" />
+                  </button> */}
+                  <RatingToggle rating={movie.vote_average} key={movie.id} />
+                  <button
+                    className="dark:text-slate-100 text-sm dark:ring-1 dark:ring-slate-700 py-3 rounded-xl col-span-2 hover:bg-slate-200 "
+                    onClick={() =>
+                      window.open(
+                        `https://www.themoviedb.org/movie/${movie.id}` +
+                          `_blank`
+                      )
+                    }
+                  >
+                    <ExternalLinkIcon className="w-4 h-4 inline" />
+                  </button>
+                </div>
               </div>
-              <p className=" text-xs font-bold">Summary:</p>
-              <p className=" text-sm -mt-2 font-light">{movie.overview}</p>
-
-              <div className="grid grid-cols-6 gap-2 ">
-                <button
-                  className="text-red-700 dark:text-red-200 hover:bg-red-100 font-bold py-3 rounded-xl col-span-2"
-                  onClick={() => onDelete(scope.current.index)}
-                >
-                  <XMarkIcon className="w-6 h-6 inline" />
-                </button>
-                {/* <button
-                  className="text-green-700 dark:text-green-200  hover:bg-green-100 font-bold py-3 rounded-xl col-span-2"
-                  onClick={() =>
-                    window.open(
-                      `https://www.themoviedb.org/movie/${movie.id}` + `_blank`
-                    )
-                  }
-                >
-                  <CheckIcon className="w-6 h-6 inline" />
-                </button> */}
-
-                <RatingToggle rating={movie.vote_average} key={movie.id} />
-
-                <button
-                  className="dark:text-slate-100 text-sm dark:ring-1 dark:ring-slate-700 py-3 rounded-xl col-span-2 hover:bg-slate-200 "
-                  onClick={() =>
-                    window.open(
-                      `https://www.themoviedb.org/movie/${movie.id}` + `_blank`
-                    )
-                  }
-                >
-                  <ExternalLinkIcon className="w-4 h-4 inline" />
-                </button>
-              </div>
-            </div>
+            </motion.div>
           </motion.div>
         ))}{" "}
     </motion.div>
@@ -487,7 +480,7 @@ function ThemeToggle() {
         <Button
           variant="default"
           size="icon"
-          className="absolute top-2 right-2 w-[1.2rem] h-[1.2rem]"
+          className="absolute top-4 right-4 w-[1.2rem] h-[1.2rem]"
         >
           <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0 text-slate-900 bg-white ring-0 focus:none" />
           <Moon className="absolute  w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100 text-slate-200 bg-black  focus:none" />
