@@ -265,60 +265,6 @@ export default function Minder() {
               </Command>
             </PopoverContent>
           </Popover>
-          {/*  <form
-            className="flex gap-4"
-            onSubmit={(event) => {
-              event.preventDefault();
-              setPage(1);
-              handleLoad(page, genre);
-              return setMovies([...movies]);
-            }}
-          >
-            <select
-              name="genres"
-              id="genres"
-              value={genre}
-              className="bg-slate-300 dark:bg-slate-700 p-4 px-8 w-72 font-black rounded-full uppercase"
-              onChange={(event) => {
-                event.preventDefault();
-                setGenre(event.target.value);
-                setPage(1);
-                handleLoad(page, event.target.value);
-                window.scrollTo({ top: 400, behavior: "smooth" });
-              }}
-              disabled={pending}
-            >
-              <option disabled value="">
-                Pick a genre
-              </option>
-              {genres_names.map((genre, index) => (
-                <option
-                  key={genre.id}
-                  defaultChecked
-                  id={genre.name}
-                  value={genre.id}
-                >
-                  {genre.name}
-                </option>
-              ))}
-            </select>
-            <button
-              type="submit"
-              className="bg-slate-200 dark:bg-slate-700 hover:bg-slate-700 hover:text-white dark:hover:bg-slate-200 dark:hover:text-slate-900 font-bold py-2 px-4 rounded"
-              disabled={pending}
-            >
-              {pending ? "Collecting..." : "Discover"}
-            </button>
-            {movies.length !== 0 && (
-              <button
-                type="submit"
-                className="ring-1 ring-slate-300 hover:bg-slate-500 text-slate-300 font-bold py-2 px-4 rounded hover:text-white hover:ring-0"
-                onClick={handleReset}
-              >
-                Reset
-              </button>
-            )}
-          </form> */}
         </div>
         {/* Movies Cards */}
         <section className="flex flex-col min-h-[90vh] p-6 lg:px-64 lg:pt-20  justify-top bg-white dark:bg-gradient-to-b dark:from-black dark:to-slate-700 text-slate-900 dark:text-white relative items-center">
@@ -328,29 +274,30 @@ export default function Minder() {
               Pick a Genre and hit the discover button
             </p>
           )}
-          {movies.length !== 0 && (
-            <div
-              className="grid grid-cols-1 p-1 lg:px-56 justify-center"
-              key={page}
-            >
-              <div>
-                <MovieCard
-                  movies={movies}
-                  total={movies.length}
-                  onDelete={onDelete}
-                  key={movies.length}
-                />
+          <Suspense fallback={<Loading />}>
+            {movies.length !== 0 && (
+              <div
+                className="grid grid-cols-1 p-1 lg:px-56 justify-center"
+                key={page}
+              >
+                <div>
+                  <MovieCard
+                    movies={movies}
+                    total={movies.length}
+                    onDelete={onDelete}
+                    key={movies.length}
+                  />
+                </div>
               </div>
-            </div>
-          )}
+            )}
+          </Suspense>
           <div className="flex flex-col items-center gap-4">
             {/* {movies.length > 1 && (
               <button
                 className="flex justify-center w-1/2 bg-slate-200 hover:bg-slate-800 hover:text-white font-bold py-3 rounded-xl mt-8"
                 onClick={() => {
                   setPage((page) => page + 1);
-                  //handleLoad(page, genre);
-                  window.scrollTo({ top: 400, behavior: "smooth" });
+                  handleLoad(page, genre);
                   return setMovies((prevMovies) => [...prevMovies, ...movies]);
                 }}
               >
@@ -395,55 +342,54 @@ function MovieCard({ movies, index, onDelete }: any) {
             layout
             transition={{ type: "spring", stiffness: 600, damping: 30 }}
           >
-            <Suspense fallback={<Loading />}>
-              <motion.div
-                className="p-6 flex flex-col justify-top bg-slate-50 ring-1 ring-slate-300 dark:bg-slate-800 text-slate-800 dark:text-slate-200 rounded-xl group"
-                key={index}
-                drag="x"
-                dragDirectionLock
-                onDragEnd={handleDragEnd}
-                ref={scope}
+            <motion.div
+              className="p-6 flex flex-col justify-top bg-slate-50 ring-1 ring-slate-300 dark:bg-slate-800 text-slate-800 dark:text-slate-200 rounded-xl group"
+              key={index}
+              drag="x"
+              dragDirectionLock
+              onDragEnd={handleDragEnd}
+              ref={scope}
+            >
+              <img
+                className="rounded-lg ring-1 ring-slate-300 dark:ring-slate-700 shadow-md"
+                src={
+                  "https://image.tmdb.org/t/p/original" + movie.backdrop_path
+                }
+                alt={movie.title}
+              />
+              <div
+                className="flex flex-col gap-4 mt-6 justify-between"
+                key={movie.title}
               >
-                <img
-                  className="rounded-lg ring-1 ring-slate-300 dark:ring-slate-700 shadow-md"
-                  src={
-                    "https://image.tmdb.org/t/p/original" + movie.backdrop_path
-                  }
-                  alt={movie.title}
-                />
-                <div
-                  className="flex flex-col gap-4 mt-6 justify-between"
-                  key={movie.title}
-                >
-                  <p className=" text-2xl font-black">{movie.title}</p>
-                  <div className=" text-xs flex flex-wrap gap-2 overflow-auto scrollbar-hide">
-                    <span className=" bg-slate-700 text-white dark:text-slate-700 dark:bg-slate-200 px-3 py-1 text-nowrap rounded-xl font-bold">
-                      {movie.release_date.slice(0, 4)}
-                    </span>
-                    {movie.genre_ids.map((genreId: Key | null | undefined) => {
-                      const genre = genres_names.find(
-                        (items) => items.id === genreId
-                      );
-                      return (
-                        <span
-                          className="bg-slate-200 dark:bg-slate-700 px-3 py-1 text-nowrap rounded-xl"
-                          key={genreId}
-                        >
-                          {genre ? genre.name : "Unknown"}
-                        </span>
-                      );
-                    })}
-                  </div>
-                  <p className=" text-xs font-bold">Overview:</p>
-                  <p className=" text-sm -mt-2 font-light">{movie.overview}</p>
-                  <div className="grid grid-cols-6 gap-2 ">
-                    <button
-                      className="text-red-700 dark:text-red-200 hover:bg-red-100 font-bold py-3 rounded-xl col-span-2"
-                      onClick={() => onDelete(scope.current.index)}
-                    >
-                      <XMarkIcon className="w-6 h-6 inline" />
-                    </button>
-                    {/* <button
+                <p className=" text-2xl font-black">{movie.title}</p>
+                <div className=" text-xs flex flex-wrap gap-2 overflow-auto scrollbar-hide">
+                  <span className=" bg-slate-700 text-white dark:text-slate-700 dark:bg-slate-200 px-3 py-1 text-nowrap rounded-xl font-bold">
+                    {movie.release_date.slice(0, 4)}
+                  </span>
+                  {movie.genre_ids.map((genreId: Key | null | undefined) => {
+                    const genre = genres_names.find(
+                      (items) => items.id === genreId
+                    );
+                    return (
+                      <span
+                        className="bg-slate-200 dark:bg-slate-700 px-3 py-1 text-nowrap rounded-xl"
+                        key={genreId}
+                      >
+                        {genre ? genre.name : "Unknown"}
+                      </span>
+                    );
+                  })}
+                </div>
+                <p className=" text-xs font-bold">Overview:</p>
+                <p className=" text-sm -mt-2 font-light">{movie.overview}</p>
+                <div className="grid grid-cols-6 gap-2 ">
+                  <button
+                    className="text-red-700 dark:text-red-200 hover:bg-red-100 font-bold py-3 rounded-xl col-span-2"
+                    onClick={() => onDelete(scope.current.index)}
+                  >
+                    <XMarkIcon className="w-6 h-6 inline" />
+                  </button>
+                  {/* <button
                     className="text-green-700 dark:text-green-200  hover:bg-green-100 font-bold py-3 rounded-xl col-span-2"
                     onClick={() =>
                       window.open(
@@ -453,22 +399,21 @@ function MovieCard({ movies, index, onDelete }: any) {
                   >
                     <CheckIcon className="w-6 h-6 inline" />
                   </button> */}
-                    <RatingToggle rating={movie.vote_average} key={movie.id} />
-                    <button
-                      className="dark:text-slate-100 text-sm dark:ring-1 dark:ring-slate-700 py-3 rounded-xl col-span-2 hover:bg-slate-200 "
-                      onClick={() =>
-                        window.open(
-                          `https://www.themoviedb.org/movie/${movie.id}` +
-                            `_blank`
-                        )
-                      }
-                    >
-                      <ExternalLinkIcon className="w-4 h-4 inline" />
-                    </button>
-                  </div>
+                  <RatingToggle rating={movie.vote_average} key={movie.id} />
+                  <button
+                    className="dark:text-slate-100 text-sm dark:ring-1 dark:ring-slate-700 py-3 rounded-xl col-span-2 hover:bg-slate-200 "
+                    onClick={() =>
+                      window.open(
+                        `https://www.themoviedb.org/movie/${movie.id}` +
+                          `_blank`
+                      )
+                    }
+                  >
+                    <ExternalLinkIcon className="w-4 h-4 inline" />
+                  </button>
                 </div>
-              </motion.div>
-            </Suspense>
+              </div>
+            </motion.div>
           </motion.div>
         ))}{" "}
     </motion.div>
@@ -624,5 +569,9 @@ function RatingToggle(rating: any) {
   );
 }
 function Loading() {
+  return <div className="animate-pulse">Loading...</div>;
+}
+
+function Skeleton() {
   return <div className="animate-pulse">Loading...</div>;
 }
