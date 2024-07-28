@@ -109,6 +109,7 @@ export default function Search({ search }: any) {
   const [page, setPage] = useState<number>(1);
 
   function handleLoad(page: number, genre: string) {
+    setMovies([]);
     const options3 = {
       method: "GET",
       url: `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=true&language=en-US&page=${page}&with_genres=${genre}`,
