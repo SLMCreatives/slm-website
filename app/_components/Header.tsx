@@ -38,23 +38,13 @@ const Header = () => {
     setMobileMenuOpen(false);
   };
   return (
-    <header className="absolute inset-x-0 top-0 z-50">
+    <header className="fixed top-0 right-0 left-0 z-50 bg-white border-b-2">
       <nav
-        className="flex items-center justify-between p-6 lg:px-8"
+        className="flex items-center justify-between p-6 lg:px-8 w-full lg:w-1/3 mx-auto"
         aria-label="Global"
       >
         <div className="flex lg:flex-1">
-          <motion.a
-            initial={{ opacity: 0, x: -50, scale: 0.5 }}
-            animate={{ opacity: 1, x: 0, scale: 1 }}
-            transition={{
-              duration: 0.4,
-              type: "spring",
-              stiffness: 200,
-            }}
-            href="/"
-            className="-m-1.5 p-1.5"
-          >
+          <a href="/" className="-m-1.5 p-1.5">
             <span className="sr-only">SLM Creatives</span>
             <Image
               width={100}
@@ -63,7 +53,7 @@ const Header = () => {
               src="/logo.png"
               alt="SLM Creatives"
             />
-          </motion.a>
+          </a>
         </div>
         <div className="flex lg:hidden">
           <button

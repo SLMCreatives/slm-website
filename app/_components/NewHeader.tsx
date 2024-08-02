@@ -1,0 +1,103 @@
+"use client";
+
+import React, { useState } from "react";
+import Link from "next/link";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "Sulaiman/S/components/ui/popover";
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "Sulaiman/S/components/ui/avatar";
+import { EmailIcon, FacebookIcon, WhatsappIcon, XIcon } from "react-share";
+import { Button } from "Sulaiman/S/components/ui/button";
+import { ThemeToggle } from "./ThemeToggle";
+
+const navigation = [
+  { name: "Home", href: "/" },
+  { name: "Web Builds", href: "/webdev" },
+  /*  { name: "Projects", href: "/" }, */
+  { name: "Blog", href: "/blog" },
+  { name: "Contact", href: "/contact" },
+];
+
+export default function NewHeader() {
+  const [currentNav, setCurrentNav] = useState("");
+  return (
+    <div className="px-2">
+      <section className=" mt-10 z-10 py-2 px-4 mx-auto bg-white drop-shadow-xl dark:drop-shadow-white dark:bg-slate-950 dark:text-white sticky top-6 rounded-xl ring-slate-400/40 w-[95%] ring-1">
+        <div className="flex flex-row items-center justify-between gap-1">
+          <div className="flex flex-row items-center mr-14">
+            {navigation.map((item) => (
+              <Link href={item.href}>
+                <Button
+                  variant="default"
+                  size="sm"
+                  className="font-normal hover:font-semibold bg-transparent ring-0"
+                  key={item.name}
+                  onClick={() => setCurrentNav(item.name)}
+                >
+                  {currentNav === item.name ? (
+                    <p className="font-bold text-blue-700 dark:text-blue-400">
+                      {item.name}
+                    </p>
+                  ) : (
+                    item.name
+                  )}
+                </Button>
+              </Link>
+            ))}
+          </div>
+          <ThemeToggle />
+          <Popover>
+            <PopoverTrigger>
+              <Avatar className="w-14 h-14 absolute -right-2 -top-2 cursor-pointer hover:ring-1 hover:ring-slate-400">
+                <AvatarImage src="/sulaiman.jpg"></AvatarImage>
+                <AvatarFallback>SS</AvatarFallback>
+              </Avatar>
+            </PopoverTrigger>
+            <PopoverContent
+              className="p-2 w-fit rounded-xl drop-shadow-xl bg-gradient-to-tl from-slate-50 to-slate-200"
+              align="start"
+              alignOffset={30}
+              side="left"
+            >
+              <section className="w-32 p-1">
+                <p className="font-bold text-sm">Get in Touch:</p>
+                <div className="grid grid-flow-row grid-rows-4 text-right">
+                  <Link href="https://twitter.com/SulaimanShafiq">
+                    <p className="font-normal text-sm mt-2 flex gap-4 justify-between hover:font-bold pr-2">
+                      X
+                      <XIcon className="w-6 h-6 inline rounded-full ml-4" />
+                    </p>
+                  </Link>
+                  <Link href="https://www.facebook.com/slmcreatives.my/">
+                    <p className="font-normal text-sm mt-2 flex justify-between hover:font-bold pr-2">
+                      Facebook
+                      <FacebookIcon className="w-6 h-6 inline rounded-full ml-4" />
+                    </p>
+                  </Link>
+                  <Link href="https://wa.me/601121292383">
+                    <p className="font-normal text-sm mt-2 flex justify-between hover:font-bold pr-2">
+                      Whatsapp
+                      <WhatsappIcon className="w-6 h-6 inline rounded-full ml-4" />
+                    </p>
+                  </Link>
+                  <Link href={"mailto:sulaiman@slmcreatives.com"}>
+                    <p className="font-normal text-sm mt-2 flex justify-between hover:font-bold pr-2">
+                      Email
+                      <EmailIcon className="w-6 h-6 inline rounded-full ml-4" />
+                    </p>
+                  </Link>
+                </div>
+              </section>
+            </PopoverContent>
+          </Popover>
+        </div>
+      </section>
+    </div>
+  );
+}
