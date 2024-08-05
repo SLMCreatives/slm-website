@@ -35,13 +35,13 @@ export default function Logos() {
   return (
     <div className="flex overflow-hidden">
       <motion.div
-        className="relative left-4 flex gap-24"
+        className="relative left-4 flex gap-12"
         ref={ref}
         style={{ x: xTranslation }}
       >
         {[...Logo, ...Logo].map((logo) => (
           <motion.img
-            className="h-32 w-32 object-contain"
+            className="h-20 w-20 object-contain"
             src={logo.src}
             alt={logo.alt}
             width={158}

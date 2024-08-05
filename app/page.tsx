@@ -240,6 +240,7 @@ export default function NewPage() {
       <hr></hr>
       <h2 className="font-bold text-lg -mb-6">Work Experience:</h2>
       <p>Here are a few of the projects that have worked on. </p>
+
       <section className="flex flex-row text-nowrap  gap-4">
         <h3 className="font-semibold ">Portfolio: </h3>
         <div className="flex flex-row flex-wrap gap-2">
