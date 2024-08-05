@@ -1,3 +1,4 @@
+import { type } from "os";
 import { defineField, defineType } from "sanity";
 
 export const post = defineType({
@@ -60,6 +61,26 @@ export const post = defineType({
       name: "body",
       title: "Body",
       type: "blockContent",
+    }),
+    defineField({
+      name: "readingTime",
+      title: "Reading Time",
+      type: "number",
+    }),
+    defineField({
+      name: "likes",
+      title: "Likes",
+      type: "number",
+    }),
+    defineField({
+      name: "views",
+      title: "Views",
+      type: "number",
+    }),
+    defineField({
+      name: "comments",
+      title: "Comments",
+      type: "number",
     }),
   ],
   preview: {

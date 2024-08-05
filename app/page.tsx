@@ -135,6 +135,11 @@ const labs = [
     short: "TMDB",
     link: "/labs/movie-search",
   },
+  {
+    name: "Design Management System",
+    short: "DMS",
+    link: "/dashboard",
+  },
 ];
 
 export default function NewPage() {
@@ -147,7 +152,7 @@ export default function NewPage() {
             <img
               src="/cover_image.jpg"
               alt="cover image"
-              className="rounded-xl w-full h-60 object-cover ring-1 dark:ring-slate-700 drop-shadow-lg"
+              className="rounded-xl w-full h-52 object-cover ring-1 dark:ring-slate-700 drop-shadow-lg"
             />
           </HoverCardTrigger>
           <HoverCardContent
@@ -162,7 +167,7 @@ export default function NewPage() {
         <h2 className="font-bold text-lg -mb-2">About Me:</h2>
         <p>
           My name is{" "}
-          <span className="font-extrabold inline dark:text-blue-400">
+          <span className="font-extrabold inline text-cyan-500 dark:text-cyan-300">
             Sulaiman Shafiq Bn Abdul Munaff.
           </span>{" "}
           I am a{" "}
@@ -195,7 +200,7 @@ export default function NewPage() {
         <div>
           <ul className="flex flex-row flex-wrap gap-2">
             {skills.map((skill) => (
-              <li className="bg-slate-200 dark:bg-slate-700 pr-4 pl-2 py-1 rounded-full items-center flex text-sm cursor-pointer hover:font-light">
+              <li className="bg-slate-200 dark:bg-slate-800 items-center justify-center pr-4 pl-2 py-1 rounded-full flex text-sm cursor-pointer hover:font-light">
                 <Link href={skill?.link} target="_blank" rel="noreferrer">
                   <Image
                     src={skill.image}
@@ -216,7 +221,7 @@ export default function NewPage() {
         <div>
           <ul className="flex flex-row flex-wrap gap-2">
             {design.map((item) => (
-              <li className="bg-slate-200 dark:bg-slate-700 pr-4 pl-2 py-1 rounded-full text-sm hover:font-light">
+              <li className="bg-slate-200 dark:bg-slate-800 pr-4 pl-2 py-1 rounded-full text-sm hover:font-light">
                 <Link href={item?.link} target="_blank" rel="noreferrer">
                   <Image
                     src={item.image}
@@ -239,7 +244,7 @@ export default function NewPage() {
         <h3 className="font-semibold ">Portfolio: </h3>
         <div className="flex flex-row flex-wrap gap-2">
           {works.map((work) => (
-            <div className="flex flex-row flex-wrap gap-2 bg-slate-200 dark:bg-slate-700 px-3 py-1 rounded-full hover:font-light">
+            <div className="flex flex-row flex-wrap gap-2 bg-slate-200 dark:bg-slate-800 px-3 py-1 rounded-full hover:font-light">
               <HoverCard openDelay={10} closeDelay={0}>
                 <HoverCardTrigger asChild>
                   <Link
@@ -256,7 +261,7 @@ export default function NewPage() {
                   side="top"
                   sideOffset={10}
                   align="start"
-                  className="w-fit p-4 bg-white dark:bg-slate-700 rounded-xl flex flex-col gap-1 drop-shadow-2xl"
+                  className="w-fit p-4 bg-white dark:bg-slate-800 rounded-xl flex flex-col gap-1 drop-shadow-2xl"
                 >
                   <div className="flex flex-row gap-4 items-center justify-left">
                     <Avatar className="w-8 h-8 float-right dark:p-1 dark:bg-slate-200">
@@ -279,7 +284,7 @@ export default function NewPage() {
                       className="inline ring-1 ring-slate-200 dark:ring-slate-700 rounded-sm mt-2 drop-shadow-sm"
                     />
                   )}
-                  <p className="text-xs font-mono text-right mt-1 absolute bottom-6 right-6 bg-white dark:bg-slate-700 ring-1 ring-slate-500  text-black px-3 py-1 rounded-xl dark:text-white">
+                  <p className="text-xs font-mono text-right mt-1 absolute bottom-6 right-6 bg-white dark:bg-slate-800 ring-1 ring-slate-500  text-black px-3 py-1 rounded-xl dark:text-white">
                     {work.url}
                   </p>
                 </HoverCardContent>
@@ -288,12 +293,12 @@ export default function NewPage() {
           ))}
         </div>
       </section>
-      {/* <section className="flex flex-row text-nowrap gap-10">
+      <section className="flex flex-row text-nowrap gap-10">
         <h3 className="font-semibold">Labs: </h3>
         <div>
           <ul className="flex flex-row flex-wrap gap-2">
             {labs.map((lab) => (
-              <li className="bg-slate-200 dark:bg-slate-700 px-4 py-1 rounded-full items-center flex text-sm cursor-pointer hover:font-light">
+              <li className="bg-slate-200 dark:bg-slate-800 px-4 py-1 rounded-full items-center flex text-sm cursor-pointer hover:font-light">
                 <TooltipProvider delayDuration={0}>
                   <Tooltip>
                     <TooltipTrigger asChild>
@@ -305,7 +310,7 @@ export default function NewPage() {
                       side="top"
                       sideOffset={10}
                       align="start"
-                      className="bg-white dark:bg-slate-700 px-2 py-2 rounded-xl items-center flex text-xs cursor-pointer text-wrap hover:font-light"
+                      className="bg-white dark:bg-slate-800 px-2 py-2 rounded-xl items-center flex text-xs cursor-pointer text-wrap hover:font-light"
                     >
                       {lab.link && (
                         <Link href={lab.link} target="_blank" rel="noreferrer">
@@ -319,11 +324,11 @@ export default function NewPage() {
             ))}
           </ul>
         </div>
-      </section> */}
+      </section>
       <section className="flex flex-row text-nowrap  gap-4">
         <h3 className="font-semibold ">Reviews: </h3>
         <div className="flex flex-col gap-4 overflow-scroll scrollbar-hide">
-          <div className="flex flex-col gap-2 bg-slate-200 dark:bg-slate-700 p-4 rounded-xl hover:font-light text-sm justify-between items-stretch">
+          <div className="flex flex-col gap-2 bg-slate-200 dark:bg-slate-800 p-4 rounded-xl hover:font-light text-sm justify-between items-stretch">
             <em className="text-wrap">
               "Great service, fast response and professional advice. Made a
               website, automated a cert generator and worked with us on
@@ -333,7 +338,7 @@ export default function NewPage() {
               - Azamil Izzat (LHI Consulting)
             </p>
           </div>
-          <div className="flex flex-col gap-2 bg-slate-200 dark:bg-slate-700 p-4 rounded-xl text-sm  hover:font-light justify-between items-stretch">
+          <div className="flex flex-col gap-2 bg-slate-200 dark:bg-slate-800 p-4 rounded-xl text-sm  hover:font-light justify-between items-stretch">
             <em className="text-wrap">
               "Always available for any questions and help. Replies within the
               hour and always helps out with things beyond scope of work."
@@ -342,7 +347,7 @@ export default function NewPage() {
               - Fafa Henry (Klinik Dr G)
             </p>
           </div>
-          <div className="flex flex-col gap-2 bg-slate-200 dark:bg-slate-700 p-4 rounded-xl text-sm hover:font-light justify-between items-stretch">
+          <div className="flex flex-col gap-2 bg-slate-200 dark:bg-slate-800 p-4 rounded-xl text-sm hover:font-light justify-between items-stretch">
             <em className="text-wrap">
               "Talented web developer, great communication and quick responses.
               Highly recommended!"
@@ -351,7 +356,7 @@ export default function NewPage() {
               - Amin Rahman (Rivertron)
             </p>
           </div>
-          <div className="flex flex-col gap-2 bg-slate-200 dark:bg-slate-700 p-4 rounded-xl text-sm hover:font-light justify-between items-stretch">
+          <div className="flex flex-col gap-2 bg-slate-200 dark:bg-slate-800 p-4 rounded-xl text-sm hover:font-light justify-between items-stretch">
             <em className="text-wrap">
               "You get what you pay for, but you get value for money work. Makes
               sense to work with."

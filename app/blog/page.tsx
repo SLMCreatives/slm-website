@@ -1,9 +1,6 @@
 import Link from "next/link";
 import { SanityDocument } from "next-sanity";
-import HeaderBlog from "../_components/Header";
-import Footer from "../_components/Footer";
 import imageUrlBuilder from "@sanity/image-url";
-import Image from "next/image";
 import { Metadata } from "next";
 import { client, sanityFetch } from "../sanity/lib/client";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
@@ -43,7 +40,7 @@ export default async function IndexPage() {
       <section className="flex flex-col text-nowrap gap-4 p-2">
         <h1 className="font-bold text-xl">Latest Articles:</h1>
       </section>
-      <div className="flex px-4">
+      <div className="flex pl-10 mx-auto">
         <ul className="grid grid-cols-1 gap-6">
           {posts.map((post: SanityDocument) => (
             <li className="flex flex-col" key={post?._id}>
@@ -52,10 +49,10 @@ export default async function IndexPage() {
                 href={`/blog/posts/${post?.slug.current}`}
               >
                 <div className="grid grid-cols-5 gap-4 items-start group">
-                  <p className="text-sm font-light opacity-60 text-nowrap justify-self-end px-4 py-1 group-hover:opacity-100 rounded-xl">
+                  <p className="text-sm font-light opacity-60 text-nowrap justify-self-end px-4 py-1 group-hover:opacity-100 group-hover:text-cyan-500 rounded-xl">
                     {dateFormated(post.publishedAt)}
                   </p>
-                  <p className="text-sm col-span-4 group-hover:font-bold ">
+                  <p className="text-sm col-span-4 group-hover:font-bold group-hover:text-cyan-500 group-hover:text-2xl hover:transition-all duration-[2500ms] ease-in-out">
                     {post?.title}
                   </p>
                 </div>

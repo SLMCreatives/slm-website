@@ -14,35 +14,35 @@ export default function Contact() {
           <p>WhatsApp</p>
           <Link
             href="https://wa.me/+601121292383"
-            className="hover:text-blue-600 dark:hover:text-blue-400"
+            className="hover:text-cyan-600 dark:hover:text-cyan-400"
           >
             <p>WhatsApp Chat Link</p>
           </Link>
           <p>Work Email</p>
           <Link
             href="mailto:sulaiman@slmcreatives"
-            className="hover:text-blue-600 dark:hover:text-blue-400"
+            className="hover:text-cyan-600 dark:hover:text-cyan-400"
           >
             <p>sulaiman@slmcreatives.com</p>
           </Link>
           <p>Personal Email</p>
           <Link
             href="mailto:namialus.shafiq@gmail"
-            className="hover:text-blue-600 dark:hover:text-blue-400"
+            className="hover:text-cyan-600 dark:hover:text-cyan-400"
           >
             <p>namialus.shafiq@gmail.com</p>
           </Link>
           <p>X/Twitter</p>
           <Link
             href="https://x.com/SulaimanShafiq"
-            className="hover:text-blue-600 dark:hover:text-blue-400"
+            className="hover:text-cyan-600 dark:hover:text-cyan-400"
           >
             <p>@SulaimanShafiq</p>
           </Link>
           <p>Facebook & Instagram</p>
           <Link
             href="https://www.facebook.com/slmcreatives.my/"
-            className="hover:text-blue-600 dark:hover:text-blue-400"
+            className="hover:text-cyan-600 dark:hover:text-cyan-400"
           >
             <p>@slmcreatives.my</p>
           </Link>

@@ -9,6 +9,7 @@ import {
   DropdownMenuTrigger,
 } from "Sulaiman/S/components/ui/dropdown-menu";
 import { Button } from "Sulaiman/S/components/ui/button";
+import { Toggle } from "Sulaiman/S/components/ui/toggle";
 
 export function ThemeToggle(): React.JSX.Element {
   const { setTheme } = useTheme();
@@ -16,12 +17,12 @@ export function ThemeToggle(): React.JSX.Element {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button
-          variant="outline"
+          variant="ghost"
           size="icon"
-          className="relative rounded-full w-[1.2rem] h-[1.2rem] border-none"
+          className="relative rounded-full w-[1.2rem] h-[1.2rem] bg-transparent border-none"
         >
-          <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0 text-slate-900 bg-white" />
-          <Moon className="absolute  w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100 text-slate-200 bg-black" />
+          <Sun className="flex h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:hidden" />
+          <Moon className="dark:flex hidden w-[1.2rem] h-[1.2rem] text-white" />
           <span className="sr-only">Toggle theme</span>
         </Button>
       </DropdownMenuTrigger>
@@ -34,6 +35,9 @@ export function ThemeToggle(): React.JSX.Element {
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => setTheme("dark")}>
           Dark
+        </DropdownMenuItem>
+        <DropdownMenuItem onClick={() => setTheme("system")}>
+          System
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

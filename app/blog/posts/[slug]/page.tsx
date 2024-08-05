@@ -3,15 +3,11 @@ import { PortableText } from "next-sanity";
 import { SanityDocument } from "next-sanity";
 import imageUrlBuilder from "@sanity/image-url";
 import { client, sanityFetch } from "../../../sanity/lib/client";
-import HeaderBlog from "../../../_components/HeaderBlog";
-import Footer from "../../../_components/Footer";
-import Link from "next/link";
 import Image from "next/image";
-import { ArrowLeftIcon, CalendarDaysIcon } from "@heroicons/react/24/outline";
 import type { Metadata } from "next";
-import AddComments from "../../../_components/AddComments";
 import CodeBlock from "../../../_components/CodeBlock";
 import ShareButtons from "../../../_components/ShareButtons";
+//import LikeButton from "Sulaiman/app/_components/LikeButton";
 
 const POST_QUERY = `*[
   _type == "post" &&
@@ -22,6 +18,7 @@ const POST_QUERY = `*[
   title,
   publishedAt,
   _updatedAt,
+  likes,
   body,
   author->,
   mainImage,
@@ -102,6 +99,7 @@ export default async function PostPage({
     _updatedAt,
     publishedAt,
     body,
+    likes,
     author,
     categories,
     mainImage,
@@ -157,33 +155,52 @@ export default async function PostPage({
   const imagesrc = urlForImage(mainImage).width(800).height(450).url();
 
   const urlCurrent = `https://slmcreatives.com/blog/posts/${params.slug}`;
+
   return (
     <section className="flex flex-row px-8 mt-8">
       {post ? (
         <div className="flex flex-col gap-6">
-          <div className="flex flex-col gap-4 dark:text-white">
+          <h1 className="text-3xl md:text-4xl font-bold sticky top-0 bg-white dark:bg-black py-4 z-10">
+            {title}
+          </h1>
+          <div className="flex flex-row gap-4 justify-between -mt-4">
+            <p className="text-sm opacity-50">Published on: {dateFormated}</p>
+            <p className="text-sm opacity-50">Updated on: {upFormated}</p>
+          </div>
+          <div className="flex flex-col gap-4">
             <Image
               src={imagesrc}
               alt={title || "Article"}
-              className="mx-auto aspect-video rounded-xl object-center w-full text-md font-medium"
+              className="aspect-video rounded-lg object-cover w-full"
               height="620"
               width="1100"
               key={mainImage}
             />
           </div>
-          <div className="text-left px-4 dark:text-white">
+          <div className="text-left">
             {body && body.length > 0 && (
-              <div key={body} className="prose text-md dark:text-white">
+              <div key={body} className="prose dark:prose-invert text-md">
                 <PortableText
                   value={body}
                   components={ptComponents}
                   onMissingComponent={false}
+                  key={body}
                 />
               </div>
             )}
           </div>
+          {/* <div className="flex flex-row items-center justify-between">
+            {post.likes < 1 ? (
+              <>
+                <p className="text-sm opacity-50">No likes yet</p>
+              </>
+            ) : (
+              <p className="text-sm opacity-50">{post.likes} likes</p>
+            )}
+            <LikeButton likecount={post.likes} />
+          </div> */}
           <hr></hr>
-          <div className="mt-4 p-2 lg:col-span-3 grid lg:grid-cols-3 grid-cols-1 gap-24 text-left ">
+          <div className="mt-4 p-2 grid grid-cols-1 gap-24 text-left ">
             <div className="flex flex-row items-center justify-between gap-6">
               <div className="flex flex-row gap-4 items-center">
                 <Image
@@ -201,9 +218,7 @@ export default async function PostPage({
                   >
                     <span className="font-bold">{author?.name}</span>
                   </p>{" "}
-                  <p className="text-sm font-light opacity-90">
-                    A "Self-Thought" Web Dev
-                  </p>
+                  <em className="text-sm opacity-70">Web Dev Freelancer</em>
                 </div>
               </div>
               <div className="flex justify-end">

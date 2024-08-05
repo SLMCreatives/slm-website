@@ -71,10 +71,10 @@ export default function RootLayout({
 
       <body className={titillium.className}>
         <div className="bg-white dark:bg-black h-full pt-4">
-          <div className="max-w-xl min-w-0 mx-auto">
+          <div className="max-w-xl  mx-auto">
             <ThemeProvider
               attribute="class"
-              defaultTheme=""
+              defaultTheme="light"
               enableSystem
               disableTransitionOnChange
             >

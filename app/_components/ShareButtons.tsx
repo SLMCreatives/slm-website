@@ -18,7 +18,7 @@ type props = {
 export default function ShareButtons({ urlR, titleR }: props) {
   return (
     <div className="flex flex-col gap-2 items-end">
-      <p className="flex-grow">Share to:</p>
+      <p className="flex-grow">Discuss on:</p>
       <div className="flex flex-row gap-4">
         <TwitterShareButton url={urlR} title={titleR}>
           <XIcon size={32} round />

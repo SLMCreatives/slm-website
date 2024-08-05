@@ -138,21 +138,19 @@ export default function WebDev() {
       <section className="flex flex-col text-nowrap gap-4 p-2">
         <h1 className="font-bold text-xl">Website Builds:</h1>
         <div className="">
-          <ul className="flex flex-row flex-wrap gap-2">
+          <ul className="flex flex-row flex-wrap gap-4">
             {services.map((service) => (
-              <li className="bg-slate-200 dark:bg-slate-800 py-1 rounded-full items-center flex text-sm cursor-pointer hover:font-light group">
+              <li className="">
                 <Button
-                  variant="default"
+                  variant={card.name === service.name ? "outline" : "default"}
                   size="sm"
-                  className="group-hover:font-bold bg-transparent"
+                  className=" hover:text-cyan-400 bg-transparent px-2 py-1"
                   onClick={() => setCard(service)}
                   key={service.name}
                   disabled={card.name === service.name}
                 >
                   {card.name === service.name ? (
-                    <p className="font-black text-blue-700 dark:text-blue-400">
-                      {service.name}
-                    </p>
+                    <p className=" text-cyan-400">{service.name}</p>
                   ) : (
                     service.name
                   )}
