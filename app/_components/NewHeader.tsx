@@ -58,34 +58,34 @@ export default function NewHeader() {
                 </Avatar>
               </PopoverTrigger>
               <PopoverContent
-                className="p-2 w-fit rounded-xl drop-shadow-xl bg-gradient-to-tl from-slate-50 to-slate-200"
+                className="pl-3 pr-0 py-1 w-fit rounded-xl drop-shadow-xl shadow-cyan-400/50 dark:bg-black"
                 align="start"
                 alignOffset={30}
                 side="left"
               >
                 <section className="w-32 p-1">
-                  <p className="font-bold text-sm">Get in Touch:</p>
+                  <p className="font-bold text-lg">Get in Touch:</p>
                   <div className="grid grid-flow-row grid-rows-4 text-right">
                     <Link href="https://twitter.com/SulaimanShafiq">
-                      <p className="font-normal text-sm mt-2 flex gap-4 justify-between hover:font-bold pr-2">
+                      <p className="font-normal text-sm mt-2 flex gap-4 justify-between hover:font-bold pr-2 hover:text-cyan-400">
                         X
                         <XIcon className="w-6 h-6 inline rounded-full ml-4" />
                       </p>
                     </Link>
                     <Link href="https://www.facebook.com/slmcreatives.my/">
-                      <p className="font-normal text-sm mt-2 flex justify-between hover:font-bold pr-2">
+                      <p className="font-normal text-sm mt-2 flex justify-between hover:font-bold pr-2 hover:text-cyan-400">
                         Facebook
                         <FacebookIcon className="w-6 h-6 inline rounded-full ml-4" />
                       </p>
                     </Link>
                     <Link href="https://wa.me/601121292383">
-                      <p className="font-normal text-sm mt-2 flex justify-between hover:font-bold pr-2">
+                      <p className="font-normal text-sm mt-2 flex justify-between hover:font-bold pr-2 hover:text-cyan-400">
                         Whatsapp
                         <WhatsappIcon className="w-6 h-6 inline rounded-full ml-4" />
                       </p>
                     </Link>
                     <Link href={"mailto:sulaiman@slmcreatives.com"}>
-                      <p className="font-normal text-sm mt-2 flex justify-between hover:font-bold pr-2">
+                      <p className="font-normal text-sm mt-2 flex justify-between hover:font-bold pr-2 hover:text-cyan-400">
                         Email
                         <EmailIcon className="w-6 h-6 inline rounded-full ml-4" />
                       </p>
