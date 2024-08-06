@@ -15,6 +15,106 @@ import {
   DrawerTrigger,
 } from "Sulaiman/S/components/ui/drawer";
 
+const services = [
+  {
+    name: "HFP",
+    fullname: "Health Facility Planning",
+    image: "/ohc/hfp.jpg",
+    features: [
+      {
+        li: "Functional Brief",
+      },
+      {
+        li: "Project Definition Plans (PDP)",
+      },
+      {
+        li: "Schedule Department",
+      },
+      {
+        li: "Accomodation (SOD) & (SOA)",
+      },
+      {
+        li: "Department Planning",
+      },
+      {
+        li: "Flow Diagrams & Adjacencies",
+      },
+    ],
+  },
+  {
+    name: "HFP",
+    fullname: "Health Facility Planning",
+    image: "/ohc/plans.jpg",
+    features: [
+      {
+        li: "Site Planning",
+      },
+      {
+        li: "Architectural Design",
+      },
+      {
+        li: "Schedule Department",
+      },
+      {
+        li: "Concept Planning",
+      },
+      {
+        li: "Design Development",
+      },
+      {
+        li: "Design Management",
+      },
+      {
+        li: "Specs & Tender",
+      },
+    ],
+  },
+  {
+    name: "MEP",
+    fullname: "Medical Equipment Planning",
+    image: "/ohc/equipment.jpg",
+    features: [
+      {
+        li: "Fully Integrated MEP services",
+      },
+      {
+        li: "Coordinated Interfaces",
+      },
+      {
+        li: "Sustainable Solutions",
+      },
+      {
+        li: "Mechanical & Electrival Brief",
+      },
+    ],
+  },
+  {
+    name: "MEQ",
+    fullname: "Medical Equipment Quotations",
+    image: "/ohc/plans.jpg",
+    features: [
+      {
+        li: "Technological Needs",
+      },
+      {
+        li: "Equipment Budget Planning",
+      },
+      {
+        li: "Room by Room Equipment Specification",
+      },
+      {
+        li: "Suitable Placement of Equipment",
+      },
+      {
+        li: "Timely Basis on Implementation",
+      },
+      {
+        li: "Delivery, Installation & Commissioning",
+      },
+    ],
+  },
+];
+
 export default function Page() {
   return (
     <div className="flex flex-col w-full">
@@ -198,105 +298,52 @@ export default function Page() {
           </div>
         </section>
         {/* Services */}
-        <section className="grid grid-cols-1 md:grid-cols-4 justify-center items-top gap-x-4 md:gap-x-2 gap-y-8 m-6">
-          <p className="font-bold text-center col-span-1 md:col-span-4 text-cyan-500 text-2xl">
-            Our Services:
-          </p>
-          <div className="flex flex-col items-left justify-top gap-4 px-2">
-            <Image
-              src="/ohc/hfp.jpg"
-              alt="hosp"
-              width={300}
-              height={300}
-              className="rounded-2xl object-cover aspect-square object-top w-full"
-            />
-            <div className="flex flex-col gap-2">
-              <p className="font-bold text-xl text-cyan-500">HFP</p>
-              <p className="opacity-50">Health Facility Planning</p>
-              <ul className="list-disc list-inside">
-                <li>Functional Brief</li>
-                <li>Project Definition Plans (PDP)</li>
-                <li>Schedules of Department</li>
-                <li>Accommodation (SOD) & (SOA)</li>
-                <li>Department Planning</li>
-                <li>Flow Diagrams & Adjacencies</li>
-              </ul>
+        <p className="font-bold text-center md:col-span-4 text-cyan-500 text-2xl -mb-16">
+          Our Services:
+        </p>
+        <section className="flex flex-row flex-wrap items-top gap-y-4">
+          {services.map((service) => (
+            <div className="grid md:grid-cols-2 items-center justify-center p-4  rounded-2xl w-[90%] mx-auto">
+              <Image
+                src={service.image}
+                alt="hosp"
+                width={300}
+                height={300}
+                className="rounded-xl object-cover aspect-square object-center w-50 h-50"
+              />
+              <div className="flex flex-col flex-nowrap p-4 gap-2 justify-center w-full">
+                <p className="font-bold text-2xl text-cyan-500">
+                  {service.name}
+                </p>
+                <p className="opacity-50">{service.fullname}</p>
+                <ul className="list-disc list-inside">
+                  {service.features.map((feature) => (
+                    <li>{feature.li}</li>
+                  ))}
+                </ul>
+                <Button
+                  variant="default"
+                  size="default"
+                  className="group justify-between flex hover:bg-slate-100"
+                >
+                  <span className="group-hover:text-cyan-500">Read More</span>
+                  <ArrowRightIcon className="h-4 w-4 stroke-cyan-500 inline" />
+                </Button>{" "}
+              </div>
             </div>
-          </div>
-          <div className="flex flex-col items-left justify-top gap-4 px-2">
-            <Image
-              src="/ohc/plans.jpg"
-              alt="hosp"
-              width={300}
-              height={300}
-              className="rounded-2xl object-cover aspect-square object-top w-full"
-            />
-            <div className="flex flex-col gap-2">
-              <p className="font-bold text-xl text-cyan-500">HFA </p>
-              <p className="opacity-50">Health Facility Architecture </p>
-              <ul className="list-disc list-inside">
-                <li>Site Planning</li>
-                <li>Architectural Design</li>
-                <li>Concept Planning</li>
-                <li>Design Development</li>
-                <li>Design Management</li>
-                <li>Specs & Tender</li>
-              </ul>
-            </div>
-          </div>
-          <div className="flex flex-col items-left justify-top gap-4 px-2">
-            <Image
-              src="/ohc/equipment.jpg"
-              alt="hosp"
-              width={300}
-              height={300}
-              className="rounded-2xl object-cover aspect-square object-top w-full"
-            />
-            <div className="flex flex-col gap-2">
-              <p className="font-bold text-xl text-cyan-500">MEP</p>
-              <p className="opacity-50">Medical Equipment Planning</p>
-              <ul className="list-disc list-inside">
-                <li>Fully Integrated MEP services</li>
-                <li>Coordinated Interfaces (MEQ, Architechcure, IT)</li>
-                <li>Sustainable Solutions (Maintenance/Green)</li>
-                <li>
-                  Mechanical & Electrival Brief(Technical Description of M&E
-                  facilities)
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div className="flex flex-col items-left justify-top gap-2 px-2">
-            <Image
-              src="/ohc/budget.jpg"
-              alt="hosp"
-              width={300}
-              height={300}
-              className="rounded-2xl object-cover aspect-square object-top w-full"
-            />
-            <div className="flex flex-col gap-2">
-              <p className="font-bold text-xl text-cyan-500">MEQ </p>
-              <p className="opacity-50">Medical Equipment Quotation</p>
-              <ul className="list-disc list-inside">
-                <li>
-                  Technological Needs tailored to clinical requirements
-                  (Ascertain types and complexity of equipment to optimise
-                  workflow)
-                </li>
-                <li>Equipment Budget Planning (Cost effective outcome)</li>
-                <li>
-                  Room by Room Equipment specification (Develop suitable
-                  placement of equipment)
-                </li>
-                <li>
-                  Timely Basis on equipment implementation (Delivery,
-                  installation, commissioning)
-                </li>
-              </ul>
-            </div>
-          </div>
+          ))}
         </section>
       </div>
+      <section className="flex flex-col items-center justify-center py-10">
+        <p className="text-center text-balance">
+          We are more than happy to sit down and discuss your needs and
+          requirements for your projects. Please contact us for more
+          information.
+        </p>
+        <Button variant="link" size="sm">
+          Open Form
+        </Button>
+      </section>
       <div className="text-xs opacity-50 flex flex-row justify-between items-center p-6">
         <Button variant="link">Get In Touch</Button>{" "}
         <div>
