@@ -461,7 +461,7 @@ function VideoCard({
             </em>
           </div>
         </div>
-        <Button className="rounded-lg ring-1 ring-slate-400/50 col-span-1">
+        <Button className="rounded-lg ring-1 ring-slate-400/50 col-span-1 hidden md:flex">
           <PlayIcon className="w-6 h-6" />
         </Button>
       </a>
@@ -535,7 +535,7 @@ function PresCard({
           <img
             src={cover}
             alt={name}
-            className="w-48 aspect-video object-cover rounded-lg ring-1 ring-slate-400/50"
+            className="w-30 md:w-48 aspect-video object-cover rounded-lg ring-1 ring-slate-400/50"
           />
           <div className="flex flex-col gap-2 text-wrap justify-center">
             <p className="font-bold text-md ">{name}</p>
