@@ -79,7 +79,7 @@ const videos = [
     name: "TM Animated Video Series",
     type: "TM (Telekom Malaysia)",
     link: "https://drive.google.com/file/d/1juy7u1rMXMfGR30ZdkFVnaaPuZ__QGKN/view?usp=sharing",
-    views: "Internal Distribution",
+    views: "Internal",
     desc: "12 episode animated explainer video to showcase corporate new values to all staff and employees.",
   },
   {
@@ -531,11 +531,11 @@ function PresCard({
   return (
     <div className="flex flex-row bg-white dark:bg-black dark:text-slate-50 rounded-lg group hover:ring-1 ring-slate-400/50 p-2 cursor-pointer">
       <a href={link} target="_blank" className="">
-        <div className="flex flex-row gap-8">
+        <div className="flex flex-row gap-4">
           <img
             src={cover}
             alt={name}
-            className="w-30 md:w-48 aspect-video object-cover rounded-lg ring-1 ring-slate-400/50"
+            className="w-40 md:w-48 aspect-video object-cover rounded-lg ring-1 ring-slate-400/50"
           />
           <div className="flex flex-col gap-2 text-wrap justify-center">
             <p className="font-bold text-md ">{name}</p>
