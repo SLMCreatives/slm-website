@@ -1,23 +1,6 @@
 "use client";
 
-import { ArrowLeftCircleIcon } from "@heroicons/react/24/outline";
-import { motion } from "framer-motion";
-import { Coming_Soon } from "next/font/google";
-import Link from "next/link";
-import React, { Suspense, useState } from "react";
-/* import MarketingForm from "Sulaiman/app/_components/MarketingForm";
-import { Button } from "Sulaiman/S/components/ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "Sulaiman/S/components/ui/dialog";
-import { Input } from "Sulaiman/S/components/ui/input";
-import { Label } from "Sulaiman/S/components/ui/label"; */
+import React, { useState } from "react";
 import { Button } from "Sulaiman/S/components/ui/button";
 import { LandingPage } from "./LandingPage";
 

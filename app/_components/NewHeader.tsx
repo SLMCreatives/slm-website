@@ -15,11 +15,12 @@ import {
 import { EmailIcon, FacebookIcon, WhatsappIcon, XIcon } from "react-share";
 import { Button } from "Sulaiman/S/components/ui/button";
 import { ThemeToggle } from "./ThemeToggle";
+import "../globals.css";
 
 const navigation = [
   { name: "SLM", href: "/" },
   { name: "Web Dev", href: "/webdev" },
-  /*  { name: "Projects", href: "/" }, */
+  { name: "Portfolio", href: "/portfolio" },
   { name: "Blog", href: "/blog" },
   { name: "Contact", href: "/contact" },
 ];
@@ -27,7 +28,7 @@ const navigation = [
 export default function NewHeader() {
   const [currentNav, setCurrentNav] = useState("");
   return (
-    <div className="">
+    <div className="bg-white dark:bg-black pt-1">
       <section className=" mt-10 z-10 py-2 px-8 mx-auto">
         <div className="flex flex-row items-center justify-between">
           <div className="flex flex-row flex-nowrap gap-1 items-center">

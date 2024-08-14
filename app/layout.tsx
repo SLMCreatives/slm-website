@@ -26,34 +26,6 @@ export const metadata: Metadata = {
       follow: true,
     },
   },
-  openGraph: {
-    title: "SLM Creatives",
-    description: "Sulaiman Shafiq - Freelance Web Developer and Designer",
-    url: "https://slmcreatives.com",
-    siteName: "SLM Creatives",
-    images: [
-      {
-        url: "/cover_image.jpg",
-        width: 1500,
-        height: 500,
-      },
-    ],
-    locale: "en-US",
-    type: "website",
-  },
-  twitter: {
-    title: "SLM Creatives",
-    card: "summary_large_image",
-    description: "Sulaiman Shafiq - Freelance Web Developer and Designer",
-    creator: "Sulaiman Shafiq",
-    images: [
-      {
-        url: "/cover_image.jpg",
-        width: 1500,
-        height: 500,
-      },
-    ],
-  },
 };
 
 export default function RootLayout({
@@ -62,33 +34,31 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth ">
+    <html lang="en" className="scroll-smooth">
       <head>
         <link rel="icon" href="/logo.png" sizes="any" />
         <GoogleTagManager gtmId="G-NP6J43WF60" />
         <GoogleAnalytics gaId="G-NP6J43WF60" />
+        <meta property="og:image" content="/cover_image.jpg" />
+        <meta property="og:image:type" content="/cover_image.jpg" />
+        <meta property="og:image:width" content="/cover_image.jpg" />
+        <meta property="og:image:height" content="/cover_image.jpg" />
+        <meta name="twitter:image" content="/cover_image.jpg" />
+        <meta name="twitter:image:type" content="/cover_image.jpg" />
+        <meta name="twitter:image:width" content="/cover_image.jpg" />
+        <meta name="twitter:image:height" content="/cover_image.jpg" />
       </head>
 
       <body className={titillium.className}>
-        <div className="bg-white dark:bg-black h-full pt-4">
-          <div className="max-w-xl  mx-auto">
-            <ThemeProvider
-              attribute="class"
-              defaultTheme="light"
-              enableSystem
-              disableTransitionOnChange
-            >
-              <NewHeader />
-              {children}
-            </ThemeProvider>
-            <div className="flex flex-col gap-4 p-6 dark:bg-black">
-              <hr></hr>
-              <p className="relative bottom-0 text-xs opacity-50 text-right">
-                {" "}
-                Copyright © SLM Creatives 2024
-              </p>
-            </div>
-          </div>
+        <div className="bg-white dark:bg-black ">
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="light"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {children}
+          </ThemeProvider>
         </div>
       </body>
     </html>

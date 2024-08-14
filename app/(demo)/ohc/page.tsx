@@ -1,9 +1,24 @@
-import { ArrowLeftIcon, ArrowRightIcon, Menu, XIcon } from "lucide-react";
+import { PaperAirplaneIcon } from "@heroicons/react/24/outline";
+import {
+  ArrowLeftIcon,
+  ArrowRightIcon,
+  GroupIcon,
+  LucideTarget,
+  Menu,
+  XIcon,
+} from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { ThemeToggle } from "Sulaiman/app/_components/ThemeToggle";
 import { Button } from "Sulaiman/S/components/ui/button";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselPrevious,
+  CarouselNext,
+} from "Sulaiman/S/components/ui/carousel";
 import {
   Drawer,
   DrawerClose,
@@ -124,8 +139,8 @@ export default function Page() {
           <div className="w-full h-full bg-gradient-to-b from-white dark:from-black/70 to-transparen dark:mix-blend-multiply"></div>
         </div>
       </div>
-      <section className="flex flex-row justify-between items-center p-6">
-        <div className="flex flex-row items-center gap-2 divide-x-2 divide-cyan-500 dark:divide-white group transition-all duration-300">
+      <section className="flex flex-row justify-between items-center p-6 snap-y snap-mandatory">
+        <div className="flex flex-row items-center gap-2 divide-x-2 divide-cyan-500 dark:divide-white group transition-all duration-300 snap-start">
           <Link href="/ohc">
             <h1 className="text-3xl font-light">
               <span className="text-cyan-500">O</span>HC
@@ -170,7 +185,7 @@ export default function Page() {
           </Drawer>
         </div>
       </section>{" "}
-      <section className="flex flex-col gap-0 items-center justify-center -mt-10 mb-40 h-[75vh] my-20 p-4">
+      <section className="flex flex-col gap-0 items-center justify-center -mt-10 mb-40 h-[75vh] my-20 p-4 snap-center">
         <div className="flex flex-col gap-2 text-center text-balance mx-10 lg:mx-72">
           <p className="font-bold text-4xl lg:text-6xl">
             <span className="text-cyan-500">One</span> Healthcare Consultants
@@ -193,145 +208,199 @@ export default function Page() {
           </Button>
         </div>
       </section>
-      <div className="flex flex-col gap-20 lg:mx-40 2xl:mx-96 md:mx-12 mx-4 ">
-        <section className="grid grid-cols-1 md:grid-cols-2 items-center justify-center gap-4 m-6 mt-20 ">
-          <Image
-            src="/ohc/hosp.jpg"
-            alt="hosp"
-            width={600}
-            height={300}
-            className="rounded-2xl object-cover lg:w-full lg:h-96"
-          />
-          <div className="flex flex-col items-left justify-center gap-2 p-8">
-            <p className="font-bold text-cyan-500 text-xl">Our Mission:</p>
-            <p className="mb-4">
-              To drive and shape the future of healthcase facilities towards the
-              Sustainable Design Environment (SDE).
-            </p>
-            <hr></hr>
-            <p className="font-bold mt-4 text-cyan-500  text-xl">Our Vision:</p>
-            <p>
-              To become one of the elite and trusted health facility planner &
-              medical engineering consulting. Recognized for the quality of
-              services and integrity of our people.
-            </p>
-          </div>
-        </section>
-        <section className="grid grid-cols-1 md:grid-cols-2 justify-center items-center gap-4 m-6">
-          <div className="flex flex-col items-left justify-center gap-2 p-8">
-            <p className="font-bold text-cyan-500  text-xl">One Team:</p>
-            <p>
-              We have a collective experience of 25 years in the healthcare
-              industry. With our broad experience working on healthcare projects
-              both domestically and overseas.
-            </p>
-            <p>
-              We aim to offer{" "}
-              <span className="text-cyan-500">One Stop Design</span> and{" "}
-              <span className="text-cyan-500">
-                Engineering Consulting Services
-              </span>{" "}
-              with expertise and skilled set in the field of Healthcare Facility
-              Planning, Medical Equipment Planning, Mechanical / Electrical
-              Engineering and Project Management.
-            </p>
-          </div>
-          <Image
-            src="/ohc/team.jpg"
-            alt="hosp"
-            width={600}
-            height={300}
-            className="rounded-2xl object-cover"
-          />
-        </section>
-        <section
-          className="grid grid-cols-1 md:grid-cols-2 justify-center items-top gap-y-8 md:gap-x-8 m-6"
-          id="team"
-        >
-          <p className="font-bold text-center col-span-1 md:col-span-2 text-cyan-500 text-2xl m-4">
-            Our Core Team:
-          </p>
-          <div className="flex flex-col items-left justify-top gap-4 p-8 bg-slate-100 dark:bg-slate-800 rounded-2xl">
-            <Image
-              src="/ohc/head1.jpg"
-              alt="hosp"
-              width={300}
-              height={300}
-              className="rounded-2xl object-cover aspect-square object-top w-full"
-            />
-            <div className="flex flex-col gap-2 mt-4">
-              <p className="font-bold text-xl text-cyan-500">
-                MEJOR. GEN. (R) DATO’ (DR) ROSMAN BIN AB RAHMAN{" "}
-              </p>
-              <p className="opacity-50">Advisor & Healthcare Lead </p>
-              <p>
-                Dr. Rosman has served in diverse leadership capacities,
-                including on the Board of Directors for the ASEAN Center of
-                Military Medicine, the Commanding Officer of Tuanku Mizan
-                Military Hospital, Kuala Lumpur, the Inspector General Of The
-                Malaysian Armed Forces Health Services And As Chairman Of
-                Organizing Committees For Military Medicine Conferences.
-              </p>
-            </div>
-          </div>
-          <div className="flex flex-col items-left justify-top gap-4 p-8 bg-slate-100 dark:bg-slate-800 rounded-2xl">
-            <Image
-              src="/ohc/head2.jpg"
-              alt="hosp"
-              width={300}
-              height={300}
-              className="rounded-2xl object-cover aspect-square object-top w-full"
-            />
-            <div className="flex flex-col gap-2 mt-4">
-              <p className="font-bold text-xl text-cyan-500">
-                MUHAMMAD KAREEM BIN ADBUL KASIM
-              </p>
-              <p className="opacity-50">Principal Managing Partner</p>
-              <p>
-                M. Kareem has consistently demonstrated a commitment to
-                excellence and innovation in every role undertaken. Beginning in
-                2004 at Engineering & Environmental Consultant Sdn Bhd (EEC), He
-                has established himself as a Senior Mechanical Engineer,
-                contributing his skills to building services consultancy.
-              </p>
-            </div>
-          </div>
-        </section>
-        {/* Services */}
-        <p className="font-bold text-center md:col-span-4 text-cyan-500 text-2xl -mb-16">
-          Our Services:
-        </p>
-        <section className="flex flex-row flex-wrap items-top gap-y-4">
-          {services.map((service) => (
-            <div className="grid md:grid-cols-2 items-center justify-center p-4  rounded-2xl w-[90%] mx-auto">
-              <Image
-                src={service.image}
-                alt="hosp"
-                width={300}
-                height={300}
-                className="rounded-xl object-cover aspect-square object-center w-50 h-50"
-              />
-              <div className="flex flex-col flex-nowrap p-4 gap-2 justify-center w-full">
-                <p className="font-bold text-2xl text-cyan-500">
-                  {service.name}
+      <div className="flex flex-col gap-2 lg:mx-40 2xl:mx-96 md:mx-12 mx-4">
+        <section className="flex flex-col gap-8 p-8 my-6 justify-top items-start snap-y">
+          <div className="text-lg flex flex-col h-1/2 items-center justify-center snap-center snap-always">
+            <div className="p-0.5 shadow-lg dark:shadow-cyan-400/40 rounded-lg hover:bg-gradient-to-r from-cyan-500 to-blue-500">
+              <div className="p-6 bg-white dark:bg-black  rounded-lg">
+                <p className="py-4">
+                  <span className="font-bold text-cyan-500  text-2xl">
+                    <PaperAirplaneIcon className="w-6 h-6 -rotate-45 mb-2 inline" />{" "}
+                    Our Mission{" "}
+                  </span>
+                  - To drive and shape the future of healthcase facilities
+                  towards the Sustainable Design Environment (SDE).
                 </p>
-                <p className="opacity-50">{service.fullname}</p>
-                <ul className="list-disc list-inside">
-                  {service.features.map((feature) => (
-                    <li>{feature.li}</li>
-                  ))}
-                </ul>
-                <Button
-                  variant="default"
-                  size="default"
-                  className="group justify-between flex hover:bg-slate-100"
-                >
-                  <span className="group-hover:text-cyan-500">Read More</span>
-                  <ArrowRightIcon className="h-4 w-4 stroke-cyan-500 inline" />
-                </Button>{" "}
               </div>
             </div>
-          ))}
+          </div>
+          <div className="text-lg flex flex-col h-1/2 items-center justify-center snap-center snap-always">
+            <div className="p-0.5 shadow-lg dark:shadow-cyan-400/40 rounded-lg hover:bg-gradient-to-r from-cyan-500 to-blue-500">
+              <div className="p-6 bg-white dark:bg-black rounded-lg">
+                <p className="py-4">
+                  <span className="font-bold text-cyan-500 text-2xl mt-6">
+                    <LucideTarget className="w-6 h-6 mb-1 inline" /> Our Vision{" "}
+                  </span>
+                  - To become one of the elite and trusted health facility
+                  planner & medical engineering consulting. Recognized for the
+                  quality of services and integrity of our people.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="text-lg flex flex-col h-1/2 items-center justify-center snap-center snap-always">
+            <div className="p-0.5 shadow-lg dark:shadow-cyan-400/40 rounded-lg hover:bg-gradient-to-r from-cyan-500 to-blue-500">
+              <div className="p-6 bg-white dark:bg-black rounded-lg">
+                <p className="py-4">
+                  <span className="font-bold text-cyan-500  text-2xl mb-2">
+                    <GroupIcon className="w-6 h-6 mb-1 inline" /> One Team{" "}
+                  </span>
+                  - We have a collective experience of 25 years in the
+                  healthcare industry. With our broad experience working on
+                  healthcare projects both domestically and overseas.
+                </p>
+                <p>
+                  We aim to offer{" "}
+                  <span className="text-cyan-500">One Stop Design</span> and{" "}
+                  <span className="text-cyan-500">
+                    Engineering Consulting Services
+                  </span>{" "}
+                  with expertise and skilled set in the field of Healthcare
+                  Facility Planning, Medical Equipment Planning, Mechanical /
+                  Electrical Engineering and Project Management.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section className="flex flex-col py-8">
+          <p className="font-bold text-center text-cyan-500 text-2xl m-4">
+            Our Core Team:
+          </p>
+          <Carousel>
+            <CarouselContent className="flex flex-row gap-8 mx-8 pl-4">
+              <CarouselItem className="basis-3/4 pl-2">
+                <div className="flex flex-col items-left justify-top gap-6 p-8  dark:bg-black border-2 border-slate-200 dark:border-cyan-400/50 rounded-2xl">
+                  <div className="flex flex-col md:flex-row  gap-4 items-left justify-center">
+                    <Image
+                      src="/ohc/rosman.webp"
+                      alt="hosp"
+                      width={300}
+                      height={300}
+                      className="rounded-full w-20 h-20 object-cover aspect-square object-top"
+                    />
+                    <div className="flex flex-col">
+                      <p className="font-bold text-xl text-cyan-500">
+                        MEJOR. GEN. (R) DATO’ (DR) ROSMAN BIN AB RAHMAN{" "}
+                      </p>
+                      <p className="opacity-50">Advisor & Healthcare Lead </p>
+                    </div>
+                  </div>
+                  <p className="line-clamp-5">
+                    Dr. Rosman has served in diverse leadership capacities,
+                    including on the Board of Directors for the ASEAN Center of
+                    Military Medicine, the Commanding Officer of Tuanku Mizan
+                    Military Hospital, Kuala Lumpur, the Inspector General Of
+                    The Malaysian Armed Forces Health Services And As Chairman
+                    Of Organizing Committees For Military Medicine Conferences.
+                  </p>
+                </div>
+              </CarouselItem>
+              <CarouselItem className="basis-2/3 pl-2">
+                <div className="flex flex-col items-left justify-top gap-6 p-8  dark:bg-black border-2 border-slate-200 dark:border-cyan-400/50 rounded-2xl">
+                  <div className="flex flex-col md:flex-row gap-4 items-left justify-center">
+                    <Image
+                      src="/ohc/kareem.webp"
+                      alt="hosp"
+                      width={300}
+                      height={300}
+                      className="rounded-full w-20 h-20 object-cover aspect-square object-top"
+                    />
+                    <div className="flex flex-col">
+                      <p className="font-bold text-xl text-cyan-500">
+                        MUHAMMAD KAREEM BIN ADBUL KASIM{" "}
+                      </p>
+                      <p className="opacity-50"> Principal Managing Partner</p>
+                    </div>
+                  </div>
+                  <p className="line-clamp-5">
+                    M. Kareem has consistently demonstrated a commitment to
+                    excellence and innovation in every role undertaken.
+                    Beginning in 2004 at Engineering & Environmental Consultant
+                    Sdn Bhd (EEC), He has established himself as a Senior
+                    Mechanical Engineer, contributing his skills to building
+                    services consultancy.
+                  </p>
+                </div>
+              </CarouselItem>
+              <CarouselItem className="basis-2/3 pl-2">
+                <div className="flex flex-col items-left justify-top gap-6 p-8  dark:bg-black border-2 border-slate-200 dark:border-cyan-400/50 rounded-2xl">
+                  <div className="flex flex-col md:flex-row gap-4 items-left justify-center">
+                    <Image
+                      src="/ohc/head1.jpg"
+                      alt="hosp"
+                      width={300}
+                      height={300}
+                      className="rounded-full w-20 h-20 object-cover aspect-square object-top"
+                    />
+                    <div className="flex flex-col">
+                      <p className="font-bold text-lg text-cyan-500">
+                        MEJOR. GEN. (R) DATO’ (DR) ROSMAN BIN AB RAHMAN{" "}
+                      </p>
+                      <p className="opacity-50">Advisor & Healthcare Lead </p>
+                    </div>
+                  </div>
+                  <p className="line-clamp-5">
+                    Dr. Rosman has served in diverse leadership capacities,
+                    including on the Board of Directors for the ASEAN Center of
+                    Military Medicine, the Commanding Officer of Tuanku Mizan
+                    Military Hospital, Kuala Lumpur, the Inspector General Of
+                    The Malaysian Armed Forces Health Services And As Chairman
+                    Of Organizing Committees For Military Medicine Conferences.
+                  </p>
+                </div>
+              </CarouselItem>
+            </CarouselContent>
+            <CarouselPrevious className="absolute top-1/2 left-2 dark:bg-black text-cyan-400" />
+            <CarouselNext className="absolute top-1/2 right-2 dark:bg-black text-cyan-400" />
+          </Carousel>
+        </section>
+        {/*         </section>
+         */}{" "}
+        {/* Services */}
+        <p className="font-bold text-center md:col-span-4 text-cyan-500 text-2xl">
+          Our Services:
+        </p>
+        <section className="flex flex-row flex-wrap items-top">
+          <Carousel className="py-4 w-full snap-x snap-mandatory">
+            <CarouselContent className="flex flex-col md:flex-row gap-8 ml-12 my-8">
+              {services.map((service) => (
+                <CarouselItem className="flex md:flex-row rounded-2xl gap-4 pl-4 snap-center">
+                  <Image
+                    src={service.image}
+                    alt="hosp"
+                    width={300}
+                    height={300}
+                    className="rounded-xl object-cover aspect-square object-center w-50 h-50 ring-2 ring-cyan-400/50"
+                  />
+                  <div className="flex flex-col flex-nowrap p-4 gap-4 justify-center w-full">
+                    <p className="font-bold text-2xl text-cyan-500 -mb-4">
+                      {service.name}
+                    </p>
+                    <p className="opacity-50">{service.fullname}</p>
+                    <ul className="list-disc list-inside">
+                      {service.features.map((feature) => (
+                        <li>{feature.li}</li>
+                      ))}
+                    </ul>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="group justify-between flex hover:bg-slate-100"
+                    >
+                      <span className="group-hover:text-cyan-500">
+                        Read More
+                      </span>
+                      <ArrowRightIcon className="h-4 w-4 stroke-cyan-500 inline" />
+                    </Button>{" "}
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="absolute top-1/2 left-2 dark:bg-black" />
+            <CarouselNext className="absolute top-1/2 right-2 dark:bg-black" />
+          </Carousel>
         </section>
       </div>
       <section className="flex flex-col items-center justify-center py-10">

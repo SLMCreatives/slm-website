@@ -71,16 +71,8 @@ export const post = defineType({
       name: "likes",
       title: "Likes",
       type: "number",
-    }),
-    defineField({
-      name: "views",
-      title: "Views",
-      type: "number",
-    }),
-    defineField({
-      name: "comments",
-      title: "Comments",
-      type: "number",
+      initialValue: 0,
+      readOnly: true,
     }),
   ],
   preview: {
