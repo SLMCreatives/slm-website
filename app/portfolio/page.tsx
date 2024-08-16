@@ -2,14 +2,37 @@
 
 import { PlayIcon } from "@heroicons/react/24/outline";
 import { DownloadIcon, ExternalLinkIcon, ViewIcon } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import {
   Avatar,
   AvatarFallback,
   AvatarImage,
 } from "Sulaiman/S/components/ui/avatar";
 import { Button } from "Sulaiman/S/components/ui/button";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "Sulaiman/S/components/ui/carousel";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogOverlay,
+  DialogPortal,
+  DialogTitle,
+  DialogTrigger,
+} from "Sulaiman/S/components/ui/dialog";
+import { Input } from "Sulaiman/S/components/ui/input";
+import { Label } from "Sulaiman/S/components/ui/label";
+import { WebGLBindingStates } from "three/src/renderers/webgl/WebGLBindingStates";
 
 const categories = [
   {
@@ -36,6 +59,7 @@ const websites = [
     link: "https://www.mediknur.com",
     image: "/webp/mediknur.webp",
     logo: "/webp/medik-nur-1.webp",
+    index: 0,
   },
   {
     name: "Rivertron Construction",
@@ -43,6 +67,7 @@ const websites = [
     link: "https://www.rivertron.com",
     image: "/webp/riv_site.webp",
     logo: "/webp/riv_logo.webp",
+    index: 1,
   },
   {
     name: "LHI Consulting",
@@ -50,6 +75,7 @@ const websites = [
     link: "https://www.lhi-consulting.com",
     image: "/webp/lhi-consulting.webp",
     logo: "/webp/lhi.webp",
+    index: 2,
   },
   {
     name: "Melwood Arena",
@@ -57,6 +83,7 @@ const websites = [
     link: "https://www.melwoodarena.com",
     image: "/webp/melwood.webp",
     logo: "/webp/melwood_icon-01.webp",
+    index: 3,
   },
   {
     name: "AKH Partners PLT",
@@ -64,6 +91,7 @@ const websites = [
     link: "https://akhpartnersplt.com.my/",
     image: "/webp/akh_website.webp",
     logo: "/webp/akh_logo.webp",
+    index: 4,
   },
   {
     name: "DrH WoodWork Interior",
@@ -71,6 +99,7 @@ const websites = [
     link: "https://www.drhwoodworks.com/",
     image: "/webp/drh_website.webp",
     logo: "/webp/drh_logo.webp",
+    index: 5,
   },
 ];
 
@@ -241,6 +270,13 @@ const designs = [
 ];
 const presentations = [
   {
+    name: "Marketing Proposal",
+    comp: "SLM Creatives",
+    link: "https://www.canva.com/design/DAGNQA5ZJrU/y1aCiQ-g48KfaNwCRggxNw/view?utm_content=DAGNQA5ZJrU&utm_campaign=designshare&utm_medium=link&utm_source=editor",
+    desc: "Marketing proposal deck with timeline and quotation",
+    cover: "/content/mproposal.jpg",
+  },
+  {
     name: "Module Training Material",
     comp: "Maybank",
     link: "https://www.canva.com/design/DAGNz-pD0SQ/Jh1HEsZb53w9plT7nspWuQ/view?utm_content=DAGNz-pD0SQ&utm_campaign=designshare&utm_medium=link&utm_source=editor",
@@ -260,6 +296,13 @@ const presentations = [
     link: "https://www.canva.com/design/DAFskjAipdU/44fCt46HgGQNz1h3AbvDMA/view?utm_content=DAFskjAipdU&utm_campaign=designshare&utm_medium=link&utm_source=editor",
     desc: "Official deck for corporate and sales presentation.",
     cover: "/content/oce_cover.jpg",
+  },
+  {
+    name: "Virtual Group Treasure Hunt",
+    comp: "LHI Consulting",
+    link: "https://www.canva.com/design/DAEoinHEYT8/Od4YAOQCoU_J8n_zo4CqDA/view?utm_content=DAEoinHEYT8&utm_campaign=designshare&utm_medium=link&utm_source=editor",
+    desc: "Training material for digital group activity.",
+    cover: "/content/vth.jpg",
   },
 ];
 
@@ -318,6 +361,7 @@ function GridList({ name, websites }: { name: string; websites: any[] }) {
     <div className="flex flex-col gap-4">
       <p className="font-bold text-xl">{name}</p>
       <div className="grid grid-col-1 md:grid-cols-2 gap-4">
+        {!name && <p>Choose a category</p>}
         {name === "Websites" &&
           websites.map((website) => (
             <WebsiteCard
@@ -326,6 +370,8 @@ function GridList({ name, websites }: { name: string; websites: any[] }) {
               image={website.image}
               link={website.link}
               industry={website.industry}
+              key={website.name}
+              index={website.index}
             />
           ))}
       </div>
@@ -337,6 +383,7 @@ function GridList({ name, websites }: { name: string; websites: any[] }) {
             link={video.link}
             views={video.views}
             desc={video.desc}
+            key={video.name}
           />
         ))}
       {name === "Social Media" &&
@@ -346,6 +393,7 @@ function GridList({ name, websites }: { name: string; websites: any[] }) {
             platforms={social.platforms}
             description={social.description}
             industry={social.industry}
+            key={social.name}
           />
         ))}
       <div className="grid grid-cols-2 md:grid-cols-3 gap-4 ">
@@ -372,56 +420,27 @@ function WebsiteCard({
   image,
   link,
   industry,
+  index,
 }: {
   name: string;
   logo: string;
   image: string;
   link: string;
   industry: string;
+  index: number;
 }) {
   return (
     <div className="flex flex-col bg-white dark:bg-black dark:text-slate-50 group relative cursor-pointer">
-      <a href={link} target="_blank" className="">
-        <div className="group-hover:flex absolute z-50 bottom-0 left-0 bg-gradient-to-t from-white to-80% dark:from-black/70 to-transparent  w-full h-full px-4 hidden items-end">
-          <div className="flex flex-row my-4 items-center gap-4">
-            <Avatar>
-              <AvatarImage
-                src={logo}
-                alt={name}
-                className="w-10 h-10 object-contain"
-              ></AvatarImage>
-              <AvatarFallback>{name}</AvatarFallback>
-            </Avatar>
-            <p className="font-bold text-md flex flex-col">
-              {name}{" "}
-              {industry && (
-                <em className="font-normal text-sm opacity-50">{industry}</em>
-              )}
-            </p>
-          </div>
+      <div className="group-hover:flex absolute z-50 bottom-0 left-0 bg-gradient-to-t from-white to-80% dark:from-black/70 to-transparent  w-full h-full px-4 hidden items-end">
+        <div className="flex flex-row my-4 items-center gap-4">
+          <OpenCard moviecard={moviecard} name={name} index={index} />
         </div>
-        <img
-          className="ring-1 ring-slate-400/50 dark:ring-slate-600  rounded-md md:aspect-video aspect-auto object-cover h-[15rem] md:h-[10rem] w-full object-top"
-          src={image}
-          alt={name}
-        />
-      </a>
-      {/* <div className="flex flex-row my-4 items-center gap-4">
-        <Avatar>
-          <AvatarImage
-            src={logo}
-            alt={name}
-            className="w-10 h-10 object-contain"
-          ></AvatarImage>
-          <AvatarFallback>{name}</AvatarFallback>
-        </Avatar>
-        <p className="font-bold text-md flex flex-col">
-          {name}{" "}
-          {industry && (
-            <em className="font-normal text-sm opacity-50">{industry}</em>
-          )}
-        </p>
-      </div> */}
+      </div>
+      <img
+        className="ring-1 ring-slate-400/50 dark:ring-slate-600  rounded-md md:aspect-video aspect-auto object-cover h-[15rem] md:h-[10rem] w-full object-top"
+        src={image}
+        alt={name}
+      />
     </div>
   );
 }
@@ -544,14 +563,331 @@ function PresCard({
             </em>
 
             <Button
-              className="rounded-lg ring-1 ring-slate-400/50 hidden md:flex w-fit"
-              size="sm"
+              className="rounded-lg px-0 mx-0 hidden md:flex w-fit group"
+              variant="default"
+              size="icon"
             >
-              View On Canva
+              <ExternalLinkIcon className="w-4 h-4 ml-2" />{" "}
+              <p className="ml-2 opacity-50 text-sm hidden group-hover:inline">
+                Preview on Canva
+              </p>
             </Button>
           </div>
         </div>
       </a>
+    </div>
+  );
+}
+
+const moviecard = [
+  {
+    nameCard: "Medik Nur Rahmah Berhad (MNRB)",
+    logo: "/webp/medik-nur-1.webp",
+    intro:
+      "As part of a collaboration with The Pejabat (Digital), I was given the task to design, structure and develop the official website for MNRB. They needed a website that was modern, responsive and functional to ease their daily operations.",
+    time: "Feb - Apr 2023",
+    ind: "Medical Aid & Financial Support",
+    tags: [
+      "Web Dev",
+      "Modern Design",
+      "Responsive",
+      "Copy-Writing",
+      "SEO",
+      "Data Showcase",
+    ],
+    objective: [
+      "Develop & design an official corporate website",
+      "Website needs to be modern, responsive and user-friendly.",
+      "To increase brand trust and reputation with fund management",
+    ],
+    goals: [
+      "Developed a corporate website with modern design which includes creative assets and clear structure",
+      "Digitised and structured company operations data and fund management",
+      "Optimized website for search engines",
+    ],
+    link: "https://www.mediknur.com",
+    gallery: [
+      "/webp/mediknur.webp",
+      "/webp/mnrb_blog.webp",
+      "/webp/mnrb_info.webp",
+      "/webp/mnrb_contact.webp",
+    ],
+  },
+  {
+    nameCard: "Rivertron Construction",
+    logo: "/webp/riv_logo.webp",
+    intro:
+      "As part of a collaboration with The Pejabat (Digital), I was given the task to design, structure and develop the official website for Rivertron Constructin. They needed a basic website to showcase their services, testimonials and capture leads from potential clients",
+    time: "Apr - March 2023",
+    ind: "Constructions & Renovation",
+    tags: [
+      "Web Dev",
+      "Modern Design",
+      "Responsive",
+      "Copy-Writing",
+      "SEO",
+      "Image Showcase",
+    ],
+    objective: [
+      "Develop & design an official corporate website",
+      "Website needs to be modern, responsive and user-friendly.",
+      "To increase brand trust and reputation with fund management",
+    ],
+    goals: [
+      "Developed a corporate website with modern design which includes creative assets and clear structure",
+      "Digitised and structured company operations data and fund management",
+      "Optimized website for search engines",
+    ],
+    link: "https://www.rivertron.com",
+    gallery: [
+      "/webp/riv_site.webp",
+      "/webp/riv_services.webp",
+      "/webp/riv_services_2.webp",
+      "/webp/riv_form.webp",
+      "/webp/riv_feature.webp",
+    ],
+  },
+  {
+    nameCard: "LHI Consulting",
+    logo: "/webp/lhi.webp",
+    intro:
+      "I was tasked to restructure and design a corporate website for LHI. They needed a website that was modern, responsive and functional to ease their daily operations.",
+    time: "Okt - Dec 2022",
+    ind: "Management Consultant",
+    tags: [
+      "Web Dev",
+      "Modern Design",
+      "Responsive",
+      "Copy-Writing",
+      "SEO",
+      "Data Showcase",
+    ],
+    objective: [
+      "Develop & design an official corporate website",
+      "Website needs to be modern, responsive and user-friendly.",
+      "To increase brand trust and reputation with fund management",
+    ],
+    goals: [
+      "Developed a corporate website with modern design which includes creative assets and clear structure",
+      "Digitised and structured company operations data and fund management",
+      "Optimized website for search engines",
+    ],
+    link: "https://www.lhi-consulting.com",
+    gallery: ["/webp/lhi-consulting.webp"],
+  },
+  {
+    nameCard: "Melwood Arena",
+    logo: "/webp/melwood_icon-01.webp",
+    intro:
+      "As part of a collaboration with The Pejabat (Digital), I was given the task to design, structure and develop the official website for Rivertron Constructin. They needed a basic website to showcase their services, testimonials and capture leads from potential clients",
+    time: "Jan - Feb 2023",
+    ind: "Sports Field Rental",
+    tags: [
+      "Web Dev",
+      "Modern Design",
+      "Responsive",
+      "Booking Rental",
+      "Payment Gateway",
+      "Product Showcase",
+    ],
+    objective: [
+      "Develop & design an official corporate website",
+      "Website needs to be modern, responsive and user-friendly.",
+      "To increase brand trust and reputation with fund management",
+    ],
+    goals: [
+      "Developed a corporate website with modern design which includes creative assets and clear structure",
+      "Digitised and structured company operations data and fund management",
+      "Optimized website for search engines",
+    ],
+    link: "https://www.melwoodarena.com",
+    gallery: ["/webp/melwood.webp"],
+  },
+  {
+    nameCard: "AKH & Partners PLT",
+    logo: "/webp/akh_logo.webp",
+    intro:
+      "I was tasked to restructure and design a corporate website for AKH & Partners PLT. They needed a website that was modern, responsive and functional to ease their daily operations.",
+    time: "Jan - Feb 2023",
+    ind: "Accounting & Finance",
+    tags: [
+      "Web Dev",
+      "Modern Design",
+      "Responsive",
+      "Copy-Writing",
+      "SEO",
+      "Data Showcase",
+    ],
+    objective: [
+      "Develop & design an official corporate website",
+      "Website needs to be modern, responsive and user-friendly.",
+      "To increase brand trust and reputation with fund management",
+    ],
+    goals: [
+      "Developed a corporate website with modern design which includes creative assets and clear structure",
+      "Digitised and structured company operations data and fund management",
+      "Optimized website for search engines",
+    ],
+    link: "https://www.akhpartnersplt.com.my",
+    gallery: ["/webp/akh_website.webp"],
+  },
+  {
+    nameCard: "DRH WoodWorks Interior",
+    logo: "/webp/drh_logo.webp",
+    intro:
+      "As part of a collaboration with The Pejabat (Digital), I was given the task to design, structure and develop the official website for DrH WoodWorks Interior. They needed a basic website to showcase their services, testimonials and capture leads from potential clients",
+    time: "Feb - March 2023",
+    ind: "Furniture & Decor",
+    tags: [
+      "Web Dev",
+      "Modern Design",
+      "Responsive",
+      "Booking Rental",
+      "Payment Gateway",
+      "Product Showcase",
+    ],
+    objective: [
+      "Develop & design an official corporate website",
+      "Website needs to be modern, responsive and user-friendly.",
+      "To increase brand trust and reputation with fund management",
+    ],
+    goals: [
+      "Developed a corporate website with modern design which includes creative assets and clear structure",
+      "Digitised and structured company operations data and fund management",
+      "Optimized website for search engines",
+    ],
+    link: "https://www.drhwoodworks.com/",
+    gallery: ["/webp/drh_website.webp"],
+  },
+];
+
+function OpenCard({
+  moviecard,
+  name,
+  index,
+}: {
+  moviecard: any;
+  name: string;
+  index: number;
+}) {
+  const x = index % moviecard.length;
+  const {
+    nameCard,
+    logo,
+    intro,
+    time,
+    ind,
+    tags,
+    objective,
+    goals,
+    link,
+    gallery,
+  } = moviecard[x];
+  return (
+    <div className="">
+      <Dialog>
+        <DialogTrigger asChild>
+          <Button variant="ghost" className="dark:hover:text-white">
+            Read Full Story
+          </Button>
+        </DialogTrigger>
+        <DialogPortal>
+          <DialogOverlay className="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-sm">
+            <DialogContent className=" fixed  w-[90vw] h-fit top-10 left-0 right-0 mx-auto px-10 md:px-12 dark:bg-slate-800 border-0 rounded-md">
+              <DialogHeader className="text-left gap-2">
+                <DialogTitle className="flex flex-row gap-2 items-center justify-left py-4">
+                  <Image
+                    src={logo}
+                    alt={nameCard}
+                    className="w-10 h-10 rounded-full object-cover"
+                    width={50}
+                    height={50}
+                  />
+                  <div className="flex flex-col">
+                    <p className="text-fold text-xl">{nameCard}</p>
+                    <p className="text-sm font-normal uppercase opacity-50">
+                      {ind}
+                    </p>
+                  </div>
+                </DialogTitle>
+                <DialogDescription className="text-left">
+                  <div className="flex flex-row flex-wrap gap-2">
+                    {tags.map((tag: string) => (
+                      <p className="text-xs font-bold bg-slate-200 dark:bg-slate-900 px-2 py-1 rounded-md">
+                        #{tag}
+                      </p>
+                    ))}
+                  </div>
+                </DialogDescription>
+              </DialogHeader>
+              <div className="hidden md:block">
+                <Carousel
+                  className="w-full max-w-full pr-2"
+                  opts={{
+                    align: "center",
+                    loop: true,
+                  }}
+                >
+                  <CarouselContent className="w-full peer">
+                    {gallery.map((img: string) => (
+                      <CarouselItem key={img} className="basis-full">
+                        <Image
+                          src={img}
+                          alt={nameCard}
+                          className="w-full aspect-video rounded-lg "
+                          width={500}
+                          height={500}
+                        />
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                  <CarouselPrevious className=" absolute -left-4 w-5 h-5 dark:bg-transparent" />
+                  <CarouselNext className=" absolute -right-6 w-5 h-5 dark:bg-transparent" />
+                </Carousel>
+              </div>
+
+              <div className="mt-2 flex flex-col gap-2">
+                <p className="text-sm font-bold -mb-2">Overview:</p>
+                <p className="text-sm">{intro}</p>
+                <ul>
+                  <p className="text-sm font-bold">Objective:</p>
+                  {objective.map((obj: string) => (
+                    <li className="text-sm font-normal list-outside ml-4 list-disc">
+                      {obj}
+                    </li>
+                  ))}
+                </ul>
+                <ul>
+                  <p className="text-sm font-bold">Goals:</p>
+                  {goals.map((goal: string) => (
+                    <li className="text-sm font-normal list-outside list-disc ml-4">
+                      {goal}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="flex flex-row justify-end gap-0">
+                <Link href="/contact">
+                  <Button
+                    variant="ghost"
+                    className="w-fit opacity-50 hover:opacity-100 dark:hover:text-white"
+                  >
+                    Get In Touch
+                  </Button>
+                </Link>
+                <Link href={link}>
+                  <Button
+                    variant="outline"
+                    className="w-fit dark:hover:bg-slate-900 dark:text-black dark:hover:text-white border-0"
+                  >
+                    Visit Website
+                  </Button>
+                </Link>
+              </div>
+            </DialogContent>
+          </DialogOverlay>
+        </DialogPortal>
+      </Dialog>
     </div>
   );
 }
