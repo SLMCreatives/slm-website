@@ -32,6 +32,11 @@ import {
 } from "Sulaiman/S/components/ui/dialog";
 import { Input } from "Sulaiman/S/components/ui/input";
 import { Label } from "Sulaiman/S/components/ui/label";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "Sulaiman/S/components/ui/popover";
 import { WebGLBindingStates } from "three/src/renderers/webgl/WebGLBindingStates";
 
 const categories = [
@@ -92,14 +97,6 @@ const websites = [
     image: "/webp/akh_website.webp",
     logo: "/webp/akh_logo.webp",
     index: 4,
-  },
-  {
-    name: "DrH WoodWork Interior",
-    industry: "Interior Design",
-    link: "https://www.drhwoodworks.com/",
-    image: "/webp/drh_website.webp",
-    logo: "/webp/drh_logo.webp",
-    index: 5,
   },
 ];
 
@@ -729,7 +726,14 @@ const moviecard = [
       "Optimized website for search engines",
     ],
     link: "https://www.akhpartnersplt.com.my",
-    gallery: ["/webp/akh_website.webp"],
+    gallery: [
+      "/webp/akh_home.webp",
+      "/webp/akh_cta.webp",
+      "/webp/akh_services.webp",
+      "/webp/akh_service.webp",
+      "/webp/akh_team.webp",
+      "/webp/akh_portfolio.webp",
+    ],
   },
   {
     nameCard: "DRH WoodWorks Interior",
@@ -793,7 +797,7 @@ function OpenCard({
         </DialogTrigger>
         <DialogPortal>
           <DialogOverlay className="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-sm">
-            <DialogContent className=" fixed  w-[90vw] h-fit top-10 left-0 right-0 mx-auto px-10 md:px-12 dark:bg-slate-800 border-0 rounded-md">
+            <DialogContent className="fixed w-full h-screen top-5 left-0 right-0 mx-auto px-10 md:px-12 dark:bg-slate-800 border-0 rounded-md overflow-y-auto">
               <DialogHeader className="text-left gap-2">
                 <DialogTitle className="flex flex-row gap-2 items-center justify-left py-4">
                   <Image

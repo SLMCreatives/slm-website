@@ -28,7 +28,8 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "app/_components/Card.tss",
-    "app/portfolio/(Post)/posts.tsx"
+    "app/portfolio/(Post)/posts.tsx",
+    "app/utils/supabase/server.js"
   ],
   "exclude": ["node_modules"]
 }

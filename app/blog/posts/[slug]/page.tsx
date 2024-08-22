@@ -7,7 +7,28 @@ import Image from "next/image";
 import type { Metadata } from "next";
 import CodeBlock from "../../../_components/CodeBlock";
 import ShareButtons from "../../../_components/ShareButtons";
-//import LikeButton from "Sulaiman/app/_components/LikeButton";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "Sulaiman/S/components/ui/popover";
+import { Button } from "Sulaiman/S/components/ui/button";
+import { Form } from "Sulaiman/S/components/ui/form";
+import { Label } from "Sulaiman/S/components/ui/label";
+import { Input } from "Sulaiman/S/components/ui/input";
+import { Textarea } from "Sulaiman/S/components/ui/textarea";
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerPortal,
+  DrawerTrigger,
+} from "Sulaiman/S/components/ui/drawer";
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "Sulaiman/S/components/ui/avatar";
 
 const POST_QUERY = `*[
   _type == "post" &&
@@ -18,6 +39,7 @@ const POST_QUERY = `*[
   title,
   publishedAt,
   _updatedAt,
+  readingTime,
   likes,
   body,
   author->,
@@ -103,6 +125,7 @@ export default async function PostPage({
     author,
     categories,
     mainImage,
+    readingTime,
     slug,
     url,
   } = post || {};
@@ -164,8 +187,13 @@ export default async function PostPage({
             {title}
           </h1>
           <div className="flex flex-row gap-4 justify-between -mt-4">
-            <p className="text-sm opacity-50">Published on: {dateFormated}</p>
-            <p className="text-sm opacity-50">Updated on: {upFormated}</p>
+            <p className="text-sm">
+              <span className="opacity-50">Reading Time:</span>{" "}
+              {readingTime / 60} mins
+            </p>
+            <p className="text-sm">
+              <span className="opacity-50">Published On: </span> {dateFormated}
+            </p>
           </div>
           <div className="flex flex-col gap-4">
             <Image
@@ -189,16 +217,73 @@ export default async function PostPage({
               </div>
             )}
           </div>
-          {/* <div className="flex flex-row items-center justify-between">
-            {post.likes < 1 ? (
-              <>
-                <p className="text-sm opacity-50">No likes yet</p>
-              </>
-            ) : (
-              <p className="text-sm opacity-50">{post.likes} likes</p>
-            )}
-            <LikeButton likecount={post.likes} />
-          </div> */}
+          <div className="flex flex-row items-center justify-between">
+            <Popover>
+              <PopoverTrigger>
+                <Button variant="secondary" className="text-sm">
+                  Continue the Discussion
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent
+                align="start"
+                side="top"
+                className="dark:bg-black"
+              >
+                <div className="w-[300px] flex flex-col gap-2">
+                  <p className="font-bold">Continue the Discussion </p>
+                  <Label className="text-sm mt-2">Email:</Label>
+                  <Input
+                    className="w-full dark:bg-slate-800"
+                    placeholder="name@example.com"
+                    id="email"
+                    name="email"
+                  ></Input>
+                  <Label className="text-sm mt-2">Comment:</Label>
+                  <Textarea
+                    className="w-full dark:bg-slate-800"
+                    placeholder="Leave a comment"
+                    id="comment"
+                    name="comment"
+                  ></Textarea>
+                  <Button type="submit" variant="secondary" className="mt-2">
+                    Submit
+                  </Button>
+                </div>
+              </PopoverContent>
+            </Popover>
+            <Drawer>
+              <DrawerTrigger>
+                <Button variant="secondary" className="text-sm">
+                  Discussion Board
+                </Button>
+              </DrawerTrigger>
+              <DrawerContent className="rounded-t-xl -ml-2 bg-black dark:bg-white text-white dark:text-black w-3/4 lg:w-1/4 md:w-1/2 h-[95%] ">
+                <div className="flex flex-col px-12 pt-4 pb-10 gap-4">
+                  <p className="text-xl font-bold">Discussion Board</p>
+                  <hr></hr>
+                  {comments && approvedComments(comments) ? (
+                    <div className="flex flex-col gap-4 min-h-[300px]">
+                      {comments.map((comment: any) => (
+                        <CommentCard
+                          name={comment.name}
+                          comment={comment.comment}
+                          updatedAt={comment.updatedAt}
+                          key={comment._id}
+                        />
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="flex flex-col py-2 gap-4">
+                      <div className="flex flex-row gap-4 justify-left items-start">
+                        <em className="text-sm">So far all clear!</em>
+                      </div>
+                    </div>
+                  )}
+                </div>
+                <DrawerClose className="text-sm" />
+              </DrawerContent>
+            </Drawer>
+          </div>
           <hr></hr>
           <div className="mt-4 p-2 grid grid-cols-1 gap-24 text-left ">
             <div className="flex flex-row items-center justify-between gap-6">
@@ -231,3 +316,31 @@ export default async function PostPage({
     </section>
   );
 }
+
+const CommentCard = ({
+  name,
+  comment,
+  updatedAt,
+}: {
+  name: string;
+  comment: string;
+  updatedAt: string;
+}) => {
+  return (
+    <div className="flex flex-col py-2 gap-4">
+      <div className="flex flex-row gap-4 justify-left items-start">
+        <Avatar className="w-6 h-6">
+          <AvatarImage src="/sulaiman.jpg" alt="profile" />
+          <AvatarFallback>SS</AvatarFallback>
+        </Avatar>
+        <div className="flex flex-col justify-center">
+          <p>{comment}</p>
+          <p className="font-bold text-sm opacity-50">
+            {name} {""}
+            <span className="text-xs font-normal">on {updatedAt}</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+};

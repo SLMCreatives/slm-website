@@ -16,6 +16,7 @@ import { EmailIcon, FacebookIcon, WhatsappIcon, XIcon } from "react-share";
 import { Button } from "Sulaiman/S/components/ui/button";
 import { ThemeToggle } from "./ThemeToggle";
 import "../globals.css";
+import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 
 const navigation = [
   { name: "SLM", href: "/" },
@@ -50,12 +51,18 @@ export default function NewHeader() {
           </div>
           <div className="flex flex-row items-center gap-6">
             <ThemeToggle />
-            <Link href="/contact">
+            <SignedOut>
+              <SignInButton />
+            </SignedOut>
+            <SignedIn>
+              <UserButton />
+            </SignedIn>
+            {/*   <Link href="/contact">
               <Avatar className="w-10 h-10 cursor-pointer hover:ring-1 hover:ring-slate-400">
                 <AvatarImage src="/sulaiman.jpg"></AvatarImage>
                 <AvatarFallback>SS</AvatarFallback>
               </Avatar>
-            </Link>
+            </Link> */}
           </div>
         </div>
       </section>
