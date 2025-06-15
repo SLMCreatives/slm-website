@@ -27,7 +27,6 @@ export const metadata: Metadata = {
   }
 };
 
-import { ClerkProvider } from "@clerk/nextjs";
 import "./globals.css";
 
 export default function RootLayout({
@@ -36,35 +35,33 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider>
-      <html lang="en" className="scroll-smooth">
-        <head>
-          <link rel="icon" href="/logo.png" sizes="any" />
-          <GoogleTagManager gtmId="G-NP6J43WF60" />
-          <GoogleAnalytics gaId="G-NP6J43WF60" />
-          <meta property="og:image" content="/cover_image.jpg" />
-          <meta property="og:image:type" content="/cover_image.jpg" />
-          <meta property="og:image:width" content="/cover_image.jpg" />
-          <meta property="og:image:height" content="/cover_image.jpg" />
-          <meta name="twitter:image" content="/cover_image.jpg" />
-          <meta name="twitter:image:type" content="/cover_image.jpg" />
-          <meta name="twitter:image:width" content="/cover_image.jpg" />
-          <meta name="twitter:image:height" content="/cover_image.jpg" />
-        </head>
+    <html lang="en" className="scroll-smooth">
+      <head>
+        <link rel="icon" href="/logo.png" sizes="any" />
+        <GoogleTagManager gtmId="G-NP6J43WF60" />
+        <GoogleAnalytics gaId="G-NP6J43WF60" />
+        <meta property="og:image" content="/cover_image.jpg" />
+        <meta property="og:image:type" content="/cover_image.jpg" />
+        <meta property="og:image:width" content="/cover_image.jpg" />
+        <meta property="og:image:height" content="/cover_image.jpg" />
+        <meta name="twitter:image" content="/cover_image.jpg" />
+        <meta name="twitter:image:type" content="/cover_image.jpg" />
+        <meta name="twitter:image:width" content="/cover_image.jpg" />
+        <meta name="twitter:image:height" content="/cover_image.jpg" />
+      </head>
 
-        <body className={titillium.className}>
-          <div className="bg-white dark:bg-black ">
-            <ThemeProvider
-              attribute="class"
-              defaultTheme="light"
-              enableSystem
-              disableTransitionOnChange
-            >
-              {children}
-            </ThemeProvider>
-          </div>
-        </body>
-      </html>
-    </ClerkProvider>
+      <body className={titillium.className}>
+        <div className="bg-white dark:bg-black ">
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="light"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {children}
+          </ThemeProvider>
+        </div>
+      </body>
+    </html>
   );
 }

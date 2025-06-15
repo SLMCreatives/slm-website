@@ -1,19 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import {
-  Bell,
-  CircleUser,
-  Home,
-  LineChart,
-  Menu,
-  Package,
-  Package2,
-  Search,
-  ShoppingCart,
-  Users,
-} from "lucide-react";
-import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
+import { Bell, Home, Package, ShoppingCart, Users } from "lucide-react";
 import { Badge } from "Sulaiman/S/components/ui/badge";
 import { Button } from "Sulaiman/S/components/ui/button";
 import {
@@ -21,22 +9,8 @@ import {
   CardContent,
   CardDescription,
   CardHeader,
-  CardTitle,
+  CardTitle
 } from "Sulaiman/S/components/ui/card";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "Sulaiman/S/components/ui/dropdown-menu";
-import { Input } from "Sulaiman/S/components/ui/input";
-import {
-  Sheet,
-  SheetContent,
-  SheetTrigger,
-} from "Sulaiman/S/components/ui/sheet";
 import { ThemeToggle } from "./ThemeToggle";
 
 export default function Panel() {
@@ -47,12 +21,6 @@ export default function Panel() {
           <div className="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6">
             <Link href="/" className="flex items-center gap-2 font-semibold">
               <div className="flex flex-row items-center gap-3 px-3 py-2">
-                <SignedOut>
-                  <SignInButton />
-                </SignedOut>
-                <SignedIn>
-                  <UserButton />
-                </SignedIn>
                 <ThemeToggle />
               </div>
             </Link>
