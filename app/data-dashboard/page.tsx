@@ -43,6 +43,7 @@ import {
   XIcon
 } from "lucide-react";
 import { Button } from "Sulaiman/S/components/ui/button";
+import PricingSectionCards from "Sulaiman/S/components/price-table";
 
 export default function LandingPage() {
   return (
@@ -278,13 +279,6 @@ export default function LandingPage() {
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 px-16 lg:px-0">
               <Card className="bg-white rounded-lg shadow-lg p-6 text-center hover:shadow-xl transition-shadow duration-300">
-                <Image
-                  src="/data/dashboard.png"
-                  alt="E-Commerce Template"
-                  width={250}
-                  height={150}
-                  className="mx-auto mb-4 rounded-md border border-gray-200"
-                />
                 <CardTitle className="text-xl font-semibold mb-2 text-gray-900">
                   E-Commerce
                 </CardTitle>
@@ -293,13 +287,6 @@ export default function LandingPage() {
                 </CardDescription>
               </Card>
               <Card className="bg-white rounded-lg shadow-lg p-6 text-center hover:shadow-xl transition-shadow duration-300">
-                <Image
-                  src="/data/dashboard.png"
-                  alt="Survey Template"
-                  width={250}
-                  height={150}
-                  className="mx-auto mb-4 rounded-md border border-gray-200"
-                />
                 <CardTitle className="text-xl font-semibold mb-2 text-gray-900">
                   Survey
                 </CardTitle>
@@ -308,13 +295,6 @@ export default function LandingPage() {
                 </CardDescription>
               </Card>
               <Card className="bg-white rounded-lg shadow-lg p-6 text-center hover:shadow-xl transition-shadow duration-300">
-                <Image
-                  src="/data/dashboard.png"
-                  alt="Research Template"
-                  width={250}
-                  height={150}
-                  className="mx-auto mb-4 rounded-md border border-gray-200"
-                />
                 <CardTitle className="text-xl font-semibold mb-2 text-gray-900">
                   Research
                 </CardTitle>
@@ -323,13 +303,6 @@ export default function LandingPage() {
                 </CardDescription>
               </Card>
               <Card className="bg-white rounded-lg shadow-lg p-6 text-center hover:shadow-xl transition-shadow duration-300">
-                <Image
-                  src="/data/dashboard.png"
-                  alt="Custom Lite"
-                  width={250}
-                  height={150}
-                  className="mx-auto mb-4 rounded-md border border-gray-200"
-                />
                 <CardTitle className="text-xl font-semibold mb-2 text-gray-900">
                   Custom Lite
                 </CardTitle>
