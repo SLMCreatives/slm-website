@@ -1,8 +1,7 @@
 "use client";
 import React, { useState } from "react";
-import MarketingForm from "../_components/MarketingForm";
+import MarketingForm from "Sulaiman/S/components/MarketingForm";
 import { Dialog, DialogBackdrop, DialogPanel } from "@headlessui/react";
-import { XMarkIcon } from "@heroicons/react/24/outline";
 import { Button } from "Sulaiman/S/components/ui/button";
 
 export function FormTwo() {

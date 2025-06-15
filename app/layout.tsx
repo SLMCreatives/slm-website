@@ -2,13 +2,12 @@ import type { Metadata } from "next";
 import { Titillium_Web } from "next/font/google";
 import "/app/globals.css";
 import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
-import { ThemeProvider } from "./_components/theme-provider";
-import NewHeader from "./_components/NewHeader";
+import { ThemeProvider } from "Sulaiman/S/components/theme-provider";
 
 const titillium = Titillium_Web({
   subsets: ["latin"],
   weight: "400",
-  display: "swap",
+  display: "swap"
 });
 
 export const metadata: Metadata = {
@@ -23,16 +22,16 @@ export const metadata: Metadata = {
     follow: true,
     googleBot: {
       index: true,
-      follow: true,
-    },
-  },
+      follow: true
+    }
+  }
 };
 
 import { ClerkProvider } from "@clerk/nextjs";
 import "./globals.css";
 
 export default function RootLayout({
-  children,
+  children
 }: Readonly<{
   children: React.ReactNode;
 }>) {

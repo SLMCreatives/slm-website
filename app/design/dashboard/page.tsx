@@ -1,41 +1,4 @@
-import Link from "next/link";
-import {
-  Bell,
-  CircleUser,
-  Home,
-  LineChart,
-  Menu,
-  Package,
-  Package2,
-  Search,
-  ShoppingCart,
-  Users,
-} from "lucide-react";
-
-import { Badge } from "Sulaiman/S/components/ui/badge";
 import { Button } from "Sulaiman/S/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "Sulaiman/S/components/ui/card";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "Sulaiman/S/components/ui/dropdown-menu";
-import { Input } from "Sulaiman/S/components/ui/input";
-import {
-  Sheet,
-  SheetContent,
-  SheetTrigger,
-} from "Sulaiman/S/components/ui/sheet";
-import Panel from "Sulaiman/app/_components/Panel";
 
 export default function Dashboard() {
   return (

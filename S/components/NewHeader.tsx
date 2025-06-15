@@ -2,27 +2,14 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "Sulaiman/S/components/ui/popover";
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from "Sulaiman/S/components/ui/avatar";
-import { EmailIcon, FacebookIcon, WhatsappIcon, XIcon } from "react-share";
 import { Button } from "Sulaiman/S/components/ui/button";
-import { ThemeToggle } from "./ThemeToggle";
-import "../globals.css";
-import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
+import { ThemeToggle } from "Sulaiman/S/components/ThemeToggle";
 
 const navigation = [
   { name: "SLM", href: "/" },
   { name: "Web Dev", href: "/webdev" },
   { name: "Portfolio", href: "/portfolio" },
-  { name: "Blog", href: "/blog" },
+  { name: "Blog", href: "/blog" }
 ];
 
 export default function NewHeader() {
@@ -51,12 +38,12 @@ export default function NewHeader() {
           </div>
           <div className="flex flex-row items-center gap-6">
             <ThemeToggle />
-            <SignedOut>
+            {/* <SignedOut>
               <SignInButton />
             </SignedOut>
             <SignedIn>
               <UserButton />
-            </SignedIn>
+            </SignedIn> */}
             {/*   <Link href="/contact">
               <Avatar className="w-10 h-10 cursor-pointer hover:ring-1 hover:ring-slate-400">
                 <AvatarImage src="/sulaiman.jpg"></AvatarImage>

@@ -1,5 +1,5 @@
 import React from "react";
-import Panel from "../_components/Panel";
+import Panel from "Sulaiman/S/components/Panel";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (

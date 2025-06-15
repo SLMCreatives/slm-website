@@ -5,12 +5,12 @@ import imageUrlBuilder from "@sanity/image-url";
 import { client, sanityFetch } from "../../../sanity/lib/client";
 import Image from "next/image";
 import type { Metadata } from "next";
-import CodeBlock from "../../../_components/CodeBlock";
-import ShareButtons from "../../../_components/ShareButtons";
+import CodeBlock from "Sulaiman/S/components/CodeBlock";
+import ShareButtons from "Sulaiman/S/components/ShareButtons";
 import {
   Popover,
   PopoverContent,
-  PopoverTrigger,
+  PopoverTrigger
 } from "Sulaiman/S/components/ui/popover";
 import { Button } from "Sulaiman/S/components/ui/button";
 import { Form } from "Sulaiman/S/components/ui/form";
@@ -22,12 +22,12 @@ import {
   DrawerClose,
   DrawerContent,
   DrawerPortal,
-  DrawerTrigger,
+  DrawerTrigger
 } from "Sulaiman/S/components/ui/drawer";
 import {
   Avatar,
   AvatarFallback,
-  AvatarImage,
+  AvatarImage
 } from "Sulaiman/S/components/ui/avatar";
 
 const POST_QUERY = `*[
@@ -63,21 +63,21 @@ const POST_QUERY = `*[
 
 export async function generateStaticParams() {
   const posts = await sanityFetch<SanityDocument[]>({
-    query: `*[_type == "post"]{slug} `,
+    query: `*[_type == "post"]{slug} `
   });
   return posts.map((post: SanityDocument) => ({
-    slug: post.slug.current,
+    slug: post.slug.current
   }));
 }
 
 export async function generateMetadata({
-  params,
+  params
 }: {
   params: { slug: string };
 }): Promise<Metadata> {
   const post = await sanityFetch<SanityDocument>({
     query: POST_QUERY,
-    params,
+    params
   });
 
   const { title, excerpt, mainImage } = post || {};
@@ -90,13 +90,13 @@ export async function generateMetadata({
     openGraph: {
       title,
       description: excerpt,
-      url: `https://slmcreatives.com/blog/posts/${params.slug}`,
+      url: `https://slmcreatives.com/blog/posts/${params.slug}`
     },
     twitter: {
       title,
       description: excerpt,
-      images: [urlForImage(mainImage).width(1200).height(630).url()],
-    },
+      images: [urlForImage(mainImage).width(1200).height(630).url()]
+    }
   };
 }
 
@@ -106,13 +106,13 @@ const urlForImage = (source: any) => {
 };
 
 export default async function PostPage({
-  params,
+  params
 }: {
   params: { slug: string };
 }) {
   const post = await sanityFetch<SanityDocument>({
     query: POST_QUERY,
-    params,
+    params
   });
 
   const {
@@ -127,7 +127,7 @@ export default async function PostPage({
     mainImage,
     readingTime,
     slug,
-    url,
+    url
   } = post || {};
 
   const comments = post?.comments || [];
@@ -152,27 +152,27 @@ export default async function PostPage({
             src={urlForImage(value).url()}
             style={{
               width: "100%",
-              marginBottom: "24px",
+              marginBottom: "24px"
             }}
           />
         );
       },
       code: ({ value }: any) => {
         return <CodeBlock value={value} />;
-      },
-    },
+      }
+    }
   };
 
   const dateFormated = new Date(publishedAt).toLocaleDateString("en-US", {
     year: "numeric",
     month: "long",
-    day: "numeric",
+    day: "numeric"
   });
 
   const upFormated = new Date(_updatedAt).toLocaleDateString("en-US", {
     year: "numeric",
     month: "long",
-    day: "numeric",
+    day: "numeric"
   });
 
   const imagesrc = urlForImage(mainImage).width(800).height(450).url();
@@ -320,7 +320,7 @@ export default async function PostPage({
 const CommentCard = ({
   name,
   comment,
-  updatedAt,
+  updatedAt
 }: {
   name: string;
   comment: string;

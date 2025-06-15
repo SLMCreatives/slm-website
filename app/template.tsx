@@ -1,4 +1,4 @@
-import NewHeader from "./_components/NewHeader";
+import NewHeader from "Sulaiman/S/components/NewHeader";
 
 export default function Template({ children }: { children: React.ReactNode }) {
   return (
