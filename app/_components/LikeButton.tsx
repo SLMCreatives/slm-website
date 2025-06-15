@@ -2,6 +2,7 @@
 
 import { ThumbsDownIcon, ThumbsUpIcon } from "lucide-react";
 import { useState } from "react";
+import { eq } from "drizzle-orm";
 import { Button } from "Sulaiman/S/components/ui/button";
 import { createClient } from "../utils/supabase/client";
 
@@ -10,17 +11,18 @@ export default function LikeButton({ post }: any) {
   const [liked, setLiked] = useState(false);
   const supabase = createClient();
 
-  const handleLike = async (post: any) => {
-    const newLikes = liked ? likes - 1 : likes + 1;
+  const handleLike = async (posts: any) => {
     const { error } = await supabase
-      .from("posts")
-      .update({ likes: newLikes })
-      .eq("slug", post.slug)
+      .from(posts)
+      .update({ likes: likes + 1 })
+      .eq(post.slug, "posts.slug")
       .select();
-    console.log(newLikes);
-    setLikes(newLikes);
-    setLiked(!liked);
-    return null;
+    if (error) {
+      console.log(error);
+    } else {
+      setLikes(likes + 1);
+      setLiked(true);
+    }
   };
 
   return (

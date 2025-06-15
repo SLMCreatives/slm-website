@@ -8,10 +8,13 @@
     "css": "app/globals.css",
     "baseColor": "slate",
     "cssVariables": false,
-    "prefix": ""
+    "prefix": "@"
   },
   "aliases": {
-    "components": "S/components",
-    "utils": "../../../S/lib/utils"
+    "components": "Sulaiman/S/components",
+    "utils": "Sulaiman/S/lib/utils",
+    "ui": "Sulaiman/S/components/ui",
+    "lib": "Sulaiman/S/lib",
+    "hooks": "Sulaiman/S/hooks"
   }
 }
